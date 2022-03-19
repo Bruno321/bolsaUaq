@@ -1,0 +1,21 @@
+.login-text-input {
+  color: #333;
+  margin: 4px;
+}
+
+.login-text-input label p {
+  font-size: 12px;
+  margin: 2px 4px;
+}
+.login-text-input input {
+  font-size: 14px;
+  background-color: #eee;
+  border: 2px solid #999;
+  width: 100%;
+  border-radius: 4px;
+  padding: 4px;
+}
+.login-text-input input:focus {
+  border: 2px solid #4b3eb8;
+  outline: none;
+}
