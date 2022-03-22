@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../Assets/img/fifUaq_Logo.png";
+import fifUaq from "../../Assets/img/facultadUaq.jpg";
 
 const LandingPage = () => {
 
@@ -61,8 +62,7 @@ const styles = {
   container: {
     width: "100%",
     height: "100vh",
-    backgroundColor: "var(--light-purple)",
-    // backgroundImage: "linear-gradient(to right, rgba(160, 152, 237), rgba(160, 152, 237, .6)), url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')",
+    backgroundImage: `linear-gradient(to right, rgba(160, 152, 237), rgba(160, 152, 237, .6)), url(${fifUaq})`,
     backgroundPosition: "center",
     alignItems: "center",
     display: "column",
