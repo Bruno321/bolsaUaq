@@ -1,0 +1,54 @@
+#header{
+    font-family: 'Roboto', sans-serif;
+    font-size: 300%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+#container{
+    width: 80%;
+    height: 613px;
+    /Estos margenes se quitan a la hora de implementar el componente/
+    margin-left: 17%;
+    margin-top: 3.3%;
+    margin-bottom: 3.5%;
+    border: 2px solid #000000;
+}
+#styled-select{
+    width: 18%;
+    height: 6%;
+    margin-left: 77%;
+    overflow: hidden;
+    overflow: -moz-hidden-unscrollable;
+    background: url('https://vivesmart.com/wp-content/uploads/2019/03/white-down-arrow-png-2.png') no-repeat 98%/10% #005183;
+    border: none;
+    display: inline-block;
+    position: relative;
+}
+select{
+    background: transparent;
+    color: white;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 100%;
+    text-align: center; 
+    font-family: 'Roboto', sans-serif;
+    font-size: 170%;
+}
+select:focus{
+    border-color: none;
+    box-shadow: none;
+    color: none; 
+    outline: none;
+}
+option{
+    color: rgb(0, 0, 0);
+    background-color: #EEEEEE;
+    font-family: 'Roboto', sans-serif;
+}
+#vacantes{
+    width: 90%;
+    height: 454px; 
+    margin-top: 2%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
