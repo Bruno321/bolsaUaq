@@ -5,7 +5,7 @@ import { Redirect } from '@reach/router';
 
 const LandingPage = () => {
 
-  const [reidrectLogin,setRedirectLogin] = useState(false)
+  const [redirectLogin,setRedirectLogin] = useState(false)
   const [redirectRegister,setRedirectRegister] = useState(false)
   return (
     <>
@@ -21,7 +21,7 @@ const LandingPage = () => {
         <button style={styles.btnLogin} onClick={()=>setRedirectLogin(true)}>INICIAR SESIÓN</button>
         <button style={styles.btnRegister} onClick={()=>setRedirectRegister(true)}>REGISTRARSE</button>
         {
-          reidrectLogin ? <Redirect from='/' to='/login' noThrow/>:  <div></div>
+          redirectLogin ? <Redirect from='/' to='/login' noThrow/>:  <div></div>
         }
         {
           redirectRegister ? <Redirect from='/' to='/register' noThrow/>:  <div></div>
