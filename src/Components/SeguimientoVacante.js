@@ -1,7 +1,13 @@
 import React, {useState, useEffect} from "react";
 
+/*
+    -------La información a recibir en los props para mostrar la información es la siguiente: 
+    info={{titulo: '', descripcion: '', horario: '', salario: '', lugar: '', contacto: '', empresa: '', status: ''}}
+*/
+
 const SeguimientoVacante = (props) => {
     const [estado, setEstado] = useState({backgroundColor: 'grey'});
+    const [hoverButton, setHoverButton] = useState({...styles.btn});
 
     useEffect(() => {
         if(props.info.status.toLowerCase() == 'disponible'){
@@ -20,7 +26,14 @@ const SeguimientoVacante = (props) => {
                 <div style={styles.textDescription}>
                     <p>{props.info.descripcion}</p>
                 </div>
-                <button style={{...styles.btn, ...estado}}>{props.info.status}</button>
+                <button style={{...hoverButton, ...estado}}
+                    onMouseEnter={() => props.info.status.toLowerCase() == 'disponible' 
+                                                                        ? setHoverButton({...hoverButton}, setEstado({background: '#36f385'})) 
+                                                                        : setHoverButton({...hoverButton}, setEstado({background: '#f54636'}))}
+                    onMouseLeave={() => props.info.status.toLowerCase() == 'disponible' 
+                                                                        ? setHoverButton({...hoverButton}, setEstado({background: '#27AE60'})) 
+                                                                        : setHoverButton({...hoverButton}, setEstado({background: '#C0392B'}))}
+                >{props.info.status}</button>
                 <div style={styles.contDown}>
                     <h3 style={styles.h3}>Horario: <span style={styles.info}>{props.info.horario}</span></h3>
                     <h3 style={styles.h3}>Salario: <span style={styles.info}>{props.info.salario}</span></h3>
@@ -80,7 +93,8 @@ const styles = {
         borderStyle: 'none',
         position: 'relative',
         float: 'right',
-        margin: '6px 0 0 0'
+        margin: '6px 0 0 0',
+        cursor: 'pointer'
     },
     contDown: {
         width: 'calc(100% - 146px)',
