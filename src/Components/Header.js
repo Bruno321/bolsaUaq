@@ -21,7 +21,7 @@ export default Header;
 
 const styles = {
 headerContainer: {
-    width: "100vw",
+    width: "100%",
     height: "10vh",
     backgroundColor: "#2B246B",
     display: "flex",

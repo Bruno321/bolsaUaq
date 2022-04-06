@@ -36,7 +36,6 @@ const styles = {
     display: 'flex',
     width: '100%',
     height: '12vh',
-    position: 'absolute',
     bottom: '0',
     color: 'white',
     fontSize: '1.4rem',
