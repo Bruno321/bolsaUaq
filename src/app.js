@@ -6,6 +6,8 @@ import LandingPage from './Pages/empresa/LandingPage';
 import LoginEmpresa from './Pages/empresa/LoginEmpresa';
 import RegistroEmpresa from './Pages/empresa/RegistroEmpresa';
 import MainPageEmpresa from './Pages/empresa/MainPageEmpresa';
+import CrearVacante from '../src/Components/CrearVacante';
+import Formulario from './Components/Formulario';
 
 // Pages-Vinculacion
 import LoginVinculacion from './Pages/vinculacion/LoginVinculacion';
