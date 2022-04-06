@@ -9,7 +9,7 @@ import MainPageEmpresa from './Pages/empresa/MainPageEmpresa';
 
 // Pages-Vinculacion
 import LoginVinculacion from './Pages/vinculacion/LoginVinculacion';
-import ValidarEmpresa from './Pages/vinculacion/ValidarEmpresa';
+import MainPageVinculacion from './Pages/vinculacion/MainPageVinculacion';
 
 // Pages
 import NotFound from './Pages/NotFound';
@@ -47,7 +47,7 @@ export const App = () => {
                         <LandingPage path='/'/>
                         <LoginEmpresa path='/login'/>
                         <RegistroEmpresa path='/register'/>
-                        <ValidarEmpresa path='/vinculacion'/>
+                        <MainPageVinculacion path='/vinculacion'/>
                         <Redirect from='/vinculacion/login' to='/vinculacion' noThrow />
                     </>
                 : null}
@@ -71,35 +71,3 @@ export const App = () => {
     
 }
 
-//  {/* ------Empresas------ */}
-//                 {/* Si no esta logeado el path de login sera '/login' */}
-//                 {!isAuth && <LoginEmpresa path='/login'/>}
-
-//                 {/* Si no esta logeado '/' lleva a Landing Page */}
-//                 {!isAuth && <LandingPage path='/'/>}
-
-//                 {/* Si no esta logeado el path de '/' sera '/login' asi protegemos la vista  */}
-//                 {!isAuth && <Redirect from='/' to='/login' noThrow />}
-
-//                 {/* Si esta logeado el path de '/login' sera '/' para impedir re logeo sin cerrar sesion */}
-//                 {isAuth && <Redirect from='/login' to='/' noThrow />}
-
-//                 {/* Si  esta logeado '/' lleva a MainPage */}
-//                 {isAuth && <MainPageEmpresa path='/'/>}
-
-//                 {/* ------Vinculacion------ */}
-//                 {/* Si no esta logeado el path de login de vinculacion sera 'vinculacion/login' */}
-//                 {!isAuth && <LoginVinculacion path='/vinculacion/login'/>}
-
-//                 {/* Si no esta logeado el path de '/vinculacion' sera '/login' asi protegemos la vista  */}
-//                 {!isAuth  && <Redirect from='/vinculacion' to='/vinculacion/login' noThrow />}
-
-//                 {/* Si  esta logeado '/vinculacion' lleva a ValidarEmpresa */}
-//                 {isAuth && userType && <ValidarEmpresa path='/vinculacion'/>}
-
-//                 {/* Si esta logeado el path de 'vinculacion/login' sera '/vinculacion' 
-//                 para impedir re logeo sin cerrar sesion */}
-//                 {isAuth && userType && <Redirect from='/vinculacion/login' to='/vinculacion' noThrow />}
-
-                
-//                 <RegistroEmpresa path='/register'/>
