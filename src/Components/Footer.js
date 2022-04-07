@@ -35,8 +35,7 @@ const styles = {
   footer: {
     display: 'flex',
     width: '100%',
-    height: '100px',
-    position: 'absolute',
+    height: '12vh',
     bottom: '0',
     color: 'white',
     fontSize: '1.4rem',

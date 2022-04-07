@@ -112,19 +112,24 @@ export default CrearVacante;
 
 const styles = {
   container: {
-    maxWidth: "980px",
-    minWidth: "320px",
+    // maxWidth: "980px",
+    // minWidth: "320px",
     height: "100%", 
+    width: "100%" ,
     margin: "14px", 
     border: "1px solid black", 
-    padding: "20px 50px 40px 50px",
+    // padding: "20px 50px 40px 50px",
+    padding: "30px 60px 50px 60px",
+
   },
   parrafo: {
-    fontSize: "1.8rem",
+    // fontSize: "1.8rem",
+    fontSize: "2.2rem",
     fontWeight: "300",
   },
   title: {
-    fontSize: "2.4rem",
+    // fontSize: "2.4rem",
+    fontSize: "2.8rem",
     fontWeight: "400",
     margin: "20px 0px",
     paddingBottom: "10px",
