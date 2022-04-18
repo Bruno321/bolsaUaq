@@ -1,9 +1,10 @@
 import React from 'react';
+import Form from "../../Components/signup-company/Form"
 
 const RegistroEmpresa = () => {
     return (
         <div>
-            Registro empresa
+            <Form />
         </div>
     )
 }

@@ -17,10 +17,10 @@ import MainPageVinculacion from './Pages/vinculacion/MainPageVinculacion';
 import NotFound from './Pages/NotFound';
 
 // Context
-import {Context} from './Context/LoginContext'
+import {Context} from './Context/LoginContext';
 
 //Pruebas de Componentes / Pantallas
-// import CrearVacante from "./Components/CrearVacante"
+// import RegistroEmpresa from "./Pages/empresa/RegistroEmpresa";
 
 export const App = () => {
     // Para saber si el usuario esta logeado o no
@@ -40,7 +40,7 @@ export const App = () => {
                         <LandingPage path='/'/>
                         {/* Dedicado para probar componentes / pantallas (recuerda comentar
                         lo de arriba y descomentarlo antes de hacerle Push [obviamente debes de comentar lo de abajo]) */}
-                        {/* <CrearVacante path='/'/> */}
+                        {/* <RegistroEmpresa path='/'/> */}
                         <LoginEmpresa path='/login'/>
                         <RegistroEmpresa path='/register'/>
                         <LoginVinculacion path='/vinculacion/login'/>
