@@ -1,5 +1,5 @@
 import React from 'react';
-import './LoginTextInput.css'
+// import './LoginTextInput.css'
 
 const LoginTextInput = (props) => {
 	const { labelText = "", placeHolder = "", textValue, onChangeText, inputType = "text" } = props;
@@ -13,6 +13,7 @@ const LoginTextInput = (props) => {
 					value={textValue}
 					onChange={onChangeText}
 					type={inputType}
+					style={{width: '100%', height: '22px'}}
 				/>
 			</label>
 		</div>
