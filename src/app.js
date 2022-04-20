@@ -37,10 +37,10 @@ export const App = () => {
                 {isAuth===null && userType===null ? 
                     <>
                         <NotFound default/>
-                        <LandingPage path='/'/>
+                        {/* <LandingPage path='/'/> */}
                         {/* Dedicado para probar componentes / pantallas (recuerda comentar
                         lo de arriba y descomentarlo antes de hacerle Push [obviamente debes de comentar lo de abajo]) */}
-                        {/* <RegistroEmpresa path='/'/> */}
+                        <RegistroEmpresa path='/'/>
                         <LoginEmpresa path='/login'/>
                         <RegistroEmpresa path='/register'/>
                         <LoginVinculacion path='/vinculacion/login'/>
