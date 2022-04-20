@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './Formulario.css'
+// import './Formulario.css'
 
 const Formulario = (props) => {
   const [texto, setTexto] = useState("");
