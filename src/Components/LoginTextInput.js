@@ -1,48 +1,23 @@
 import React from 'react';
+// import './LoginTextInput.css'
 
 const LoginTextInput = (props) => {
 	const { labelText = "", placeHolder = "", textValue, onChangeText, inputType = "text" } = props;
 
 	return (
-		<div style={styles.loginTextInput}>
+		<div className='loginTextInput'>
 			<label>
-				<p style={styles.loginTextInputLabel}>{labelText}</p>
+				<p>{labelText}</p>
 				<input
-					style={styles.loginTextInputField}
 					placeholder={placeHolder}
 					value={textValue}
 					onChange={onChangeText}
 					type={inputType}
+					style={{width: '100%', height: '22px'}}
 				/>
 			</label>
 		</div>
 	);
 }
-
-
-const styles = {
-	loginTextInput: {
-		color: '#333',
-		margin: '4px'
-	},
-	loginTextInputLabel: {
-		fontSize: '12px',
-		margin: '2px 4px'
-	},
-	loginTextInputField: {
-		fontSize: '14px',
-		backgroundColor: '#eee',
-		border: '2px solid #999',
-		width: '100%',
-		borderRadius: '4px',
-		padding: '4px',
-
-		"&:focus": {
-			border: '2px solid #4b3eb8',
-			outline: 'none'
-		}
-	},
-
-};
 
 export default LoginTextInput;
