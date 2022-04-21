@@ -25,28 +25,30 @@ const Form = () =>{
     return (
         <div className = "form">
             <div className = "progress-bar"></div>
-            <div className = "form-container">
+            <div className = "container">
             {/* Nombre de la sección donde están */}
             <div className = "header">
-                <h1>{FormTitles[page]}</h1>
+                <h3>{FormTitles[page]}</h3>
+                <p>Necesitamos el contacto de quién se encarge en ingresar a la plataforma</p>
             </div>
             <div className = "body">
                 {PageDisplay()}
             </div>
             <div className = "footer"></div>
             {/* Botón "Anterior" y "Siguiente" para moverse en el MultiStep */}
-            <button
-                disabled = {page == 0}
-                onClick = {() => {
-                setPage((currPage) => currPage - 1)
-            }}>Anterior</button>
-            <button  
-                disabled = {page == FormTitles.length-1}
-                onClick = { () => {
-                setPage((currPage) => currPage + 1)
-            }}>Siguiente</button>
+            <div className = "buttons">
+                <button
+                    disabled = {page == 0}
+                    onClick = {() => {
+                    setPage((currPage) => currPage - 1)
+                }}>Anterior</button>
+                <button  
+                    disabled = {page == FormTitles.length-1}
+                    onClick = { () => {
+                    setPage((currPage) => currPage + 1)
+                }}>Siguiente</button>
             </div>
-            <div></div>
+            </div>
         </div>
     )
 }
