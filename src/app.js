@@ -27,9 +27,7 @@ export const App = () => {
     const {isAuth} = useContext(Context)
     // Para saber que tipo de usuario es
     const {userType} = useContext(Context)
-    console.log(isAuth)
-    console.log(userType)
-    console.log(isAuth==='true' && userType==='true')
+
     return(
         <div>
             <Router>

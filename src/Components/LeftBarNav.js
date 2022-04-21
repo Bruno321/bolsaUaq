@@ -1,18 +1,27 @@
 import React,{ useState} from 'react'
 
-const LeftBarnav = () => {
+const LeftBarnav = ({setOptionProp,optionProp}) => {
     const [hover,setHover] = useState(false)
     const [hover2,setHover2] = useState(false)
-    console.log(hover)
     return (
         <div style={styles.container}>
             <h2 style={{...styles.title,marginTop:'50px'}}>¡Bienvenido!</h2>
             <h2 style={styles.title}>BALSOFT</h2>
             <br></br>
-            <div style={ hover ?  styles.optionHover : styles.option} onMouseOver={()=>setHover(true)} onMouseLeave={()=>setHover(false)}>
+            <div style={ hover ?  styles.optionHover : styles.option 
+                && optionProp===0 ? styles.optionHover : styles.option} 
+                onMouseOver={()=>setHover(true)} 
+                onMouseLeave={()=>setHover(false)}
+                onClick={()=>setOptionProp(0)}
+            >
                 <p style={styles.text}>Crear Vacante</p>
             </div>
-            <div style={ hover2 ?  styles.optionHover : styles.option} onMouseOver={()=>setHover2(true)} onMouseLeave={()=>setHover2(false)}>
+            <div style={ hover2 ?  styles.optionHover : styles.option
+                && optionProp===1 ? styles.optionHover : styles.option} 
+                onMouseOver={()=>setHover2(true)} 
+                onMouseLeave={()=>setHover2(false)}
+                onClick={()=>setOptionProp(1)}
+            >
                 <p style={styles.text}>Status del Puesto</p>
             </div>
         </div>
