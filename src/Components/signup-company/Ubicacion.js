@@ -1,6 +1,5 @@
 import React from "react";
 // Estilos
-import "./Ubicacion.css";
 
 function Ubicacion (){
     return(
