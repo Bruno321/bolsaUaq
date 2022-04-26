@@ -1,58 +1,17 @@
 import React, {useContext,useState} from 'react';
 import {Context} from '../../Context/LoginContext'
-import LeftBarnav from '../../Components/LeftBarNav';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
-import CrearVacante from '../../Components/CrearVacante';
-import StatusPuesto from '../../Components/StatusPuesto';
-import InfoVacante from '../../Components/InfoVacante';
-import SolicitudEmpresa from '../../Components/SolicitudEmpresa';
-
 import ImgEmpresa from '../../Assets/img/ImagenMainEmpresa.png';
 
 const MainPageEmpresa = () => {
     const {cerrarSesion} = useContext(Context);
-    onst [option,setOption] = useState(0)
-    const data = {
-  empresa: {
-    nombre: "Microsoft",
-    razonSocial: "[Razón Social]",
-    sector: '[Sector]',
-    rfc: '[RFC]',
-    email: "contacto@microsoft.com",
-    telefono: "12154 135 13513",
-    sitioWeb: 'www.microsoft.com'
-  },
-  registro: {
-    fecha: "3 de enero de 2022"
-  },
-  domicilio: {
-    direccion: "[Dirección]",
-    colonia: "[Colonia]",
-    ciudad: "[ciudad]",
-    codigoPostal: "[Codigo Postal]",
-    estado: "[Estado]"
-  },
-  reclutador: {
-    nombre: "[Nombre]",
-    email: "[Email]",
-    telefono: "[Telefono]"
-  },
-  descripcion: "[descripcion]"}
-
+    
     const [hoverButton, setHoverButton] = useState({...styles.button});
 
     return (
         <div style={styles.container}>
             <Header/>
-            <div style={styles.bodyContainer}>
-                <LeftBarnav setOptionProp={setOption} optionProp={option} />
-                {/* Dependiendo de la opcion es lo que renderiza */}
-                <div style={styles.vacanteContainer}>
-                    
-                { option===0 ? <CrearVacante/> : null}
-                { option===1 ? <StatusPuesto/> : null}
-
             <div style={styles.containerBody}>
                 <div style={styles.containerInfo}>
                     <div style={styles.containerDescription}>
@@ -86,27 +45,6 @@ const MainPageEmpresa = () => {
                 <button onClick={cerrarSesion}>Cerrar sesion</button>
             </div>
             <Footer/>
-            <InfoVacante  info={{titulo: '', descripcion: '', requisitos: '', competencias: '', tipoContratacion: '', tipoEmpleo: '', informacion: '', estado: '', ciudad: '', nivelIngles: '', rangoSueldo: '', carrera: '', area: '', numeroPersonas: '', prestaciones: '', otrosRequisitos: ''}}/>
-            <SolicitudEmpresa data={data}
-                onClickAceptar={(e) => alert("Aceptar")}
-                onClickRechazar={(e) => alert("Rechazar")}
-                onClickCerrar={(e) => alert("Cerrar")} />
-            Main Page empresa
-            <button onClick={cerrarSesion}>Cerrar sesion</button>
-        </div>
-         <div>
-             <Header/>
-             <div style={styles.bodyContainer}>
-                 <LeftBarnav/>
-                 <div style={styles.vacanteContainer}>
-                     <CrearVacante/>
-                 </div>
-             </div>
-             <Footer/>
-             Main Page empresa
-             <button onClick={cerrarSesion}>Cerrar sesion</button>
-         </div>
-        </div>
         </div>
     )
 
@@ -198,17 +136,5 @@ const styles = {
     p: {
         fontSize: '1.4rem',
         color: '#7D7D7D',
-    },
-
-    // bodyContainer:{
-    //     display:'flex',
-    //     // width: '100%'
-    // },
-    // vacanteContainer:{
-    //     width: '87%',
-    //     padding:'5px',
-    //     height:'100%',
-    //     display: 'flex',
-
-    // }
+    }
 }
