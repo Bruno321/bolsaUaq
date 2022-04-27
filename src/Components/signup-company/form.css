@@ -64,7 +64,7 @@
 }
 /* Estilo general de los input */
 input {
-    width: 100%;
+    width: 95%;
     height: 40px;
     padding-left: 10px;
     border: 1px solid #505050;
@@ -91,4 +91,13 @@ input {
 .img-half-screen img {
     width: 70%;
     margin-top: 30px;
+}
+
+.datos-empresa-container{
+    margin-left: 10px;
+}
+
+a{
+    size: 50px;
+    opacity: 50%;
 }
