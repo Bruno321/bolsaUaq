@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../Assets/img/fifUaq_Logo.png";
 import profileUser from "../Assets/img/profile-user.png"
+import "./Header.css"
 
 const Header = ({optionSelected,setOptionSelected}) =>{
     return(
