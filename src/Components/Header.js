@@ -2,15 +2,16 @@ import React from "react";
 import logo from "../Assets/img/fifUaq_Logo.png";
 import profileUser from "../Assets/img/profile-user.png"
 
-
-const Header = () =>{
+const Header = ({optionSelected,setOptionSelected}) =>{
     return(
         <>
         <header style = {styles.headerContainer}>
             <img src = {logo} alt = "Logo de la Facultad de Informática" style={{padding: "10px"}}/>
             <ul style = {styles.ulOrder}> 
-                <li style = {styles.headerOptions}>Publicar una vacante</li>
-                <li style = {styles.headerOptions}>Mis Vacantes</li>
+                <li  className={optionSelected==0 ? "headerTextSelected" : "headerText" } 
+                    onClick={()=>setOptionSelected(0)}>Publicar una vacante</li>
+                <li  className={optionSelected==1 ? "headerTextSelected" : "headerText" }
+                    onClick={()=>setOptionSelected(1)}>Mis Vacantes</li>
             </ul>
             <img src = {profileUser} alt = "Foto de Usuario" style = {styles.imgProfileUser}/>
         </header>
@@ -36,13 +37,6 @@ ulOrder:{
     justifyContent: "flex-start",
     alignItems: "center",
     listStyleType: "none"
-},
-
-headerOptions: {
-    color: "#fff",
-    fontSize: "15px",
-    margin: "15px",
-    cursor: "pointer"
 },
 imgProfileUser: {
     padding: "15px"

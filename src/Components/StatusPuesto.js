@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import VacantCard from './VacantCard'
 import VacantesValidadas from './VacantesValidadas'
+import DropDownMenuFilter from "./DropDownMenuFilter";
+
 
 const StatusPuesto = () => {
   const data = [
@@ -33,7 +35,7 @@ const StatusPuesto = () => {
   return (
     <div style={styles.container}>
       <h2 style={styles.title}>Seguimiento de Vacantes:</h2>
-      <VacantesValidadas/>
+      <DropDownMenuFilter/>
       {data.map((data)=>{
         return (
           <VacantCard props={data}/>
