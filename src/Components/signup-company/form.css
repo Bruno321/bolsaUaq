@@ -4,14 +4,63 @@
     height: 100vh;
     display: flex;
 }
+/*PROGRESS BAR*/
+.progress-bar{
+    width: 600px;
+    height: 4px;
+    background-color: white;
+    margin-bottom: 50px;
+}
+.progress-bar div{
+    width: 33.3%;
+    height: 100%;
+    background-color: #5F4FEB;
+}
+/*STEPS del form */
+.multistep{
+    display: flex;
+}
+.multistep .step{
+    text-align: center;
+    width: 100%;
+}
+.multistep .step h3{
+    margin-top: 5px;
+    width: 100%;
+    color: #ABABAB;
+    /*color: #5F4FEB;*/
+    font-size: 1.4rem;
+}
+.multistep .step .circle{
+    position: relative;
+    height: 60px;
+    width: 60px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #F5F5F5;
+}
+.multistep .step span{
+    margin-top: 15px;
+    line-height: 25px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.multistep .step .check{
+    display: none;
+}
 /* Sección del Formulario */
 .form-container {
     width: 100%;
     height: auto;
-    margin-top: 60px;
+    /* margin-top: 60px; */
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 90px;
+}
+.body{
+    padding: 30px;
 }
 .form-container h1 {
     font-family: 'Montserrat', sans-serif;
@@ -32,7 +81,6 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    margin-top: 40px;  /* Quitar cuando se hagan los circulos */
 }
 .container p {
     font-family: 'Montserrat', sans-serif;
@@ -52,15 +100,9 @@
     border-radius: 6px;
     border: none;
     font-size: 1.6rem;
-    background-color: var(--dark-purple);
+    background-color: #5F4FEB;
     color: #fff;
     cursor: pointer;
-}
-.header h3 {
-    width: 100%;
-    color: var(--dark-purple);
-    text-align: center;
-    font-size: 1.4rem;
 }
 /* Estilo general de los input */
 input {
@@ -93,11 +135,7 @@ input {
     margin-top: 30px;
 }
 
-.datos-empresa-container{
-    margin-left: 10px;
-}
-
 a{
-    size: 50px;
-    opacity: 50%;
+    size: 150px;
+    opacity: 75%;
 }

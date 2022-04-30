@@ -1,6 +1,4 @@
 import React from "react";
-//Estilos
-import './form.css';
 
 function DatosEmpresa() {
     return (
