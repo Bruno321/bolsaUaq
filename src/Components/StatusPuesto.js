@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import VacantCard from './VacantCard'
-import VacantesValidadas from './VacantesValidadas'
 import DropDownMenuFilter from "./DropDownMenuFilter";
+import SeguimientoVacante from "./SeguimientoVacante";
 
 
 const StatusPuesto = () => {

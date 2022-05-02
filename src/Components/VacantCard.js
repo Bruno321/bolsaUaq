@@ -18,7 +18,7 @@ const VacantCard = (props) => {
 
 const styles = {
 	vacantContainer: {
-		with: "100%",
+		width: "100%",
 		heigth: "auto",
 		background: "#fff",
 		border: "1px solid #ddd",

@@ -11,13 +11,19 @@ const LeftBarnav = ({optionSelected,setOptionSelected}) => {
                 className={optionSelected==0 ? "leftBarOptionSelected" : "leftBarOption" }
                 onClick={()=>setOptionSelected(0)}
             >
-                <p style={styles.text}>Crear Vacante</p>
+                <p style={styles.text}>Validar empresa</p>
             </div>
             <div style={styles.option} 
                 className={optionSelected==1 ? "leftBarOptionSelected" : "leftBarOption" }
                 onClick={()=>setOptionSelected(1)}
             >
-                <p style={styles.text}>Status del Puesto</p>
+                <p style={styles.text}>Validar Vacante</p>
+            </div>
+            <div style={styles.option} 
+                className={optionSelected==1 ? "leftBarOptionSelected" : "leftBarOption" }
+                onClick={()=>setOptionSelected(1)}
+            >
+                <p style={styles.text}>Ver vacantes</p>
             </div>
         </div>
     )
@@ -31,8 +37,6 @@ const styles = {
         backgroundColor: '#2B246B',
         textAlign:'center',
         textAlign:'center',
-        // asd
-        height: "100%",
     },
     title: {
         color: "#fff",
