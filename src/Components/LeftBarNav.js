@@ -1,4 +1,5 @@
 import React,{ useState} from 'react'
+import './LeftBarNav.css'
 
 const LeftBarnav = ({optionSelected,setOptionSelected}) => {
     return (

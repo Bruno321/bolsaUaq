@@ -49,14 +49,11 @@ export default StatusPuesto;
 
 const styles = {
   container: {
-    // maxWidth: "980px",
-    // minWidth: "320px",
     minHeight: "66vh",
-    height: "100%", 
+    height: "78vh", 
     width: "100%" ,
     margin: "14px", 
     border: "1px solid black", 
-    // padding: "20px 50px 40px 50px",
     padding: "30px 60px 50px 60px",
 
   },

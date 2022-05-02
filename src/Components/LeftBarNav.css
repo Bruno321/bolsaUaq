@@ -1,0 +1,8 @@
+.leftBarOptionSelected{
+    background-color: rgba(255,255,255,.35);
+}
+
+.leftBarOption:hover{
+    background-color: rgba(255,255,255,.35);
+
+}
