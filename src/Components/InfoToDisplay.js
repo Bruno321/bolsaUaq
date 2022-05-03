@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import VacantCard from './VacantCard'
 import DropDownMenuFilter from "./DropDownMenuFilter";
 import SeguimientoVacante from "./SeguimientoVacante";
+import dataFetch from "../Assets/js/dataFetch";
 
 
-const InfoToDisplay = ({title,data,optionSelected}) => {
-    // data must be an array []
+const InfoToDisplay = ({title,optionSelected}) => {
+  
+  // optionSelected defines the type of elements the card will gave and the route of the fetch
+  /*
+    0-validarEmpresas
+    1-validar vacantes
+    2-ver vacantes
+    3-status del puesto
+  */
+  const [data,setData] = useState([])
+  useEffect(()=>{
+    setData(dataFetch(optionSelected))
+  },[optionSelected])
+
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>{title}</h2>
+      <h2 style={styles.title}>{title}:</h2>
       <DropDownMenuFilter/>
       {data.map((data)=>{
         return (

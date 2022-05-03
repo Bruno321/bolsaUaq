@@ -1,7 +1,7 @@
 import React from 'react'
 import LeftBarnav from './LeftBarNav'
 import CrearVacante from './CrearVacante'
-import StatusPuesto from './StatusPuesto'
+import InfoToDisplay from './InfoToDisplay'
 
 const ConsolaEmpresa = ({optionSelected,setOptionSelected}) => {
     const data = [
@@ -14,7 +14,7 @@ const ConsolaEmpresa = ({optionSelected,setOptionSelected}) => {
             return <CrearVacante/>
         }
         if(optionSelected==1){
-            return <StatusPuesto/>
+            return <InfoToDisplay title={"Seguimiento de vacantes"} optionSelected={3}/>
         }
     }
     return (
