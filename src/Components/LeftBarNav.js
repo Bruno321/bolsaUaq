@@ -1,24 +1,19 @@
 import React,{ useState} from 'react'
 import './LeftBarNav.css'
+import LeftBarNavOption from './LeftBarNavOption'
 
-const LeftBarnav = ({optionSelected,setOptionSelected}) => {
+const LeftBarnav = ({title,data,optionSelected,setOptionSelected}) => {
     return (
         <div style={styles.container}>
             <h2 style={styles.title}>¡Bienvenido!</h2>
-            <h2 style={styles.title}>BALSOFT</h2>
+            <h2 style={styles.title}>{title}</h2>
             <br></br>
-            <div style={styles.option} 
-                className={optionSelected==0 ? "leftBarOptionSelected" : "leftBarOption" }
-                onClick={()=>setOptionSelected(0)}
-            >
-                <p style={styles.text}>Crear Vacante</p>
-            </div>
-            <div style={styles.option} 
-                className={optionSelected==1 ? "leftBarOptionSelected" : "leftBarOption" }
-                onClick={()=>setOptionSelected(1)}
-            >
-                <p style={styles.text}>Status del Puesto</p>
-            </div>
+            {data.map((e,i)=>{
+                return (
+                    <LeftBarNavOption title={e} position={i} optionSelected={optionSelected} setOptionSelected={setOptionSelected} />
+                )
+            })}
+
         </div>
     )
 }
@@ -32,26 +27,12 @@ const styles = {
         textAlign:'center',
         textAlign:'center',
         // asd
-        height: "100%",
+        // height: "100%",
     },
     title: {
         color: "#fff",
         fontSize: "22px",
     },
-    option:{
-        height:'100px',
-        display:'flex',
-        textAlign:'center',
-        justifyContent:'center',
-        alignItems:'center',
-        cursor: "pointer"
 
-    },
-    text:{
-        color: "#fff",
-        fontSize: "22px",
-        margin: "15px",
-        cursor: "pointer"
-    }
    
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import VacantCard from './VacantCard'
 import DropDownMenuFilter from "./DropDownMenuFilter";
 import SeguimientoVacante from "./SeguimientoVacante";
+import InfoVacante from "./InfoVacante";
 
 
 const StatusPuesto = () => {
@@ -38,7 +39,11 @@ const StatusPuesto = () => {
       <DropDownMenuFilter/>
       {data.map((data)=>{
         return (
-          <VacantCard props={data}/>
+          <div>
+            <VacantCard props={data}/>
+           
+            {/* <SeguimientoVacante info={{titulo: '', descripcion: '', horario: '', salario: '', lugar: '', contacto: '', empresa: '', status: ''}} /> */}
+          </div>
         )
       })}
     </div>
@@ -57,54 +62,12 @@ const styles = {
     padding: "30px 60px 50px 60px",
 
   },
-  parrafo: {
-    // fontSize: "1.8rem",
-    fontSize: "2.2rem",
-    fontWeight: "300",
-  },
   title: {
     fontSize: "3.4rem",
     fontWeight: "400",
     margin: "20px 0px",
     paddingBottom: "10px",
   },
-  input: {
-    width: "98%",
-    height: "30px",
-    paddingLeft: "10px",
-    border: "1px solid #505050",
-    borderRadius: "5px",
-    margin: "10px 0px 15px 0px",
-  },
-  inputLarge: {
-    width: "98%",
-    height: "60px",
-    paddingLeft: "10px",
-    border: "1px solid #505050",
-    borderRadius: "5px",
-    margin: "10px 0px",
-  },
-  select: {
-    width: "95%",
-    height: "32px",
-    color: "#505050",
-    margin: "10px 0px 15px 0px",
-    paddingLeft: "10px",
-    borderRadius: "5px",
-  },
-  buttonBack : {
-    width: "36%",
-    height: "40px",
-    color: "var(--purple)",
-    background: "white",
-    border: "1px solid var(--purple)",
-  },
-  button : {
-    width: "36%",
-    height: "40px",
-    marginLeft: "10px",
-    background: "var(--purple)",
-    color: "white",
-    border: "none",
-  },
+
+
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-const VacantCard = (props) => {
+const VacantCard = ({props}) => {
 
 	const { title, description, schedule, salary, companyName, onClickDetails } = props;
 

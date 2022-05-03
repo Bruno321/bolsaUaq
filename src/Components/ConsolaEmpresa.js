@@ -4,7 +4,10 @@ import CrearVacante from './CrearVacante'
 import StatusPuesto from './StatusPuesto'
 
 const ConsolaEmpresa = ({optionSelected,setOptionSelected}) => {
-    console.log(optionSelected)
+    const data = [
+        "Crear Vacante",
+        "Status del Puesto"
+    ]
 
     const componentToRender = () => {
         if(optionSelected==0){
@@ -16,7 +19,7 @@ const ConsolaEmpresa = ({optionSelected,setOptionSelected}) => {
     }
     return (
         <div style={styles.contentContainer}>
-            <LeftBarnav optionSelected={optionSelected} setOptionSelected={setOptionSelected}/>
+            <LeftBarnav title={"BALSOFT"} data={data} optionSelected={optionSelected} setOptionSelected={setOptionSelected}/>
             {componentToRender()}
         </div>
     )
