@@ -1,6 +1,6 @@
 import React from "react";
 
-const VacantCard = ({props}) => {
+const VacantCard = ({props,optionSelected}) => {
 
 	const { title, description, schedule, salary, companyName, onClickDetails } = props;
 
@@ -19,7 +19,6 @@ const VacantCard = ({props}) => {
 const styles = {
 	vacantContainer: {
 		width: "100%",
-		heigth: "auto",
 		background: "#fff",
 		border: "1px solid #ddd",
 		borderLeft: "6px solid #226688",
@@ -27,7 +26,8 @@ const styles = {
 		borderRadius: "4px",
 		margin: "4px",
 		display: "flex",
-		flexDirection: "column"
+		flexDirection: "column",
+		marginTop: "20px"
 
 	},
 	vacantTitle: {

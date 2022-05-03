@@ -31,7 +31,7 @@ const styles = {
     },
     styledSelect: {
         width: '18%',
-        height: '6%',
+        height: '40px',
         marginLeft: '77%',
         overflow: 'hidden',
         overflow: '-moz-hidden-unscrollable',

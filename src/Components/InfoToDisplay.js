@@ -25,7 +25,7 @@ const InfoToDisplay = ({title,optionSelected}) => {
       <DropDownMenuFilter/>
       {data.map((data)=>{
         return (
-          <VacantCard props={data}/>
+          <VacantCard props={data} optionSelected={optionSelected}/>
         )
       })}
     </div>
@@ -37,7 +37,6 @@ export default InfoToDisplay;
 const styles = {
   container: {
     minHeight: "66vh",
-    height: "78vh", 
     width: "100%" ,
     margin: "14px", 
     border: "1px solid black", 

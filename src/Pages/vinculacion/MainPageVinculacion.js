@@ -36,7 +36,6 @@ const styles = {
     },
     bodyContainer: {
         display: "flex",
-        height: "100%"
     }
 }
 
