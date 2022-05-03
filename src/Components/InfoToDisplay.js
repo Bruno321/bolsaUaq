@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import VacantCard from './VacantCard'
+import InfoCard from './InfoCard'
 import DropDownMenuFilter from "./DropDownMenuFilter";
 import SeguimientoVacante from "./SeguimientoVacante";
 import dataFetch from "../Assets/js/dataFetch";
@@ -25,7 +25,7 @@ const InfoToDisplay = ({title,optionSelected}) => {
       <DropDownMenuFilter/>
       {data.map((data)=>{
         return (
-          <VacantCard props={data} optionSelected={optionSelected}/>
+          <InfoCard props={data} optionSelected={optionSelected}/>
         )
       })}
     </div>
