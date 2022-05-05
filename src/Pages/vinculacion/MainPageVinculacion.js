@@ -7,6 +7,8 @@ import InfoToDisplay from '../../Components/InfoToDisplay';
 const MainPageVinculacion = () => {
     const {cerrarSesion} = useContext(Context)
     const [optionSelected,setOptionSelected] = useState(0) 
+    const [detailSelected,setDetailSelected] = useState(false)
+    console.log(optionSelected)
     const titles = [
         "Validación de empresas",
         "Vacantes validadas",
@@ -23,8 +25,8 @@ const MainPageVinculacion = () => {
         <div style={styles.container}>
             <HeaderVinculacion />
             <div style={styles.bodyContainer}>
-                <LeftBarNav title={"ADMIN"} data={leftBarTitles} optionSelected={optionSelected} setOptionSelected={setOptionSelected}/>
-                <InfoToDisplay title={titles[optionSelected]} optionSelected={optionSelected} />
+                <LeftBarNav title={"ADMIN"} data={leftBarTitles} optionSelected={optionSelected} setOptionSelected={setOptionSelected} setDetailSelected={setDetailSelected}/>
+                <InfoToDisplay title={titles[optionSelected]} optionSelected={optionSelected} setDetailSelected={setDetailSelected} detailSelected={detailSelected}/>
             </div>
         </div>
     )

@@ -3,9 +3,10 @@ import InfoCard from './InfoCard'
 import DropDownMenuFilter from "./DropDownMenuFilter";
 import SeguimientoVacante from "./SeguimientoVacante";
 import dataFetch from "../Assets/js/dataFetch";
+import CardDetailManager from './CardDetailManager'
 
 
-const InfoToDisplay = ({title,optionSelected}) => {
+const InfoToDisplay = ({title,optionSelected,setDetailSelected,detailSelected}) => {
   
   // optionSelected defines the type of elements the card will gave and the route of the fetch
   /*
@@ -21,13 +22,20 @@ const InfoToDisplay = ({title,optionSelected}) => {
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>{title}:</h2>
-      <DropDownMenuFilter/>
-      {data.map((data)=>{
-        return (
-          <InfoCard props={data} optionSelected={optionSelected}/>
-        )
-      })}
+      {detailSelected ? 
+        <CardDetailManager optionSelected={optionSelected}/>
+      : 
+        <>
+          <h2 style={styles.title}>{title}:</h2>
+          <DropDownMenuFilter/>
+          {data.map((data)=>{
+            return (
+              <InfoCard props={data} optionSelected={optionSelected} setDetailSelected={setDetailSelected}/>
+            )
+          })}
+        </>
+      }
+      
     </div>
   );
 };
@@ -36,7 +44,7 @@ export default InfoToDisplay;
 
 const styles = {
   container: {
-    minHeight: "66vh",
+    minHeight: "80vh",
     width: "100%" ,
     margin: "14px", 
     border: "1px solid black", 

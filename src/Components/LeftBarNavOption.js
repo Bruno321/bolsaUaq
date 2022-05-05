@@ -1,11 +1,16 @@
 import React from 'react'
 import './LeftBarNav.css'
 
-const LeftBarNavOption = ({title,position,optionSelected,setOptionSelected}) => {
+const LeftBarNavOption = ({title,position,optionSelected,setOptionSelected,setDetailSelected}) => {
+
+    const handleClick = () => {
+        setDetailSelected(false)
+        setOptionSelected(position)
+    }
     return (
         <div style={styles.option} 
             className={optionSelected==position ? "leftBarOptionSelected" : "leftBarOption" }
-            onClick={()=>setOptionSelected(position)}
+            onClick={()=>handleClick()}
         >
             <p style={styles.text}>{title}</p>
         </div>

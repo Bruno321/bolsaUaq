@@ -1,6 +1,7 @@
 import React from "react";
 
-const InfoCard = ({props,optionSelected}) => {
+const InfoCard = ({props,optionSelected,setDetailSelected}) => {
+	console.log(setDetailSelected)
 	const onClickDetails = () => {
 		console.log("asd")
 	}
@@ -9,10 +10,10 @@ const InfoCard = ({props,optionSelected}) => {
 		if(optionSelected==0){
 			return (
 				<>
-					<p style={styles.vacantAttribute}> <b>Lugar de la empresa:</b> H </p>
-					<p style={styles.vacantAttribute}> <b>RFC:</b>  S</p>
-					<p style={styles.vacantAttribute}> <b>Giro de la empresa:</b> C </p>
-					<button style={styles.vacantDetails} onClick={onClickDetails} >Mostrar detalles</button>
+					<p style={styles.vacantAttribute}> <b>Lugar de la empresa:</b>{props.place}</p>
+					<p style={styles.vacantAttribute}> <b>RFC:</b>  {props.rfc}</p>
+					<p style={styles.vacantAttribute}> <b>Giro de la empresa:</b> {props.giro} </p>
+					<button style={styles.vacantDetails} onClick={()=>setDetailSelected(true)} >Mostrar detalles</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Aceptar</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Rechazar</button>
 				</>
@@ -21,10 +22,10 @@ const InfoCard = ({props,optionSelected}) => {
 		if(optionSelected==1){
 			return (
 				<>
-					<p style={styles.vacantAttribute}> <b>Horario:</b> H </p>
-					<p style={styles.vacantAttribute}> <b>Salario:</b>  S</p>
-					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> C </p>
-					<button style={styles.vacantDetails} onClick={onClickDetails} >Mostrar detalles</button>
+					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.schedule} </p>
+					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.salary}</p>
+					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.name} </p>
+					<button style={styles.vacantDetails} onClick={()=>setDetailSelected(true)} >Mostrar detalles</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Aceptar</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Rechazar</button>
 				</>
@@ -33,10 +34,10 @@ const InfoCard = ({props,optionSelected}) => {
 		if(optionSelected==2){
 			return (
 				<>
-					<p style={styles.vacantAttribute}> <b>Horario:</b> H </p>
-					<p style={styles.vacantAttribute}> <b>Salario:</b>  S</p>
-					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> C </p>
-					<button style={styles.vacantDetails} onClick={onClickDetails} >Mostrar detalles</button>
+					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.schedule} </p>
+					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.salary}</p>
+					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.name} </p>
+					<button style={styles.vacantDetails} onClick={()=>setDetailSelected(true)} >Mostrar detalles</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Generar PDF</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Ocupada/disponible</button>
 				</>
@@ -45,12 +46,12 @@ const InfoCard = ({props,optionSelected}) => {
 		if(optionSelected==3){
 			return (
 				<>
-					<p style={styles.vacantAttribute}> <b>Horario:</b> H </p>
-					<p style={styles.vacantAttribute}> <b>Salario:</b>  S</p>
-					<p style={styles.vacantAttribute}> <b>Lugar:</b>  S</p>
-					<p style={styles.vacantAttribute}> <b>Contacto:</b>  S</p>
-					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> C </p>
-					<button style={styles.vacantDetails} onClick={onClickDetails} >Editar</button>
+					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.schedule} </p>
+					<p style={styles.vacantAttribute}> <b>Salario:</b> {props.salary} </p>
+					<p style={styles.vacantAttribute}> <b>Lugar:</b>  {props.place}</p>
+					<p style={styles.vacantAttribute}> <b>Contacto:</b>  {props.contact}</p>
+					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.name} </p>
+					<button style={styles.vacantDetails} onClick={()=>setDetailSelected(true)} >Editar</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Disponible/llena</button>
 				</>
 			)
@@ -59,8 +60,8 @@ const InfoCard = ({props,optionSelected}) => {
 
 	return (
 		<div style={styles.vacantContainer}>
-			<h3 style={styles.vacantTitle}> T </h3>
-			<p style={styles.vacantAttribute}> <b>Descripción:</b> <br />D</p>
+			<h3 style={styles.vacantTitle}> {props.title} </h3>
+			<p style={styles.vacantAttribute}> <b>Descripción:</b> <br />{props.description}</p>
 			{elementsToRender()}
 			
 		</div>
