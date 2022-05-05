@@ -1,10 +1,9 @@
 import React from 'react';
+import Page404NotFound from '../Components/Component404NotFound';
 
 const NotFound = () => {
     return (
-        <div>
-            Not found
-        </div>
+        <Page404NotFound/>
     )
 }
 
