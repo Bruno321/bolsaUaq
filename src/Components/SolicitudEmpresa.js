@@ -1,15 +1,27 @@
 import React from "react";
 
 const SolicitudEmpresa = (props) => {
-  const { data, onClickAceptar, onClickRechazar, onClickCerrar } = props;
+  const { data,optionSelected } = props;
 
-  const { empresa, domicilio, reclutador, descripcion, registro } = data;
+  const { title,rfc,giro,razonSocial,email,telefono,sitioWeb,fechaRegistro, 
+          direccion,colonia,city,codigoPostal,estado, description,
+          nombreReclutador,emailReclutador,telefonoReclutador,id } = data;
+
+  const handleAceptar = () => {
+
+  }
+
+  const handleRechazar = () => {
+
+  }
+  const handleCerrar = () => {
+  }
 
   return (
     <div style={styles.card}>
       <div style={styles.row}>
         <div style={{ ...styles.col, marginLeft: "auto" }}>
-          <button style={styles.btnCerrar} onClick={onClickCerrar}>X</button>
+          <button style={styles.btnCerrar} onClick={handleCerrar}>X</button>
         </div>
       </div>
       <div style={styles.row}>
@@ -27,21 +39,21 @@ const SolicitudEmpresa = (props) => {
           </div>
 
           <div style={{ ...styles.col_12, margin: "auto", textAlign: 'center', marginTop: '8px' }}>
-            <p style={styles.normalText}>{empresa.nombre}</p>
-            <p style={styles.normalText}>{empresa.razonSocial}</p>
-            <p style={styles.normalText}>{empresa.sector}</p>
-            <p style={styles.normalText}>{empresa.rfc}</p>
+            <p style={styles.normalText}>{title}</p>
+            <p style={styles.normalText}>{razonSocial}</p>
+            <p style={styles.normalText}>{giro}</p>
+            <p style={styles.normalText}>{rfc}</p>
           </div>
           <div style={{ ...styles.col_12, margin: "auto", textAlign: 'center', marginTop: '8px' }}>
-            <p style={styles.normalText}>{empresa.email}</p>
-            <p style={styles.normalText}>{empresa.telefono}</p>
+            <p style={styles.normalText}>{email}</p>
+            <p style={styles.normalText}>{telefono}</p>
 
 
-            <p style={styles.normalText}>{empresa.sitioWeb}</p>
+            <p style={styles.normalText}>{sitioWeb}</p>
           </div>
           <div style={{ ...styles.col_12, margin: "auto", textAlign: 'center', marginTop: '8px' }}>
             <p style={styles.normalText}>Fecha de registro:</p>
-            <p style={styles.normalText}>{registro.fecha}</p>
+            <p style={styles.normalText}>{fechaRegistro}</p>
           </div>
 
         </div>
@@ -49,21 +61,21 @@ const SolicitudEmpresa = (props) => {
           <div style={styles.row}>
             <div style={styles.col_12}>
               <h2 style={styles.title}>Domicilio</h2>
-              <p style={styles.normalText}>{domicilio.direccion}</p>
-              <p style={styles.normalText}>{domicilio.colonia}</p>
-              <p style={styles.normalText}>{domicilio.ciudad}</p>
-              <p style={styles.normalText}>{domicilio.codigoPostal}</p>
-              <p style={styles.normalText}>{domicilio.estado}</p>
+              <p style={styles.normalText}>{direccion}</p>
+              <p style={styles.normalText}>{colonia}</p>
+              <p style={styles.normalText}>{city}</p>
+              <p style={styles.normalText}>{codigoPostal}</p>
+              <p style={styles.normalText}>{estado}</p>
             </div>
             <div style={styles.col_12}>
               <h2 style={styles.title}>Reclutador</h2>
-              <p style={styles.normalText}>{reclutador.nombre}</p>
-              <p style={styles.normalText}>{reclutador.email}</p>
-              <p style={styles.normalText}>{reclutador.telefono}</p>
+              <p style={styles.normalText}>{nombreReclutador}</p>
+              <p style={styles.normalText}>{emailReclutador}</p>
+              <p style={styles.normalText}>{telefonoReclutador}</p>
             </div>
             <div style={styles.col_12}>
               <h2 style={styles.title}>Descripción</h2>
-              <p style={styles.normalText}>{descripcion}</p>
+              <p style={styles.normalText}>{description}</p>
             </div>
           </div>
         </div>
@@ -71,12 +83,12 @@ const SolicitudEmpresa = (props) => {
       <div style={styles.row}>
         <div style={{ ...styles.col, marginLeft: "auto" }}>
           <button
-            onClick={onClickRechazar}
+            onClick={handleAceptar}
             style={{ ...styles.btnAccion, ...styles.btnRechazar }}>
             Rechazar
           </button>
           <button
-            onClick={onClickAceptar}
+            onClick={handleRechazar}
             style={{ ...styles.btnAccion, ...styles.btnAceptar }}>
             Aceptar
           </button>

@@ -1,11 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
+import {DetailContext} from '../Context/DetailContext'
 
 const InfoCard = ({props,optionSelected,setDetailSelected}) => {
 	console.log(setDetailSelected)
-	const onClickDetails = () => {
-		console.log("asd")
-	}
 
+    const {setData} = useContext(DetailContext)
+
+	const onClickDetails = () => {
+		console.log(props)
+	}
+	const handleDetailButton = () => {
+		setData(props)
+		setDetailSelected(true)
+	}
 	const elementsToRender = () => {
 		if(optionSelected==0){
 			return (
@@ -13,7 +20,7 @@ const InfoCard = ({props,optionSelected,setDetailSelected}) => {
 					<p style={styles.vacantAttribute}> <b>Lugar de la empresa:</b>{props.place}</p>
 					<p style={styles.vacantAttribute}> <b>RFC:</b>  {props.rfc}</p>
 					<p style={styles.vacantAttribute}> <b>Giro de la empresa:</b> {props.giro} </p>
-					<button style={styles.vacantDetails} onClick={()=>setDetailSelected(true)} >Mostrar detalles</button>
+					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} >Mostrar detalles</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Aceptar</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Rechazar</button>
 				</>
@@ -25,7 +32,7 @@ const InfoCard = ({props,optionSelected,setDetailSelected}) => {
 					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.schedule} </p>
 					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.salary}</p>
 					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.name} </p>
-					<button style={styles.vacantDetails} onClick={()=>setDetailSelected(true)} >Mostrar detalles</button>
+					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} >Mostrar detalles</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Aceptar</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Rechazar</button>
 				</>
@@ -37,7 +44,7 @@ const InfoCard = ({props,optionSelected,setDetailSelected}) => {
 					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.schedule} </p>
 					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.salary}</p>
 					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.name} </p>
-					<button style={styles.vacantDetails} onClick={()=>setDetailSelected(true)} >Mostrar detalles</button>
+					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} >Mostrar detalles</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Generar PDF</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Ocupada/disponible</button>
 				</>
@@ -51,7 +58,7 @@ const InfoCard = ({props,optionSelected,setDetailSelected}) => {
 					<p style={styles.vacantAttribute}> <b>Lugar:</b>  {props.place}</p>
 					<p style={styles.vacantAttribute}> <b>Contacto:</b>  {props.contact}</p>
 					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.name} </p>
-					<button style={styles.vacantDetails} onClick={()=>setDetailSelected(true)} >Editar</button>
+					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} >Editar</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Disponible/llena</button>
 				</>
 			)

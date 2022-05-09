@@ -1,8 +1,11 @@
-import React,{ useState} from 'react'
+import React from 'react'
+
 import './LeftBarNav.css'
+
 import LeftBarNavOption from './LeftBarNavOption'
 
-const LeftBarnav = ({title,data,optionSelected,setOptionSelected,setDetailSelected}) => {
+const LeftBarnav = ({title,data}) => {
+
     return (
         <div style={styles.container}>
             <h2 style={styles.title}>¡Bienvenido!</h2>
@@ -10,7 +13,7 @@ const LeftBarnav = ({title,data,optionSelected,setOptionSelected,setDetailSelect
             <br></br>
             {data.map((e,i)=>{
                 return (
-                    <LeftBarNavOption title={e} position={i} optionSelected={optionSelected} setOptionSelected={setOptionSelected} setDetailSelected={setDetailSelected} />
+                    <LeftBarNavOption title={e} position={i} />
                 )
             })}
 

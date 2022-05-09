@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {DataToShowContext} from '../../Context/DataToShowContext'
+
 import './LeftBarNav.css'
 
 const LeftBarNavOption = ({title,position,optionSelected,setOptionSelected,setDetailSelected}) => {
+    const {optionSelected,setOptionSelected,setDetailSelected} = useContext(DataToShowContext)
 
     const handleClick = () => {
         setDetailSelected(false)
