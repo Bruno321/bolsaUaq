@@ -16,7 +16,7 @@ const CardDetailManager = () => {
             return <SolicitudEmpresa data={data} />
         }
         if(optionSelected==1 || optionSelected==2){
-            return <InfoVacante info={{titulo: '', descripcion: '', requisitos: '', competencias: '', tipoContratacion: '', tipoEmpleo: '', informacion: '', estado: '', ciudad: '', nivelIngles: '', rangoSueldo: '', carrera: '', area: '', numeroPersonas: '', prestaciones: '', otrosRequisitos: ''}}/>
+            return <InfoVacante data={data}/>
         }   
         if(optionSelected==3){
 

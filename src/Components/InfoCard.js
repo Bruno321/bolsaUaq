@@ -29,9 +29,9 @@ const InfoCard = ({props}) => {
 		if(optionSelected==1){
 			return (
 				<>
-					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.schedule} </p>
-					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.salary}</p>
-					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.name} </p>
+					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.horario} </p>
+					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.rangoSueldo}</p>
+					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.nombreEmpresa} </p>
 					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} >Mostrar detalles</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Aceptar</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Rechazar</button>
@@ -41,9 +41,9 @@ const InfoCard = ({props}) => {
 		if(optionSelected==2){
 			return (
 				<>
-					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.schedule} </p>
-					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.salary}</p>
-					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.name} </p>
+					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.horario} </p>
+					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.rangoSueldo}</p>
+					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.nombreEmpresa} </p>
 					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} >Mostrar detalles</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Generar PDF</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Ocupada/disponible</button>

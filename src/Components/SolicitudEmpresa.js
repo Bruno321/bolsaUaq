@@ -1,20 +1,25 @@
-import React from "react";
+import React,{useContext} from "react";
+import {DataToShowContext} from '../Context/DataToShowContext'
+
 
 const SolicitudEmpresa = (props) => {
-  const { data,optionSelected } = props;
+  const { data } = props;
 
   const { title,rfc,giro,razonSocial,email,telefono,sitioWeb,fechaRegistro, 
           direccion,colonia,city,codigoPostal,estado, description,
           nombreReclutador,emailReclutador,telefonoReclutador,id } = data;
+          
+  const {setDetailSelected} = useContext(DataToShowContext)
 
   const handleAceptar = () => {
-
+    
   }
 
   const handleRechazar = () => {
 
   }
   const handleCerrar = () => {
+    setDetailSelected(false)
   }
 
   return (
