@@ -15,18 +15,17 @@ const MainPageVinculacion = () => {
         "Vacantes validadas",
         "Vacantes validadas"
     ]
-
-    const leftBarTitles = [
-        "Validar Empresa",
-        "Validar Vacante",
-        "Ver Vacantes"
+    const leftBarNavTitles = [
+        {name:"Validar Empresa",value:0},
+        {name:"Validar Vacante",value:1},
+        {name:"Ver Vacantes",value:2},
     ]
 
     return (
         <div style={styles.container}>
             <HeaderVinculacion />
             <div style={styles.bodyContainer}>
-                <LeftBarNav title={"ADMIN"} data={leftBarTitles}/>
+                <LeftBarNav title={"ADMIN"} data={leftBarNavTitles}/>
                 <InfoToDisplay title={titles[optionSelected]} />
             </div>
         </div>

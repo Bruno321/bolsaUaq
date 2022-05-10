@@ -5,15 +5,15 @@ import InfoToDisplay from './InfoToDisplay'
 import {DataToShowContext} from '../Context/DataToShowContext'
 
 const ConsolaEmpresa = () => {
-    const data = [
-        "Crear Vacante",
-        "Status del Puesto"
+    const leftBarNavTitles = [
+        {name:"Crear Vacante",value:0},
+        {name:"Status del Puesto",value:4}
     ]
-
     const {optionSelected} = useContext(DataToShowContext)
+    console.log(optionSelected)
 
     const componentToRender = () => {
-        if(optionSelected==0 || optionSelected==3){
+        if(optionSelected==0){
             return <CrearVacante/>
         }
         if(optionSelected==4){
@@ -22,7 +22,7 @@ const ConsolaEmpresa = () => {
     }
     return (
         <div style={styles.contentContainer}>
-            <LeftBarnav title={"BALSOFT"} data={data} />
+            <LeftBarnav title={"BALSOFT"} data={leftBarNavTitles} />
             {componentToRender()}
         </div>
     )
