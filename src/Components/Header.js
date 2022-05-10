@@ -1,9 +1,13 @@
-import React from "react";
+import React,{useContext} from "react";
+import {DataToShowContext} from '../Context/DataToShowContext'
+
 import logo from "../Assets/img/fifUaq_Logo.png";
 import profileUser from "../Assets/img/profile-user.png"
 import "./Header.css"
 
-const Header = ({optionSelected,setOptionSelected}) =>{
+const Header = () =>{
+
+    const {optionSelected,setOptionSelected} = useContext(DataToShowContext)
     return(
         <>
         <header style = {styles.headerContainer}>
@@ -11,8 +15,8 @@ const Header = ({optionSelected,setOptionSelected}) =>{
             <ul style = {styles.ulOrder}> 
                 <li  className={optionSelected==0 ? "headerTextSelected" : "headerText" } 
                     onClick={()=>setOptionSelected(0)}>Publicar una vacante</li>
-                <li  className={optionSelected==1 ? "headerTextSelected" : "headerText" }
-                    onClick={()=>setOptionSelected(1)}>Mis Vacantes</li>
+                <li  className={optionSelected==4 ? "headerTextSelected" : "headerText" }
+                    onClick={()=>setOptionSelected(4)}>Mis Vacantes</li>
             </ul>
             <img src = {profileUser} alt = "Foto de Usuario" style = {styles.imgProfileUser}/>
         </header>
