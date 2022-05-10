@@ -1,13 +1,13 @@
 import React, {useContext} from "react";
 import {DetailContext} from '../Context/DetailContext'
+import {DataToShowContext} from '../Context/DataToShowContext'
 
-const InfoCard = ({props,optionSelected,setDetailSelected}) => {
-	console.log(setDetailSelected)
+const InfoCard = ({props}) => {
 
     const {setData} = useContext(DetailContext)
+    const {optionSelected,setDetailSelected} = useContext(DataToShowContext)
 
 	const onClickDetails = () => {
-		console.log(props)
 	}
 	const handleDetailButton = () => {
 		setData(props)

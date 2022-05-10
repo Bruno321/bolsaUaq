@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import {DataToShowContext} from '../Context/DataToShowContext'
+
 import InfoCard from './InfoCard'
 import DropDownMenuFilter from "./DropDownMenuFilter";
 import SeguimientoVacante from "./SeguimientoVacante";
@@ -6,7 +8,8 @@ import dataFetch from "../Assets/js/dataFetch";
 import CardDetailManager from './CardDetailManager'
 
 
-const InfoToDisplay = ({title,optionSelected,setDetailSelected,detailSelected}) => {
+const InfoToDisplay = ({title}) => {
+  const {optionSelected,detailSelected} = useContext(DataToShowContext)
   
   // optionSelected defines the type of elements the card will gave and the route of the fetch
   /*
@@ -23,14 +26,14 @@ const InfoToDisplay = ({title,optionSelected,setDetailSelected,detailSelected}) 
   return (
     <div style={styles.container}>
       {detailSelected ? 
-        <CardDetailManager optionSelected={optionSelected}/>
+        <CardDetailManager/>
       : 
         <>
           <h2 style={styles.title}>{title}:</h2>
           <DropDownMenuFilter/>
           {data.map((data)=>{
             return (
-              <InfoCard props={data} optionSelected={optionSelected} setDetailSelected={setDetailSelected}/>
+              <InfoCard props={data} />
             )
           })}
         </>

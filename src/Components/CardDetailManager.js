@@ -2,13 +2,15 @@ import React, {useContext} from 'react'
 import SolicitudEmpresa from './SolicitudEmpresa'
 import InfoVacante from './InfoVacante'
 import {DetailContext} from '../Context/DetailContext'
+import {DataToShowContext} from '../Context/DataToShowContext'
+
 
 // Depending on the number of optionSelected is the detail component that is going to be rendered
-const CardDetailManager = ({optionSelected}) => {
+const CardDetailManager = () => {
 
   const {data} = useContext(DetailContext)
+  const {optionSelected} = useContext(DataToShowContext)
 
-  console.log("AAAAAAAAA",data)
     const handleRender = () => {
         if(optionSelected==0 ){
             return <SolicitudEmpresa data={data} />

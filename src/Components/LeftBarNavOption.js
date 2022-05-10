@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
-import {DataToShowContext} from '../../Context/DataToShowContext'
+import {DataToShowContext} from '../Context/DataToShowContext'
 
 import './LeftBarNav.css'
 
-const LeftBarNavOption = ({title,position,optionSelected,setOptionSelected,setDetailSelected}) => {
+const LeftBarNavOption = ({title,position}) => {
     const {optionSelected,setOptionSelected,setDetailSelected} = useContext(DataToShowContext)
 
     const handleClick = () => {
