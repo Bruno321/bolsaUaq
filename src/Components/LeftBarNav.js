@@ -12,9 +12,15 @@ const LeftBarnav = ({title,data}) => {
             <h2 style={styles.title}>{title}</h2>
             <br></br>
             {data.map((e,i)=>{
-                return (
-                    <LeftBarNavOption title={e} position={i} />
-                )
+                if(title==='ADMIN'){
+                    return (
+                        <LeftBarNavOption title={e} position={i} />
+                    )
+                }else{
+                    return (
+                        <LeftBarNavOption title={e} position={i+3} />
+                    )
+                }
             })}
 
         </div>

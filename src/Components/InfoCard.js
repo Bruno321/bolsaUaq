@@ -50,7 +50,7 @@ const InfoCard = ({props}) => {
 				</>
 			)
 		}
-		if(optionSelected==3){
+		if(optionSelected==4){
 			return (
 				<>
 					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.schedule} </p>

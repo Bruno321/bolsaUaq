@@ -8,20 +8,19 @@ import ConsolaEmpresa from '../../Components/ConsolaEmpresa';
 const MainPageEmpresa = () => {
     const {cerrarSesion} = useContext(Context);
     const [pageToRender,setPageToRender] = useState(1) 
-    const [optionSelected,setOptionSelected] = useState(0) 
 
     const handleRender = () => {
         if(pageToRender==0){
             return <MainPageComponent/>
         }
         if(pageToRender==1){
-            return <ConsolaEmpresa optionSelected={optionSelected} setOptionSelected={setOptionSelected}/>
+            return <ConsolaEmpresa/>
         }
     }
 
     return (
         <div >
-            <Header optionSelected={optionSelected} setOptionSelected={setOptionSelected}/>
+            <Header/>
             <div style={styles.contentContainer} >
                 {handleRender()}
             </div>

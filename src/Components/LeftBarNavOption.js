@@ -12,7 +12,7 @@ const LeftBarNavOption = ({title,position}) => {
     }
     return (
         <div style={styles.option} 
-            className={optionSelected==position ? "leftBarOptionSelected" : "leftBarOption" }
+            className={optionSelected==position || position==3 &&position!=4 ? "leftBarOptionSelected" : "leftBarOption"  }
             onClick={()=>handleClick()}
         >
             <p style={styles.text}>{title}</p>

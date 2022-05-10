@@ -77,7 +77,7 @@ const dataFetch = (optionSelected) => {
         ]
       
     }
-    if(optionSelected==3){
+    if(optionSelected==4){
         return [1,2,3,4,5,6]  
     }
 }
