@@ -4,6 +4,7 @@ export const DetailContext = createContext()
 const Provider = ({children})=> {
 
     const [data,setData] = useState({})
+    const [form,setForm] = useState({})
   
     const value = {
         data,

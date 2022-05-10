@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState,useContext,useEffect } from "react";
 import {DetailContext} from '../Context/DetailContext'
 import {DataToShowContext} from '../Context/DataToShowContext'
 
@@ -29,6 +29,41 @@ const CrearVacante = () => {
   const {data,setData} = useContext(DetailContext)
   const {detailSelected} = useContext(DataToShowContext)
 
+  // if(detailSelected){
+  //   console.log(data)
+  //   setForm(data)
+  // }
+
+  useEffect(()=>{
+    if(detailSelected){
+      console.log(data)
+      setForm(data)
+    }else{
+      // aca usamos el otro form
+      setForm({
+        titulo: '', 
+        description: '', 
+        requisitos: '', 
+        competencias: '', 
+        tipoContratacion: '', 
+        tipoEmpleo: '', 
+        informacion: '', 
+        estado: 'asd', 
+        ciudad: '', 
+        nivelIngles: 'asd', 
+        rangoSueldo: '', 
+        carrera: 'asd', 
+        area: '', 
+        horario: "",
+        contacto:"",
+        numeroPersonas: '', 
+        prestaciones: '', 
+        otrosRequisitos: '',
+        nombreEmpresa: "",
+        id:0
+      })
+    }
+  },[detailSelected])
   const handleClick = () => {
     console.log(form)
   }
