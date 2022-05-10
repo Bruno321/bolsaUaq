@@ -4,12 +4,37 @@ export const DetailContext = createContext()
 const Provider = ({children})=> {
 
     const [data,setData] = useState({})
-    const [form,setForm] = useState({})
+    const [formm,setFormm] = useState({
+        titulo: '', 
+        description: '', 
+        requisitos: '', 
+        competencias: '', 
+        tipoContratacion: '', 
+        tipoEmpleo: '', 
+        informacion: '', 
+        estado: 'aguascalientes', 
+        ciudad: '', 
+        nivelIngles: 'Básico', 
+        rangoSueldo: '', 
+        carrera: 'licenciatura_en_informatica', 
+        area: '', 
+        horario: "",
+        contacto:"",
+        numeroPersonas: '', 
+        prestaciones: '', 
+        otrosRequisitos: '',
+        nombreEmpresa: "",
+        id:0
+      })
   
     const value = {
         data,
         setData:(data)=>{
             setData(data)
+        },
+        formm,
+        setFormm:(data)=>{
+            setFormm(data)
         },
     }
 

@@ -4,66 +4,18 @@ import {DataToShowContext} from '../Context/DataToShowContext'
 
 const CrearVacante = () => {
 
-  const [form,setForm] = useState({
-        titulo: '', 
-        description: '', 
-        requisitos: '', 
-        competencias: '', 
-        tipoContratacion: '', 
-        tipoEmpleo: '', 
-        informacion: '', 
-        estado: 'aguascalientes', 
-        ciudad: '', 
-        nivelIngles: 'Básico', 
-        rangoSueldo: '', 
-        carrera: 'licenciatura_en_informatica', 
-        area: '', 
-        horario: "",
-        contacto:"",
-        numeroPersonas: '', 
-        prestaciones: '', 
-        otrosRequisitos: '',
-        nombreEmpresa: "",
-        id:0
-      })
-  const {data,setData} = useContext(DetailContext)
+  let form,setForm
+  const {formm,setFormm,data,setData} = useContext(DetailContext)
   const {detailSelected} = useContext(DataToShowContext)
 
-  // if(detailSelected){
-  //   console.log(data)
-  //   setForm(data)
-  // }
+  if(detailSelected){
+    form = data
+    setForm = setData
+  }else{
+    form = formm
+    setForm = setFormm
+  }
 
-  useEffect(()=>{
-    if(detailSelected){
-      console.log(data)
-      setForm(data)
-    }else{
-      // aca usamos el otro form
-      setForm({
-        titulo: '', 
-        description: '', 
-        requisitos: '', 
-        competencias: '', 
-        tipoContratacion: '', 
-        tipoEmpleo: '', 
-        informacion: '', 
-        estado: 'asd', 
-        ciudad: '', 
-        nivelIngles: 'asd', 
-        rangoSueldo: '', 
-        carrera: 'asd', 
-        area: '', 
-        horario: "",
-        contacto:"",
-        numeroPersonas: '', 
-        prestaciones: '', 
-        otrosRequisitos: '',
-        nombreEmpresa: "",
-        id:0
-      })
-    }
-  },[detailSelected])
   const handleClick = () => {
     console.log(form)
   }
@@ -94,53 +46,53 @@ const CrearVacante = () => {
           <div style={{width: "50%"}}>
             <p style={styles.parrafo}>Estado:</p>
             <select id="estados" name="estados" style={styles.select} value={form.estado} onChange={(e)=>setForm({...form,estado:e.target.value})}>
-              <option value="aguascalientes">Aguascalientes</option>
-              <option value="baja_california">Baja California</option>
-              <option value="baja_california sur">Baja California Sur</option>
-              <option value="campeche">Campeche</option>
-              <option value="chiapas">Chiapas</option>
-              <option value="chihuahua">Chiahuahua</option>
-              <option value="ciudad_de_mexico">Ciudad de México</option>
-              <option value="coahuila_de_zaragoza">Coahuila de Zaragoza</option>
-              <option value="colima">Colima</option>
-              <option value="durango">Durango</option>
-              <option value="guanajuato">Guanajuato</option>
-              <option value="guerrero">Guerrero</option>
-              <option value="hidalgo">Hidalgo</option>
-              <option value="jalisco">Jalisco</option>
-              <option value="estado de mexico">Estado de México</option>
-              <option value="michoacan">Michoacán</option>
-              <option value="morelos">Morelos</option>
-              <option value="narayit">Nayarit</option>
-              <option value="nuevo leon">Nuevo León</option>
-              <option value="oaxaca">Oaxaca</option>
-              <option value="puebla">Puebla</option>
-              <option value="queretaro">Querétaro</option>
-              <option value="quintana roo">Quitana Roo</option>
-              <option value="san_luis_potosí">San Luis Potosí</option>
-              <option value="sinaloa">Sinaloa</option>
-              <option value="sonora">Sonora</option>
-              <option value="tabasco">Tabasco</option>
-              <option value="tamaulipas">Tamaulipas</option>
-              <option value="veracruz">Veracruz</option>
-              <option value="yucatan">Yucatán</option>
-              <option value="zacatecas">Zacatecas</option>
+              <option value="Aguascalientes">Aguascalientes</option>
+              <option value="Baja California">Baja California</option>
+              <option value="Baja California Sur">Baja California Sur</option>
+              <option value="Campeche">Campeche</option>
+              <option value="Chiapas">Chiapas</option>
+              <option value="Chiahuahua">Chiahuahua</option>
+              <option value="Ciudad de México">Ciudad de México</option>
+              <option value="Coahuila de Zaragoza">Coahuila de Zaragoza</option>
+              <option value="Colima">Colima</option>
+              <option value="Durango">Durango</option>
+              <option value="Guanajuato">Guanajuato</option>
+              <option value="Guerrero">Guerrero</option>
+              <option value="Hidalgo">Hidalgo</option>
+              <option value="Jalisco">Jalisco</option>
+              <option value="Estado de México">Estado de México</option>
+              <option value="Michoacan">Michoacán</option>
+              <option value="Morelos">Morelos</option>
+              <option value="Nayarit">Nayarit</option>
+              <option value="Nuevo León">Nuevo León</option>
+              <option value="Oaxaca">Oaxaca</option>
+              <option value="Puebla">Puebla</option>
+              <option value="Querétaro">Querétaro</option>
+              <option value="Quitana Roo">Quitana Roo</option>
+              <option value="San Luis Potos">San Luis Potosí</option>
+              <option value="Sinaloa">Sinaloa</option>
+              <option value="Sonora">Sonora</option>
+              <option value="Tabasco">Tabasco</option>
+              <option value="Tamaulipas">Tamaulipas</option>
+              <option value="Veracruz">Veracruz</option>
+              <option value="Yucatán">Yucatán</option>
+              <option value="Zacatecas">Zacatecas</option>
             </select>
 
             <p style={styles.parrafo}>Nivel de Inglés:</p>
             <select id = "nivelIngles" name = "nivelIngles" style={styles.select} value={form.nivelIngles} onChange={(e)=>setForm({...form,nivelIngles:e.target.value})}>
-              <option value = "basico">Básico</option>
-              <option value = "intermedio">Intermedio</option>
-              <option value = "avanzado">Avanzado</option>
+              <option value = "Básico">Básico</option>
+              <option value = "Intermedio">Intermedio</option>
+              <option value = "Avanzado">Avanzado</option>
             </select>
 
             <p style={styles.parrafo}>Carrera:</p>
             <select id = "carreras" name = "carreras" style={styles.select} value={form.carrera} onChange={(e)=>setForm({...form,carrera:e.target.value})}>
-              <option value = "licenciatura_en_informatica">Licenciatura en Informática</option>
-              <option value = "licenciatura_en_administración_de_las_ti">Licenciatura en Administración de las TI</option>
-              <option value = "ingenieria_de_software">Ingeniería de Software</option>
-              <option value = "ingenieria_en_computacion">Ingeniería en Computación</option>
-              <option value = "ingenieria_en_telecomunicaciones">Ingeniería en Telecomunicaciones y Redes</option>
+              <option value = "Licenciatura en Informática">Licenciatura en Informática</option>
+              <option value = "Licenciatura en Administración de las TI">Licenciatura en Administración de las TI</option>
+              <option value = "Ingeniería de Software">Ingeniería de Software</option>
+              <option value = "Ingeniería en Computación">Ingeniería en Computación</option>
+              <option value = "Ingeniería en Telecomunicaciones y Redes">Ingeniería en Telecomunicaciones y Redes</option>
               {/* <option value = "ingenieria_en_ciencia_y_analiticas_de_datos">Ingeniería en Ciencia y Analítica de Datos</option> */}
             </select>
             <p style={styles.parrafo}>Contacto:</p>
@@ -169,9 +121,18 @@ const CrearVacante = () => {
           <input type="text" placeholder="Ingresa los requisitos" style={styles.inputLarge} value={form.otrosRequisitos} onChange={(e)=>setForm({...form,otrosRequisitos:e.target.value})}/>
         </div>
 
+
         <div style={{display: "flex", width: "100%", marginTop: "30px", justifyContent: "flex-end"}}>
-          <button style={styles.buttonBack}>Regresar</button>
+          {detailSelected ? 
+          <>
+            <button style={styles.buttonBack}>Regresar</button>
+            <button style={styles.button} onClick={handleClick}>Editar Vacante</button>
+          </>
+          :
           <button style={styles.button} onClick={handleClick}>Registrar Vacante</button>
+          
+          }
+          
         </div>
 
       </div>
