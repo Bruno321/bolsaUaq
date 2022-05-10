@@ -1,41 +1,72 @@
-import React, { useState } from "react";
-import Formulario from "./Formulario";
+import React, { useState,useContext } from "react";
+import {DetailContext} from '../Context/DetailContext'
+import {DataToShowContext} from '../Context/DataToShowContext'
 
 const CrearVacante = () => {
+
+  const [form,setForm] = useState({
+        titulo: '', 
+        description: '', 
+        requisitos: '', 
+        competencias: '', 
+        tipoContratacion: '', 
+        tipoEmpleo: '', 
+        informacion: '', 
+        estado: 'aguascalientes', 
+        ciudad: '', 
+        nivelIngles: 'Básico', 
+        rangoSueldo: '', 
+        carrera: 'licenciatura_en_informatica', 
+        area: '', 
+        horario: "",
+        contacto:"",
+        numeroPersonas: '', 
+        prestaciones: '', 
+        otrosRequisitos: '',
+        nombreEmpresa: "",
+        id:0
+      })
+  const {data,setData} = useContext(DetailContext)
+  const {detailSelected} = useContext(DataToShowContext)
+
+  const handleClick = () => {
+    console.log(form)
+  }
+
   return (
     <div style={styles.container}>
       <h2 style={styles.title}>Registro de Vacante</h2>
 
-      <form>
+      <div>
         <div>
           <p style={styles.parrafo}>Título de la oferta de empleo:</p>
-          <input type="text" placeholder="Ingresa el título de la oferta de empleo" style={styles.input} /> 
+          <input type="text" placeholder="Ingresa el título de la oferta de empleo" style={styles.input} value={form.titulo} onChange={(e)=>setForm({...form,titulo:e.target.value})}/> 
           <p style={styles.parrafo}>Descripción del puesto:</p>
-          <input type="text" placeholder="Ingresa la descripción del puesto" style={styles.inputLarge} />
+          <input type="text" placeholder="Ingresa la descripción del puesto" style={styles.inputLarge} value={form.description} onChange={(e)=>setForm({...form,description:e.target.value})}/>
           <p style={styles.parrafo}>Requisitos:</p>
-          <input type="text" placeholder="Ingresa los requisitos del puesto" style={styles.inputLarge} />
+          <input type="text" placeholder="Ingresa los requisitos del puesto" style={styles.inputLarge} value={form.requisitos} onChange={(e)=>setForm({...form,requisitos:e.target.value})}/>
           <p style={styles.parrafo}>Competencias:</p>
-          <input type="text" placeholder="Ingresa las competencias del puesto" style={styles.inputLarge} />
+          <input type="text" placeholder="Ingresa las competencias del puesto" style={styles.inputLarge} value={form.competencias} onChange={(e)=>setForm({...form,competencias:e.target.value})}/>
           <p style={styles.parrafo}>Tipo de Contratación:</p>
-          <input type="text" placeholder="Ingresa el tipo de contratación" style={styles.input} />
+          <input type="text" placeholder="Ingresa el tipo de contratación" style={styles.input} value={form.tipoContratacion} onChange={(e)=>setForm({...form,tipoContratacion:e.target.value})}/>
           <p style={styles.parrafo}>Tipo de Empleo:</p>
-          <input type="text" placeholder="Ingresa el tipo de empleo" style={styles.input} />
+          <input type="text" placeholder="Ingresa el tipo de empleo" style={styles.input} value={form.tipoEmpleo} onChange={(e)=>setForm({...form,tipoEmpleo:e.target.value})}/>
           <p style={styles.parrafo}>Información</p>
-          <input type="text" placeholder="Ingresa la información" style={styles.inputLarge} />
+          <input type="text" placeholder="Ingresa la información" style={styles.inputLarge} value={form.informacion} onChange={(e)=>setForm({...form,informacion:e.target.value})}/>
         </div>
 
         <div style={{display: "flex", width: "100%", height: "auto", margin: "10px 0px"}}>
           <div style={{width: "50%"}}>
             <p style={styles.parrafo}>Estado:</p>
-            <select id="estados" name="estados" style={styles.select}>
+            <select id="estados" name="estados" style={styles.select} value={form.estado} onChange={(e)=>setForm({...form,estado:e.target.value})}>
               <option value="aguascalientes">Aguascalientes</option>
-              <option value="baja california">Baja California</option>
-              <option value="baja california sur">Baja California Sur</option>
+              <option value="baja_california">Baja California</option>
+              <option value="baja_california sur">Baja California Sur</option>
               <option value="campeche">Campeche</option>
               <option value="chiapas">Chiapas</option>
               <option value="chihuahua">Chiahuahua</option>
-              <option value="ciudad de mexico">Ciudad de México</option>
-              <option value="coahuila de zaragoza">Coahuila de Zaragoza</option>
+              <option value="ciudad_de_mexico">Ciudad de México</option>
+              <option value="coahuila_de_zaragoza">Coahuila de Zaragoza</option>
               <option value="colima">Colima</option>
               <option value="durango">Durango</option>
               <option value="guanajuato">Guanajuato</option>
@@ -51,7 +82,7 @@ const CrearVacante = () => {
               <option value="puebla">Puebla</option>
               <option value="queretaro">Querétaro</option>
               <option value="quintana roo">Quitana Roo</option>
-              <option value="san luis potosí">San Luis Potosí</option>
+              <option value="san_luis_potosí">San Luis Potosí</option>
               <option value="sinaloa">Sinaloa</option>
               <option value="sonora">Sonora</option>
               <option value="tabasco">Tabasco</option>
@@ -62,14 +93,14 @@ const CrearVacante = () => {
             </select>
 
             <p style={styles.parrafo}>Nivel de Inglés:</p>
-            <select id = "nivelIngles" name = "nivelIngles" style={styles.select}>
+            <select id = "nivelIngles" name = "nivelIngles" style={styles.select} value={form.nivelIngles} onChange={(e)=>setForm({...form,nivelIngles:e.target.value})}>
               <option value = "basico">Básico</option>
               <option value = "intermedio">Intermedio</option>
               <option value = "avanzado">Avanzado</option>
             </select>
 
             <p style={styles.parrafo}>Carrera:</p>
-            <select id = "carreras" name = "carreras" style={styles.select}>
+            <select id = "carreras" name = "carreras" style={styles.select} value={form.carrera} onChange={(e)=>setForm({...form,carrera:e.target.value})}>
               <option value = "licenciatura_en_informatica">Licenciatura en Informática</option>
               <option value = "licenciatura_en_administración_de_las_ti">Licenciatura en Administración de las TI</option>
               <option value = "ingenieria_de_software">Ingeniería de Software</option>
@@ -77,33 +108,38 @@ const CrearVacante = () => {
               <option value = "ingenieria_en_telecomunicaciones">Ingeniería en Telecomunicaciones y Redes</option>
               {/* <option value = "ingenieria_en_ciencia_y_analiticas_de_datos">Ingeniería en Ciencia y Analítica de Datos</option> */}
             </select>
+            <p style={styles.parrafo}>Contacto:</p>
+            <input type="text" placeholder="Ingresa el numero para contactar sobre este puesto" style={styles.select}  value={form.contacto} onChange={(e)=>setForm({...form,contacto:e.target.value})}/>
           </div>
 
           <div style={{width: "49%"}}>
             <p style={styles.parrafo}>Ciudad:</p>
-            <input type="text" placeholder="Ingresa la ciudad" style={styles.input} />
+            <input type="text" placeholder="Ingresa la ciudad" style={styles.input} value={form.ciudad} onChange={(e)=>setForm({...form,ciudad:e.target.value})}/>
             <p style={styles.parrafo}>Rango de sueldo:</p>
-            <input type="text" placeholder="Ingresa el rango de sueldo" style={styles.input} />
+            <input type="text" placeholder="Ingresa el rango de sueldo" style={styles.input} value={form.rangoSueldo} onChange={(e)=>setForm({...form,rangoSueldo:e.target.value})}/>
             <p style={styles.parrafo}>Área:</p>
-            <input type="text" placeholder="Ingresa el área" style={styles.input} />
+            <input type="text" placeholder="Ingresa el área" style={styles.input} value={form.area} onChange={(e)=>setForm({...form,area:e.target.value})}/>
+            <p style={styles.parrafo}>Horario:</p>
+            <input type="text" placeholder="Ingresa el horario" style={styles.input} value={form.horario} onChange={(e)=>setForm({...form,horario:e.target.value})}/>
           </div>
         </div>
 
         <div>
           <p style={styles.parrafo}>Número de personas:</p>
-          <input type="text" placeholder="Ingresa el número de personas" style={styles.input} />
+          <input type="text" placeholder="Ingresa el número de personas" style={styles.input} value={form.numeroPersonas} onChange={(e)=>setForm({...form,numeroPersonas:e.target.value})}/>
           <p style={styles.parrafo}>Prestaciones:</p>
-          <input type="text" placeholder="Ingresa las prestaciones" style={styles.input} />
+          <input type="text" placeholder="Ingresa las prestaciones" style={styles.input} value={form.prestaciones} onChange={(e)=>setForm({...form,prestaciones:e.target.value})}/>
+          
           <p style={styles.parrafo}>Otros requisitos:</p>
-          <input type="text" placeholder="Ingresa los requisitos" style={styles.inputLarge} />
+          <input type="text" placeholder="Ingresa los requisitos" style={styles.inputLarge} value={form.otrosRequisitos} onChange={(e)=>setForm({...form,otrosRequisitos:e.target.value})}/>
         </div>
 
         <div style={{display: "flex", width: "100%", marginTop: "30px", justifyContent: "flex-end"}}>
           <button style={styles.buttonBack}>Regresar</button>
-          <button style={styles.button}>Registrar Vacante</button>
+          <button style={styles.button} onClick={handleClick}>Registrar Vacante</button>
         </div>
 
-      </form>
+      </div>
     </div>
   );
 };

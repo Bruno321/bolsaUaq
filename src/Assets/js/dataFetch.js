@@ -67,10 +67,11 @@ const dataFetch = (optionSelected) => {
                 rangoSueldo: '1$-2$', 
                 carrera: 'Ingenieria de software', 
                 area: 'Tecnologia', 
+                horario: "12PM-12PM del siguiente dia",
+                contacto:"123124124141",
                 numeroPersonas: '2', 
                 prestaciones: 'Muchas', 
                 otrosRequisitos: 'Otros requisitos ',
-                horario: "12PM-12PM del siguiente dia",
                 nombreEmpresa: "Balsoft",
                 id:0
             },
@@ -78,7 +79,30 @@ const dataFetch = (optionSelected) => {
       
     }
     if(optionSelected==4){
-        return [1,2,3,4,5,6]  
+        return [
+            {
+                titulo: 'Esclavo engineer', 
+                description: 'Trabaja trabaja y adivina que? TRABAJA', 
+                requisitos: 'Saber mucho', 
+                competencias: 'Todas, hasta las que no existen', 
+                tipoContratacion: 'Para siempre', 
+                tipoEmpleo: 'NOSE', 
+                informacion: 'Informacion muy informativa', 
+                estado: 'Queretaro', 
+                ciudad: 'Queretaro', 
+                nivelIngles: 'Avanzado', 
+                rangoSueldo: '1$-2$', 
+                carrera: 'Ingenieria de software', 
+                area: 'Tecnologia', 
+                horario: "12PM-12PM del siguiente dia",
+                contacto:"123124124141",
+                numeroPersonas: '2', 
+                prestaciones: 'Muchas', 
+                otrosRequisitos: 'Otros requisitos ',
+                nombreEmpresa: "Balsoft",
+                id:0
+            },
+        ]  
     }
 }
 

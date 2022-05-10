@@ -3,7 +3,7 @@ import React,{ createContext, useState } from "react";
 export const DetailContext = createContext()
 const Provider = ({children})=> {
 
-    const [data,setData] = useState([])
+    const [data,setData] = useState({})
   
     const value = {
         data,

@@ -10,7 +10,6 @@ const ConsolaEmpresa = () => {
         {name:"Status del Puesto",value:4}
     ]
     const {optionSelected} = useContext(DataToShowContext)
-    console.log(optionSelected)
 
     const componentToRender = () => {
         if(optionSelected==0){

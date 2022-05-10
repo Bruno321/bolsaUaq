@@ -53,11 +53,11 @@ const InfoCard = ({props}) => {
 		if(optionSelected==4){
 			return (
 				<>
-					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.schedule} </p>
-					<p style={styles.vacantAttribute}> <b>Salario:</b> {props.salary} </p>
-					<p style={styles.vacantAttribute}> <b>Lugar:</b>  {props.place}</p>
-					<p style={styles.vacantAttribute}> <b>Contacto:</b>  {props.contact}</p>
-					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.name} </p>
+					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.horario} </p>
+					<p style={styles.vacantAttribute}> <b>Salario:</b> {props.rangoSueldo} </p>
+					<p style={styles.vacantAttribute}> <b>Lugar:</b>  {props.ciudad}</p>
+					<p style={styles.vacantAttribute}> <b>Contacto:</b>  {props.contacto}</p>
+					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.nombreEmpresa} </p>
 					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} >Editar</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} >Disponible/llena</button>
 				</>
