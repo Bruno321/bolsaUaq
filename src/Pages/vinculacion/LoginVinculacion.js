@@ -20,13 +20,13 @@ const LoginVinculacion = () => {
             <section style={styles.leftSide}>
                 <h1 style={styles.title}>Iniciar sesión</h1>
                 <p style={styles.subTitle}>NOTA: ¡Recuerde iniciar sesión con los datos que le hemos proporcionado!</p>
-                <form style={styles.containerForm}>
+                <div style={styles.containerForm}>
                     <label style={styles.text}>Usuario / Expediente</label>
                     <input type="text" placeholder="000000" style={styles.input} value={form.usuario} onChange={(e)=>setForm({...form,usuario:e.target,value})}/>
                     <label style={styles.text}>Contraseña</label>
                     <input type="password" placeholder="********" style={styles.input} value={form.password} onChange={(e)=>setForm({...form,password:e.target,value})}/>
                     <button style={styles.btnLogin} onClick={handleClick}>Iniciar Sesión</button>
-                </form>
+                </div>
                 <div style={styles.imgContainer}>
                     <img src={logoFif} style={styles.logoFif}/>
                     <img src={logoCD} style={styles.logoCD} />

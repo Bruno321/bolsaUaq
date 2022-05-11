@@ -1,4 +1,4 @@
-import React, {useState,useContext} from "react";
+import React, {useState,useContext,useEffect} from "react";
 import close from '../Assets/img/close.png';
 import {DataToShowContext} from '../Context/DataToShowContext'
 
@@ -8,8 +8,15 @@ const InfoVacante = ({data}) => {
     const [hoverButtonRechazar, setHoverButtonRechazar] = useState({...styles.button, background: '#C0392B'});
 
     const {setDetailSelected} = useContext(DataToShowContext)
+    const [disable,setDisable] = useState(false)
+    const [statusText,setStatusText] = useState(false)
+         
+    useEffect(()=>{
+        if(data.status==0 || data.status==1){
+            setDisable(true)
+        }
+    })
     
-
     return(
         <div style={styles.container}>
             <div style={styles.containerIconClose}>
@@ -17,7 +24,7 @@ const InfoVacante = ({data}) => {
             </div>
             <div style={styles.containerInfo}>
                 <h1 style={{fontSize: '24px'}}>{data.titulo}</h1>
-                <p style={styles.tituloSeccion}>Empresa:</p>
+                <p style={styles.tituloSeccion}>Empresa: ( {handleStatus}) </p>
                 <p style={styles.pInfo}>{data.nombreEmpresa}</p>
                 <p style={styles.tituloSeccion}>Descripción de empleo:</p>
                 <p style={styles.pInfo}>{data.description}</p>
@@ -55,11 +62,15 @@ const InfoVacante = ({data}) => {
             </div>
             <div style={styles.containerButtons}>
                 <button 
+                    className={disable ? "btnDisabled": null}
                     style={{...hoverButtonAceptar}}
+                    disabled={disable}
                     onMouseEnter={() => setHoverButtonAceptar({...hoverButtonAceptar,background: '#3bea67'})}
                     onMouseLeave={() => setHoverButtonAceptar({...hoverButtonAceptar,background: '#27AE60'})}
                 >Aceptar</button>
                 <button 
+                    className={disable ? "btnDisabled": null}
+                    disabled={disable}
                     style={{...hoverButtonRechazar}}
                     onMouseEnter={() => setHoverButtonRechazar({...hoverButtonRechazar,background: '#ff4838'})}
                     onMouseLeave={() => setHoverButtonRechazar({...hoverButtonRechazar,background: '#C0392B'})}

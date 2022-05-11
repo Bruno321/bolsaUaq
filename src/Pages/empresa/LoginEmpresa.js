@@ -38,9 +38,10 @@ const LoginEmpresa = () => {
                 </div>
                 <div style={styles.containerInfoCarrusel}>
                     <h1>Encuentre a sus próximos <br/> empleados. Rápido.</h1>
-                    <p>Sabe a quién está buscando. <br/> Lo ayudaremos a encontrarlo</p>
+                    <p style={{fontSize:"1.3rem"}}>Sabe a quién está buscando. <br/> Lo ayudaremos a encontrarlo</p>
                 </div>
             </div>
+
             <div style={styles.containerForm}>
                 <div style={styles.containerImgLogoPortal}>
                     <img src={logoPortal} style={styles.imgLogoPortal}/>
@@ -48,10 +49,10 @@ const LoginEmpresa = () => {
                 <h1 style={styles.h1}>¿Está listo para dar el <br/> siguiente paso?</h1>
                 <div style={styles.form}>
                     <legend style={styles.legend}>Inicia sesión</legend>
-                    <br/>
-                    <LoginTextInput labelText = "Correo electronico" placeHolder = "" inputType="text" textValue={data.usuario} onChangeText={(e)=>setData({...data,usuario:e.target.value})}/>
-                    <br/>
-                    <LoginTextInput labelText = "Contraseña" placeHolder = "" inputType = "password" textValue={data.password} onChangeText={(e)=>setData({...data,password:e.target.value})}/>
+                    <label style={styles.text}>Usuario / Expediente</label>
+                    <input type="text" placeholder="000000" style={styles.input} value={data.usuario} onChange={(e)=>setData({...data,usuario:e.target,value})}/>
+                    <label style={styles.text}>Contraseña</label>
+                    <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>setData({...data,password:e.target,value})}/>
                     <div style={styles.containerA}>
                         <div  style={styles.a} onClick={()=>setShowModal(true)}>Olvidaste tu contraseña</div>
                     </div>
@@ -60,7 +61,6 @@ const LoginEmpresa = () => {
                         <Button title={'Registrarme'} styles={{background: 'white', color: '#5F4FEB', margin: '5px 0px'}}/>
                     </Link>
                     
-                    {/* <button onClick={handleClick}>Login</button> */}
                 </div>
                 <div style={styles.containerLogosFacultad}>
                         <img src={fifLogo} style={styles.imgLogosFacultad}/>
@@ -81,7 +81,7 @@ const styles = {
         display: 'flex',
     },
     containerLeft: {
-        width: '55%',
+        width: '50%',
         height: '100%',
         background: '#2B246B',
         display: 'flex',
@@ -92,21 +92,21 @@ const styles = {
         alignItems: 'center'
     },
     containerImgLeft: {
-        width: '600px',
-        height: '500px',
+        // width: '90%',
+        height: '78%',
         // background: 'red',
         // margin: '20px 0px'
     },
     imgDev: {
-        width: '100%',
-        height: '100%'
+        width:"90%",
+        // height:"300px"
     },
     containerInfoCarrusel: {
         textAlign: 'center',
         color: 'white'
     },
     containerForm: {
-        width: '45%',
+        width: '50%',
         height: '100%',
         background: '#FFFFFF',
         padding: '10px 40px',
@@ -171,6 +171,12 @@ const styles = {
         display:"flex",
         width:"100%",
         height:"100%",
-    }
+    },
+    text: {
+        fontSize: "1.6rem",
+    },
+    input: {
+        outline: "none"
+    },
     
 }

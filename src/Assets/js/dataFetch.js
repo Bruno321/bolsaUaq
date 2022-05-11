@@ -4,7 +4,8 @@
 // 1 y 2: Obtener todas las vacantes
 //4: Obtener mis vacantes
 //Status: 0-aceptada,1-rechazada,2-pendiente
-const dataFetch = (optionSelected) => {
+const dataFetch = (optionSelected,setLoading) => {
+    setLoading(false)
     if(optionSelected==0 || optionSelected==3){
         return [
             {

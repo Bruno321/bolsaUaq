@@ -12,7 +12,7 @@ const CardDetailManager = () => {
   const {optionSelected} = useContext(DataToShowContext)
 
     const handleRender = () => {
-        if(optionSelected==0 ){
+        if(optionSelected==0 || optionSelected==3){
             return <SolicitudEmpresa data={data} />
         }
         if(optionSelected==1 || optionSelected==2){

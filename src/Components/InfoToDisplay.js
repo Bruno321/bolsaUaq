@@ -6,7 +6,7 @@ import DropDownMenuFilter from "./DropDownMenuFilter";
 import SeguimientoVacante from "./SeguimientoVacante";
 import dataFetch from "../Assets/js/dataFetch";
 import CardDetailManager from './CardDetailManager'
-
+import LoadingSpinner from './LoadingSpinner'
 
 const InfoToDisplay = ({title}) => {
   const {optionSelected,detailSelected} = useContext(DataToShowContext)
@@ -21,8 +21,12 @@ const InfoToDisplay = ({title}) => {
   const [data,setData] = useState([])
   const [filteredData,setFilteredData] = useState([])
   const [filterOption,setFilterOption] = useState(0)
+  const [loading,setLoading] = useState(true)
+  const [timedOut,setTimedOut] = useState(false)
+
+  console.log(filteredData.length)
   useEffect(()=>{
-    setData(dataFetch(optionSelected))
+    setData(dataFetch(optionSelected,setLoading))
     setFilteredData([])
     // Se esta en validar empresa o validar vacantes, cuyo filtro siempre sera 2 "pendientes"
   },[optionSelected])
@@ -57,7 +61,6 @@ const InfoToDisplay = ({title}) => {
       return <DropDownMenuFilter setFilterOption={setFilterOption} filterOption={filterOption}/>
     }
   }
-  console.log(filterOption)
   return (
     <div style={styles.container}>
       {detailSelected ? 
@@ -65,13 +68,20 @@ const InfoToDisplay = ({title}) => {
       : 
         <>
           <h2 style={styles.title}>{title}:</h2>
-          
           {renderFilter()}
-          {filteredData.map((data)=>{
-            return (
-              <InfoCard props={data} />
-            )
-          })}
+          {!timedOut ? 
+            !loading ? 
+              filteredData.length!=0 ? filteredData.map((data)=>{
+                return (
+                  <InfoCard props={data} />
+                )
+              }): <div>No hay elementos de este tipo</div>
+            : 
+              <div style={styles.spinner}>
+                <LoadingSpinner />
+              </div>
+           : 
+            <div>Algo salio mal</div>}
         </>
       }
       
@@ -96,6 +106,11 @@ const styles = {
     margin: "20px 0px",
     paddingBottom: "10px",
   },
-
+  spinner: {
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+    marginTop:"20%"
+  }
 
 };
