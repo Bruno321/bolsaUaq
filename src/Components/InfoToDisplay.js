@@ -19,9 +19,29 @@ const InfoToDisplay = ({title}) => {
     3-status del puesto
   */
   const [data,setData] = useState([])
+  const [filteredData,setFilteredData] = useState([])
   useEffect(()=>{
     setData(dataFetch(optionSelected))
+    // Se esta en validar empresa o validar vacantes, cuyo filtro siempre sera 2 "pendientes"
+    
   },[optionSelected])
+
+  useEffect(()=>{
+    if(optionSelected==0 || optionSelected==1){
+      data.forEach(e=>{
+        if(e.status==0){
+          setFilteredData([e])
+        }
+      })
+    }
+  },[data])
+  console.log(filteredData)
+
+  const renderFilter = () => {
+    if(optionSelected==2 || optionSelected==3 || optionSelected==4){
+      return <DropDownMenuFilter />
+    }
+  }
 
   return (
     <div style={styles.container}>
@@ -30,7 +50,8 @@ const InfoToDisplay = ({title}) => {
       : 
         <>
           <h2 style={styles.title}>{title}:</h2>
-          <DropDownMenuFilter/>
+          
+          {renderFilter()}
           {data.map((data)=>{
             return (
               <InfoCard props={data} />

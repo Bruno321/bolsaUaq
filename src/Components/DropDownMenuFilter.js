@@ -3,9 +3,8 @@ import Select from "react-select";
 
 
 const options = [
-    { label: "Vacantes Aceptadas", value: "vacantesA"},
-    { label: "Vacantes Pendientes", value: "VacantesP"},
-    { label: "Vacantes Rechazadas", value: "VacantesR"}
+    { label: "Aceptadas", value: "vacantesA"},
+    { label: "Rechazadas", value: "VacantesR"}
 ];
 
 const DropDownMenuFilter = () => {
@@ -14,7 +13,7 @@ const DropDownMenuFilter = () => {
             <Select 
                 styles={customStyles} 
                 options={options}
-                placeholder="Seguimiento Vacantes"
+                placeholder="Aceptadas"
                 isSearchable={false}
                 theme={(theme) => ({
                     ...theme,

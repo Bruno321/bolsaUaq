@@ -12,13 +12,15 @@ const MainPageVinculacion = () => {
     const {optionSelected} = useContext(DataToShowContext)
     const titles = [
         "Validación de empresas",
-        "Vacantes validadas",
-        "Vacantes validadas"
+        "Validación de vacantes",
+        "Ver vacantes",
+        "Ver empresas"
     ]
     const leftBarNavTitles = [
-        {name:"Validar Empresa",value:0},
-        {name:"Validar Vacante",value:1},
+        {name:"Validar Empresas",value:0},
+        {name:"Validar Vacantes",value:1},
         {name:"Ver Vacantes",value:2},
+        {name:"Ver Empresas",value:3},
     ]
 
     return (
