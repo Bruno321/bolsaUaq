@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext,useState} from 'react';
 import {Context} from '../../Context/LoginContext';
 import Button from '../../Components/Button';
 import LoginTextInput from '../../Components/LoginTextInput';
@@ -6,16 +6,32 @@ import imgDev from "../../Assets/img/dev.png";
 import fifLogo from "../../Assets/img/fif-logo.png";
 import logoCD from "../../Assets/img/Logo-CD.png";
 import logoPortal from "../../Assets/img/Logo-portal.png";
-
+import {Link } from '@reach/router';
+import ModalInforCambiarPassword from '../../Components/ModalInfoCambiarPassword';
 
 const LoginEmpresa = () => {
     const {iniciarSesion,setUserTypeFunc} = useContext(Context)
+    const [showModal,setShowModal] = useState(false)
+    const [data,setData] = useState({
+        usuario: "",
+        password: ""
+    })
     const handleClick = () => {
+        //Mandar a hacer el fetch
+        console.log(data)
         setUserTypeFunc(false)
         iniciarSesion()
     }
+    
+    console.log(showModal)
+    
     return (
-        <div style={styles.container}>
+        <div style={styles.container} className="LoginContainer">
+            {showModal ? 
+            <div style={styles.modalContainer} onClick={()=>setShowModal(false)}>
+                <ModalInforCambiarPassword/>   
+            </div>: null}
+           
             <div style={styles.containerLeft}>
                 <div style={styles.containerImgLeft}>
                     <img src={imgDev} style={styles.imgDev}/>
@@ -30,22 +46,26 @@ const LoginEmpresa = () => {
                     <img src={logoPortal} style={styles.imgLogoPortal}/>
                 </div>
                 <h1 style={styles.h1}>¿Está listo para dar el <br/> siguiente paso?</h1>
-                <form style={styles.form}>
+                <div style={styles.form}>
                     <legend style={styles.legend}>Inicia sesión</legend>
                     <br/>
-                    <LoginTextInput labelText = "Correo electronico" placeHolder = "" inputType="text"/>
+                    <LoginTextInput labelText = "Correo electronico" placeHolder = "" inputType="text" textValue={data.usuario} onChangeText={(e)=>setData({...data,usuario:e.target.value})}/>
                     <br/>
-                    <LoginTextInput labelText = "Contraseña" placeHolder = "" inputType = "password"/>
+                    <LoginTextInput labelText = "Contraseña" placeHolder = "" inputType = "password" textValue={data.password} onChangeText={(e)=>setData({...data,password:e.target.value})}/>
                     <div style={styles.containerA}>
-                        <a href='' style={styles.a}>Olvidaste tu contraseña</a>
+                        <div  style={styles.a} onClick={()=>setShowModal(true)}>Olvidaste tu contraseña</div>
                     </div>
                     <Button title={'Iniciar Sesión'} styles={{background: '#5F4FEB', color: 'white', margin: '5px 0px'}} click={handleClick}/>
-                    <Button title={'Registrarme'} styles={{background: 'white', color: '#5F4FEB', margin: '5px 0px'}}/>
+                    <Link to="/register" >
+                        <Button title={'Registrarme'} styles={{background: 'white', color: '#5F4FEB', margin: '5px 0px'}}/>
+                    </Link>
+                    
                     {/* <button onClick={handleClick}>Login</button> */}
-                </form>
+                </div>
                 <div style={styles.containerLogosFacultad}>
                         <img src={fifLogo} style={styles.imgLogosFacultad}/>
                         <img src={logoCD} style={styles.imgLogosFacultad}/>
+
                 </div>
             </div>
         </div>
@@ -58,7 +78,6 @@ const styles = {
     container: {
         width: '100%',
         height: '100vh',
-        background: 'red',
         display: 'flex',
     },
     containerLeft: {
@@ -131,7 +150,9 @@ const styles = {
     },
     a: {
         fontSize: '14px',
-        color: 'black'
+        color: 'black',
+        cursor:"pointer",
+        textDecoration: "underline"
     },
     containerLogosFacultad: {
         width: '100%',
@@ -144,5 +165,12 @@ const styles = {
         // width: '40px',
         height: '40px',
         margin: '0px 10px',
+    },
+    modalContainer:{
+        position:"absolute",
+        display:"flex",
+        width:"100%",
+        height:"100%",
     }
+    
 }

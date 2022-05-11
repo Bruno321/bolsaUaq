@@ -17,6 +17,7 @@ import NotFound from './Pages/NotFound';
 
 // Context
 import {Context} from './Context/LoginContext';
+import CambioContraseña from './Pages/CambioContraseña';
 
 //Pruebas de Componentes / Pantallas
 // import RegistroEmpresa from "./Pages/empresa/RegistroEmpresa";
@@ -35,6 +36,7 @@ export const App = () => {
                     <>
                         <NotFound default/>
                         <LandingPage path='/'/>
+                        <CambioContraseña path='/cambio'/>
                         <LoginEmpresa path='/login'/>
                         <RegistroEmpresa path='/register'/>
                         <LoginVinculacion path='/vinculacion/login'/>
@@ -47,6 +49,7 @@ export const App = () => {
                     <>
                         <NotFound default/>
                         <LandingPage path='/'/>
+                        <CambioContraseña path='/cambio'/>
                         <LoginEmpresa path='/login'/>
                         <RegistroEmpresa path='/register'/>
                         <MainPageVinculacion path='/vinculacion'/>
@@ -59,6 +62,7 @@ export const App = () => {
                     <>
                         <NotFound default/>
                         <MainPageEmpresa path='/'/>
+                        <CambioContraseña path='/cambio'/>
                         <RegistroEmpresa path='/register'/>
                         <LoginVinculacion path='/vinculacion/login'/>
                         <Redirect from='/login' to='/' noThrow />

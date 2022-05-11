@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { Context } from '../Context/LoginContext';
-import Button from './Button';
-import LoginTextInput from './LoginTextInput';
-import imgDev from "../../Assets/img/dev.png";
-import fifLogo from "../../Assets/img/fif-logo.png";
-import logoCD from "../../Assets/img/Logo-CD.png";
-import logoPortal from "../../Assets/img/Logo-portal.png";
+import Button from '../Components/Button';
+import LoginTextInput from '../Components/LoginTextInput';
+import imgDev from "../Assets/img/dev.png";
+import fifLogo from "../Assets/img/fif-logo.png";
+import logoCD from "../Assets/img/Logo-CD.png";
+import logoPortal from "../Assets/img/Logo-portal.png";
 
 
 const CambioContraseña = () => {

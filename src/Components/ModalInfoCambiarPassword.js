@@ -38,7 +38,6 @@ const styles = {
         height: '340px',
         background: '#EEEEEE',
         padding: '20px',
-        boxSizing: 'border-box',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',

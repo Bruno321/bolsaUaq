@@ -1,12 +1,10 @@
-import React,{useState} from "react";
+import React from "react";
 import logo from "../../Assets/img/fifUaq_Logo.png";
 import fifUaq from "../../Assets/img/facultadUaq.jpg";
-import { Redirect } from '@reach/router';
+import {Link } from '@reach/router';
 
 const LandingPage = () => {
 
-  const [redirectLogin,setRedirectLogin] = useState(false)
-  const [redirectRegister,setRedirectRegister] = useState(false)
   return (
     <>
       <header style={styles.headerLanding}>
@@ -18,14 +16,8 @@ const LandingPage = () => {
       <main style={styles.container}>
         <h1 style={styles.titleContainer}>UNIDXS PARA INNOVAR Y TRASCENDER</h1>
         <p style={styles.paragraphContainer}>¿Quieres emplear algún talento de la Facultad?</p>
-        <button style={styles.btnLogin} onClick={()=>setRedirectLogin(true)}>INICIAR SESIÓN</button>
-        <button style={styles.btnRegister} onClick={()=>setRedirectRegister(true)}>REGISTRARSE</button>
-        {
-          redirectLogin ? <Redirect from='/' to='/login' noThrow/>:  <div></div>
-        }
-        {
-          redirectRegister ? <Redirect from='/' to='/register' noThrow/>:  <div></div>
-        }
+        <Link to="/login" > <button style={styles.btnLogin} >INICIAR SESIÓN</button></Link>
+        <Link to="/register" > <button style={styles.btnRegister}>REGISTRARSE</button></Link>
       </main>
     </>
   )
