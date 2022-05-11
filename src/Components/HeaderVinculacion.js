@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 import logo from "../Assets/img/fifUaq_Logo.png";
 import profileUser from "../Assets/img/profile-user.png"
 
 const HeaderVinculacion = ({optionSelected,setOptionSelected}) =>{
+    const [showMenu,setShowMenu] = useState(false)
     return(
         <>
         <header style = {styles.headerContainer}>
@@ -11,7 +12,11 @@ const HeaderVinculacion = ({optionSelected,setOptionSelected}) =>{
                 <li style={styles.title}>Panel de administrador</li>
                 
             </ul>
-            <img src = {profileUser} alt = "Foto de Usuario" style = {styles.imgProfileUser}/>
+            {/* <img src = {profileUser} alt = "Foto de Usuario" style = {styles.imgProfileUser} onClick={()=>setShowMenu(true)}/> */}
+            <ul style = {styles.ulOrder}> 
+                <li style={styles.title}>Cerrar sesión</li>
+                
+            </ul>
         </header>
         </>
     )
@@ -41,7 +46,6 @@ imgProfileUser: {
 },
 title:{
     color:"white",
-    cursor: "pointer",
     fontSize: "2rem",
 }
 }

@@ -20,9 +20,9 @@ const InfoCard = ({props}) => {
 					<p style={styles.vacantAttribute}> <b>Lugar de la empresa:</b>{props.place}</p>
 					<p style={styles.vacantAttribute}> <b>RFC:</b>  {props.rfc}</p>
 					<p style={styles.vacantAttribute}> <b>Giro de la empresa:</b> {props.giro} </p>
-					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} >Mostrar detalles</button>
-					<button style={styles.vacantDetails} onClick={onClickDetails} >Aceptar</button>
-					<button style={styles.vacantDetails} onClick={onClickDetails} >Rechazar</button>
+					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} className="btnHover">Mostrar detalles</button>
+					<button style={styles.vacantDetails} onClick={onClickDetails} className="btnHover">Aceptar</button>
+					<button style={styles.vacantDetails} onClick={onClickDetails} className="btnHover">Rechazar</button>
 				</>
 			)
 		}
@@ -32,9 +32,9 @@ const InfoCard = ({props}) => {
 					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.horario} </p>
 					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.rangoSueldo}</p>
 					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.nombreEmpresa} </p>
-					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} >Mostrar detalles</button>
-					<button style={styles.vacantDetails} onClick={onClickDetails} >Aceptar</button>
-					<button style={styles.vacantDetails} onClick={onClickDetails} >Rechazar</button>
+					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} className="btnHover">Mostrar detalles</button>
+					<button style={styles.vacantDetails} onClick={onClickDetails} className="btnHover">Aceptar</button>
+					<button style={styles.vacantDetails} onClick={onClickDetails} className="btnHover">Rechazar</button>
 				</>
 			)
 		}
@@ -44,9 +44,9 @@ const InfoCard = ({props}) => {
 					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.horario} </p>
 					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.rangoSueldo}</p>
 					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.nombreEmpresa} </p>
-					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} >Mostrar detalles</button>
-					<button style={styles.vacantDetails} onClick={onClickDetails} >Generar PDF</button>
-					<button style={styles.vacantDetails} onClick={onClickDetails} >Ocupada/disponible</button>
+					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} className="btnHover">Mostrar detalles</button>
+					<button style={styles.vacantDetails} onClick={onClickDetails} className="btnHover">Generar PDF</button>
+					<button style={styles.vacantDetails} onClick={onClickDetails} className="btnHover">Ocupada/disponible</button>
 				</>
 			)
 		}
@@ -58,8 +58,8 @@ const InfoCard = ({props}) => {
 					<p style={styles.vacantAttribute}> <b>Lugar:</b>  {props.ciudad}</p>
 					<p style={styles.vacantAttribute}> <b>Contacto:</b>  {props.contacto}</p>
 					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.nombreEmpresa} </p>
-					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} >Editar</button>
-					<button style={styles.vacantDetails} onClick={onClickDetails} >Disponible/llena</button>
+					<button style={styles.vacantDetails} onClick={()=>handleDetailButton()} className="btnHover">Editar</button>
+					<button style={styles.vacantDetails} onClick={onClickDetails} className="btnHover">Disponible/llena</button>
 				</>
 			)
 		}
@@ -70,7 +70,6 @@ const InfoCard = ({props}) => {
 			<h3 style={styles.vacantTitle}> {props.title} </h3>
 			<p style={styles.vacantAttribute}> <b>Descripción:</b> <br />{props.description}</p>
 			{elementsToRender()}
-			
 		</div>
 	);
 }

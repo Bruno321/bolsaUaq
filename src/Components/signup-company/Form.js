@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import DatosEmpresa from "./DatosEmpresa";
 import Ubicacion from "./Ubicacion"
 import Reclutador from "./Reclutador";
+import {RegisterContext} from "../../Context/RegisterContext";
+
 //Estilos
 import './form.css';
 
@@ -12,7 +14,7 @@ const Form = () => {
 
     // Titulos de las secciones del Formulario
     const FormTitles = ["Datos de la empresa", "Ubicación", "Reclutador"]
-
+    const {form,setForm} = useContext(RegisterContext)
  
 
     // Cambia el formulario al que se desea
@@ -27,29 +29,6 @@ const Form = () => {
             return <Reclutador />;
         }
     }
-       // Activar el multistep con listeners
-    //    const nextBtn = document.querySelector(".nextBtn");
-    //    const firstCircle = document.querySelector(".active-1");
-    //    const secondCircle = document.querySelector(".active-2");
-    //    const thirdCircle = document.querySelector(".active-3");
-    //    nextBtn.addEventListener("click", function(){
-    //         if(page === 0){
-    //             firstCircle.style.backgroundColor = "#4B3EB8"
-    //         }
-    //         if(page === 1){
-    //             firstCircle.style.backgroundColor = "#4B3EB8"
-    //             secondCircle.style.backgroundColor = "#4B3EB8"
-
-    //         }
-    //         if(page === 2){
-    //             firstCircle.style.backgroundColor = "#4B3EB8"
-    //             secondCircle.style.backgroundColor = "#4B3EB8"
-    //             thirdCircle.style.backgroundColor = "#4B3EB8"
-
-    //         }
-    //    })
-
-    //    Cambia el texto de los botones dependiendo de la página
 
     const firstBtnTxt = () =>{
         if(page >=1 && page<=2){
@@ -64,6 +43,16 @@ const Form = () => {
             return "Siguiente";
         } else{
             return "Solicitar Registro";
+        }
+    }
+
+
+    const handleClick = () => {
+        if(page>1){
+            // AQUI SE HACE EL QUERY
+            console.log(form)
+        }else{
+            setPage((currPage) => currPage + 1)
         }
     }
 
@@ -128,16 +117,17 @@ const Form = () => {
                 {/* Botón "Anterior" y "Siguiente" para moverse en el MultiStep */}
                 <div className="buttons">
                     <button
+                        className="btnHover"
                         style = {{display: page === 0 ? "none" : "block"}}
                         disabled={page == 0}
                         onClick={() => {
                             setPage((currPage) => currPage - 1)
                         }}>{firstBtnTxt()}</button>
                     <button
-                        className = "nextBtn"
-                        disabled={page == FormTitles.length - 1}
+                        className = "nextBtn btnHover"
+                        // disabled={page == FormTitles.length - 1}
                         onClick={() => {
-                            setPage((currPage) => currPage + 1)
+                            handleClick()
                         }}>{secondBtnTxt()}</button>
                 </div>
             </div>

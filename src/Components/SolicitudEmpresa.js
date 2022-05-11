@@ -88,11 +88,13 @@ const SolicitudEmpresa = (props) => {
       <div style={styles.row}>
         <div style={{ ...styles.col, marginLeft: "auto" }}>
           <button
+            className="btnHover"
             onClick={handleAceptar}
             style={{ ...styles.btnAccion, ...styles.btnRechazar }}>
             Rechazar
           </button>
           <button
+            className="btnHover"
             onClick={handleRechazar}
             style={{ ...styles.btnAccion, ...styles.btnAceptar }}>
             Aceptar

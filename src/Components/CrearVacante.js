@@ -6,7 +6,7 @@ const CrearVacante = () => {
 
   let form,setForm
   const {formm,setFormm,data,setData} = useContext(DetailContext)
-  const {detailSelected} = useContext(DataToShowContext)
+  const {detailSelected,setDetailSelected} = useContext(DataToShowContext)
 
   if(detailSelected){
     form = data
@@ -125,11 +125,11 @@ const CrearVacante = () => {
         <div style={{display: "flex", width: "100%", marginTop: "30px", justifyContent: "flex-end"}}>
           {detailSelected ? 
           <>
-            <button style={styles.buttonBack}>Regresar</button>
-            <button style={styles.button} onClick={handleClick}>Editar Vacante</button>
+            <button style={styles.buttonBack} className="btnHover" onClick={()=>setDetailSelected(false)}>Regresar</button>
+            <button style={styles.button} onClick={handleClick} className="btnHover">Editar Vacante</button>
           </>
           :
-          <button style={styles.button} onClick={handleClick}>Registrar Vacante</button>
+          <button style={styles.button} onClick={handleClick} className="btnHover">Registrar Vacante</button>
           
           }
           

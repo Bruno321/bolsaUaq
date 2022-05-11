@@ -16,8 +16,8 @@ const LandingPage = () => {
       <main style={styles.container}>
         <h1 style={styles.titleContainer}>UNIDXS PARA INNOVAR Y TRASCENDER</h1>
         <p style={styles.paragraphContainer}>¿Quieres emplear algún talento de la Facultad?</p>
-        <Link to="/login" > <button style={styles.btnLogin} >INICIAR SESIÓN</button></Link>
-        <Link to="/register" > <button style={styles.btnRegister}>REGISTRARSE</button></Link>
+        <Link to="/login" > <button style={styles.btnLogin}  className="btnHover">INICIAR SESIÓN</button></Link>
+        <Link to="/register" > <button style={styles.btnRegister} className="btnHover">REGISTRARSE</button></Link>
       </main>
     </>
   )

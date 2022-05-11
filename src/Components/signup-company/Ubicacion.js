@@ -1,10 +1,14 @@
-import React from "react";
-// Estilos
+import React,{ useState,useContext } from "react";
+import {RegisterContext} from "../../Context/RegisterContext";
 
+// Estilos
 function Ubicacion() {
+
+  const {form,setForm} = useContext(RegisterContext)
+
   return (
-    <div className="ubicacion-container">
-      <select name="pais" className="select-country">
+    <div className="ubicacion-container" >
+      <select name="pais" className="select-country" value={form.pais} onChange={(e)=>setForm({...form,pais:e.target.value})}>
         <option value="Elegir" id="AF">
           País*
         </option>
@@ -720,13 +724,13 @@ function Ubicacion() {
           Zimbabue
         </option>
       </select>
-      <input type="text" placeholder="Estado*" />
-      <input type="text" placeholder="Ciudad*" />
-      <input type="text" placeholder="Código Postal*" />
-      <input type="text" placeholder="Colonia*" className="input-large" />
-      <input type="text" placeholder="Dirección*" className="input-large" />
-      <input type="text" placeholder="No. Exterior*" />
-      <input type="text" placeholder="No. Interior (opcional)" />
+      <input type="text" placeholder="Estado*" value={form.estado} onChange={(e)=>setForm({...form,estado:e.target.value})}/>
+      <input type="text" placeholder="Ciudad*" value={form.ciudad} onChange={(e)=>setForm({...form,ciudad:e.target.value})}/>
+      <input type="text" placeholder="Código Postal*" value={form.codigoPostal} onChange={(e)=>setForm({...form,codigoPostal:e.target.value})}/>
+      <input type="text" placeholder="Colonia*" className="input-large" value={form.colonia} onChange={(e)=>setForm({...form,colonia:e.target.value})}/>
+      <input type="text" placeholder="Dirección*" className="input-large" value={form.direccion} onChange={(e)=>setForm({...form,direccion:e.target.value})}/>
+      <input type="text" placeholder="No. Exterior*" value={form.numExterior} onChange={(e)=>setForm({...form,numExterior:e.target.value})}/>
+      <input type="text" placeholder="No. Interior (opcional)" value={form.numInterior} onChange={(e)=>setForm({...form,numInterior:e.target.value})}/>
     </div>
   );
 }

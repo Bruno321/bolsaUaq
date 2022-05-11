@@ -10,7 +10,7 @@ const options = [
 
 const DropDownMenuFilter = () => {
     return (
-        <div style={styles.styledSelect}>
+        <div style={styles.styledSelect} >
             <Select 
                 styles={customStyles} 
                 options={options}
@@ -35,7 +35,7 @@ const styles = {
         width: '21%',
         height: '40px',
         marginLeft: '77%',
-        overflow: '-moz-hidden-unscrollable',
+        //overflow: '-moz-hidden-unscrollable',
         border: 'none',
         display: 'inline-block',
         position: 'relative',
@@ -49,7 +49,6 @@ const customStyles = {
     container: (provided) => ({
         ...provided,
         marginTop: '-4%',
-        
     }),
     menuList: (provided) => ({
         ...provided,
@@ -69,7 +68,8 @@ const customStyles = {
     control: (provided) => ({
         ...provided,
         backgroundColor: '#005183',
-        border: '1000px'
+        border: '1000px',
+        cursor:"pointer"
     }),
     indicatorsContainer: (provided) => ({
         ...provided,
@@ -86,10 +86,12 @@ const customStyles = {
       padding: 20,
       "&:hover":{
         color: state.isSelected ? '#ffffff' : '#black',
-        backgroundColor: state.isSelected ? '#48456b' : '#cdcdcd'
+        backgroundColor: state.isSelected ? '#48456b' : '#cdcdcd',
+        cursor:"pointer"
       },
       textAlign: 'center',
-      fontFamily: 'Roboto'
+      fontFamily: 'Roboto',
+
     }),
   }
 
