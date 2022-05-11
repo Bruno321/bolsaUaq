@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext,useState} from 'react';
 import {Context} from '../../Context/LoginContext';
 
 import logoFif from'../../Assets/img/fifUaq_Logo.png';
@@ -7,6 +7,10 @@ import vinculador from '../../Assets/img/vinculador.png';
 
 const LoginVinculacion = () => {
     const {iniciarSesion,setUserTypeFunc} = useContext(Context)
+    const [form,setForm] = useState({
+        usuario:"",
+        password:""
+    })
     const handleClick = () => {
         setUserTypeFunc(true)
         iniciarSesion()
@@ -18,9 +22,9 @@ const LoginVinculacion = () => {
                 <p style={styles.subTitle}>NOTA: ¡Recuerde iniciar sesión con los datos que le hemos proporcionado!</p>
                 <form style={styles.containerForm}>
                     <label style={styles.text}>Usuario / Expediente</label>
-                    <input type="text" placeholder="000000" style={styles.input} />
+                    <input type="text" placeholder="000000" style={styles.input} value={form.usuario} onChange={(e)=>setForm({...form,usuario:e.target,value})}/>
                     <label style={styles.text}>Contraseña</label>
-                    <input type="password" placeholder="********" style={styles.input} />
+                    <input type="password" placeholder="********" style={styles.input} value={form.password} onChange={(e)=>setForm({...form,password:e.target,value})}/>
                     <button style={styles.btnLogin} onClick={handleClick}>Iniciar Sesión</button>
                 </form>
                 <div style={styles.imgContainer}>
