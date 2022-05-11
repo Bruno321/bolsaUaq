@@ -1,19 +1,21 @@
 import React from 'react'
 import Select from "react-select";
 
-
 const options = [
-    { label: "Aceptadas", value: "vacantesA"},
-    { label: "Rechazadas", value: "VacantesR"}
+    { label: "Aceptadas", value: 0},
+    { label: "Rechazadas", value: 1}
 ];
 
-const DropDownMenuFilter = () => {
+const DropDownMenuFilter = ({filterOption,setFilterOption}) => {
+    
     return (
         <div style={styles.styledSelect} >
             <Select 
+                value={filterOption}
+                onChange={(e)=>setFilterOption(e.value)}
                 styles={customStyles} 
                 options={options}
-                placeholder="Aceptadas"
+                placeholder={options[filterOption].label}
                 isSearchable={false}
                 theme={(theme) => ({
                     ...theme,

@@ -8,7 +8,7 @@ const dataFetch = (optionSelected) => {
     if(optionSelected==0 || optionSelected==3){
         return [
             {
-                title: "Balsoft",
+                title: "Balsoft (Aceptada)",
                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec fermentum tortor, et ultrices justo. In iaculis mi in sem cursus malesuada. Sed sodales blandit turpis a sagittis. Sed lobortis nec neque nec viverra. Nam tempus aliquam vestibulum. Praesent maximus consectetur est ac lobortis..",
                 city:"Queretaro",
                 rfc:"A13ASF5165",
@@ -30,7 +30,7 @@ const dataFetch = (optionSelected) => {
                 id:0,
             },
             {
-                title: "Microsoft",
+                title: "Microsoft (Rechazada)",
                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec fermentum tortor, et ultrices justo. In iaculis mi in sem cursus malesuada. Sed sodales blandit turpis a sagittis. Sed lobortis nec neque nec viverra. Nam tempus aliquam vestibulum. Praesent maximus consectetur est ac lobortis..",
                 city:"Queretaro",
                 rfc:"A13ASF5165",
@@ -52,7 +52,7 @@ const dataFetch = (optionSelected) => {
                 id:1,
             },
             {
-                title: "Amazon",
+                title: "Amazon (Pendiente)",
                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec fermentum tortor, et ultrices justo. In iaculis mi in sem cursus malesuada. Sed sodales blandit turpis a sagittis. Sed lobortis nec neque nec viverra. Nam tempus aliquam vestibulum. Praesent maximus consectetur est ac lobortis..",
                 city:"Queretaro",
                 rfc:"A13ASF5165",
@@ -71,7 +71,7 @@ const dataFetch = (optionSelected) => {
                 emailReclutador:"alan@Amazon.com",
                 telefonoReclutador:"49813181441",
                 status:2,
-                id:1,
+                id:2,
             },
             
         ]
@@ -80,7 +80,7 @@ const dataFetch = (optionSelected) => {
     if(optionSelected==1 || optionSelected==2){
         return [
             {
-                titulo: 'Esclavo engineer', 
+                title: 'Esclavo engineer (Aceptada)', 
                 description: 'Trabaja trabaja y adivina que? TRABAJA', 
                 requisitos: 'Saber mucho', 
                 competencias: 'Todas, hasta las que no existen', 
@@ -103,7 +103,7 @@ const dataFetch = (optionSelected) => {
                 id:0
             },
             {
-                titulo: 'Esclavo engineer', 
+                title: 'Esclavo engineer (Rechazada)', 
                 description: 'Trabaja trabaja y adivina que? TRABAJA', 
                 requisitos: 'Saber mucho', 
                 competencias: 'Todas, hasta las que no existen', 
@@ -126,7 +126,7 @@ const dataFetch = (optionSelected) => {
                 id:0
             },
             {
-                titulo: 'Esclavo engineer', 
+                title: 'Esclavo engineer (Pendiente)', 
                 description: 'Trabaja trabaja y adivina que? TRABAJA', 
                 requisitos: 'Saber mucho', 
                 competencias: 'Todas, hasta las que no existen', 
@@ -154,7 +154,7 @@ const dataFetch = (optionSelected) => {
     if(optionSelected==4){
         return [
             {
-                titulo: 'Esclavo engineer', 
+                title: 'Esclavo engineer (Aceptada)', 
                 description: 'Trabaja trabaja y adivina que? TRABAJA', 
                 requisitos: 'Saber mucho', 
                 competencias: 'Todas, hasta las que no existen', 
