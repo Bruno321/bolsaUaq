@@ -49,7 +49,7 @@ const LoginEmpresa = () => {
                 <h1 style={styles.h1}>¿Está listo para dar el <br/> siguiente paso?</h1>
                 <div style={styles.form}>
                     <legend style={styles.legend}>Inicia sesión</legend>
-                    <label style={styles.text}>Usuario / Expediente</label>
+                    <label style={styles.text}>Usuario </label>
                     <input type="text" placeholder="000000" style={styles.input} value={data.usuario} onChange={(e)=>setData({...data,usuario:e.target,value})}/>
                     <label style={styles.text}>Contraseña</label>
                     <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>setData({...data,password:e.target,value})}/>

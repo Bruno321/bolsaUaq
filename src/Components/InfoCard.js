@@ -77,8 +77,8 @@ const InfoCard = ({props}) => {
 
 	return (
 		<div style={styles.vacantContainer}>
-			<h3 style={styles.vacantTitle}> {props.title} </h3>
-			<p style={styles.vacantAttribute}> <b>Descripción:</b> <br />{props.description}</p>
+			<h3 style={styles.vacantTitle}> { !props.nombreVacante ? props.nombreEmpresa:props.nombreVacante } </h3>
+			<p style={styles.vacantAttribute}> <b>Descripción:</b> <br />{props.descripcion}</p>
 			{elementsToRender()}
 		</div>
 	);

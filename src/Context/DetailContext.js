@@ -5,8 +5,8 @@ const Provider = ({children})=> {
 
     const [data,setData] = useState({})
     const [formm,setFormm] = useState({
-        titulo: '', 
-        description: '', 
+        nombreVacante: '', 
+        descripcion: '', 
         requisitos: '', 
         competencias: '', 
         tipoContratacion: '', 

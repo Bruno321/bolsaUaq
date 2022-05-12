@@ -27,7 +27,7 @@ const CrearVacante = () => {
       <div>
         <div>
           <p style={styles.parrafo}>Título de la oferta de empleo:</p>
-          <input type="text" placeholder="Ingresa el título de la oferta de empleo" style={styles.input} value={form.titulo} onChange={(e)=>setForm({...form,titulo:e.target.value})}/> 
+          <input type="text" placeholder="Ingresa el título de la oferta de empleo" style={styles.input} value={form.title} onChange={(e)=>setForm({...form,title:e.target.value})}/> 
           <p style={styles.parrafo}>Descripción del puesto:</p>
           <input type="text" placeholder="Ingresa la descripción del puesto" style={styles.inputLarge} value={form.description} onChange={(e)=>setForm({...form,description:e.target.value})}/>
           <p style={styles.parrafo}>Requisitos:</p>

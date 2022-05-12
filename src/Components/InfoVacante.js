@@ -29,7 +29,7 @@ const InfoVacante = ({data}) => {
             <div style={styles.containerIconClose}>
                 <img src={close} style={{cursor: 'pointer'}} onClick={()=>setDetailSelected(false)}/>
             </div>
-            <h1> Status ({statusText})</h1>
+            <h1>{data.title}</h1> <h2>Status ({statusText})</h2>
 
             <div style={styles.containerInfo}>
                 <h1 style={{fontSize: '24px'}}>{data.titulo}</h1>
