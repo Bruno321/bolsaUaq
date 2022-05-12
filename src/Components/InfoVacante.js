@@ -4,16 +4,23 @@ import {DataToShowContext} from '../Context/DataToShowContext'
 
 const InfoVacante = ({data}) => {
 
-    const [hoverButtonAceptar, setHoverButtonAceptar] = useState({...styles.button, background: '#27AE60'});
-    const [hoverButtonRechazar, setHoverButtonRechazar] = useState({...styles.button, background: '#C0392B'});
 
     const {setDetailSelected} = useContext(DataToShowContext)
     const [disable,setDisable] = useState(false)
-    const [statusText,setStatusText] = useState(false)
+    const [statusText,setStatusText] = useState("")
          
     useEffect(()=>{
         if(data.status==0 || data.status==1){
             setDisable(true)
+        }
+        if(data.status==0){
+            setStatusText("Aceptada")
+        }
+        if(data.status==1){
+            setStatusText("Rechazada")
+        }
+        if(data.status==2){
+            setStatusText("Pendiente")
         }
     })
     
@@ -22,9 +29,11 @@ const InfoVacante = ({data}) => {
             <div style={styles.containerIconClose}>
                 <img src={close} style={{cursor: 'pointer'}} onClick={()=>setDetailSelected(false)}/>
             </div>
+            <h1> Status ({statusText})</h1>
+
             <div style={styles.containerInfo}>
                 <h1 style={{fontSize: '24px'}}>{data.titulo}</h1>
-                <p style={styles.tituloSeccion}>Empresa: ( {handleStatus}) </p>
+                <p style={styles.tituloSeccion}>Empresa:  </p>
                 <p style={styles.pInfo}>{data.nombreEmpresa}</p>
                 <p style={styles.tituloSeccion}>Descripción de empleo:</p>
                 <p style={styles.pInfo}>{data.description}</p>
@@ -36,8 +45,7 @@ const InfoVacante = ({data}) => {
                     <p style={{...styles.tituloSeccion, ...styles.pSecciones}}>Tipo de contratación: <p style={styles.pInfo}>{data.tipoContratacion}</p></p>
                     <p style={{...styles.tituloSeccion, ...styles.pSecciones}}>Tipo de empleo: <p style={styles.pInfo}>{data.tipoEmpleo}</p></p>
                 </div>
-                <p style={styles.tituloSeccion}>Información</p>
-                <p style={styles.pInfo}>{data.informacion}</p>
+               
                 <div style={styles.containerSecciones}>
                     <p style={{...styles.tituloSeccion, ...styles.pSecciones}}>Estado: <p style={styles.pInfo}>{data.estado}</p></p>
                     <p style={{...styles.tituloSeccion, ...styles.pSecciones}}>Ciudad: <p style={styles.pInfo}>{data.ciudad}</p></p>
@@ -56,24 +64,18 @@ const InfoVacante = ({data}) => {
                 </div>
                 <p style={styles.tituloSeccion}>Otros requisitos:</p>
                 <p style={styles.pInfo}>{data.otrosRequisitos}</p>
+                <p style={styles.tituloSeccion}>Información</p>
+                <p style={styles.pInfo}>{data.informacion}</p>
                 <p style={styles.tituloSeccion}>Horario:</p>
                 <p style={styles.pInfo}>{data.horario}</p>
                
             </div>
             <div style={styles.containerButtons}>
                 <button 
-                    className={disable ? "btnDisabled": null}
-                    style={{...hoverButtonAceptar}}
-                    disabled={disable}
-                    onMouseEnter={() => setHoverButtonAceptar({...hoverButtonAceptar,background: '#3bea67'})}
-                    onMouseLeave={() => setHoverButtonAceptar({...hoverButtonAceptar,background: '#27AE60'})}
+                    className={`btnAceptar ${disable ? 'btnDisabled' : "pointer"}`}
                 >Aceptar</button>
                 <button 
-                    className={disable ? "btnDisabled": null}
-                    disabled={disable}
-                    style={{...hoverButtonRechazar}}
-                    onMouseEnter={() => setHoverButtonRechazar({...hoverButtonRechazar,background: '#ff4838'})}
-                    onMouseLeave={() => setHoverButtonRechazar({...hoverButtonRechazar,background: '#C0392B'})}
+                    className={`btnRechazar ${disable ? 'btnDisabled' : "pointer"}`}
                 >Rechazar</button>
             </div>
         </div>

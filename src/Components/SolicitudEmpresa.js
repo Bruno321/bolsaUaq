@@ -1,4 +1,4 @@
-import React,{useContext} from "react";
+import React,{useContext,useEffect,useState} from "react";
 import {DataToShowContext} from '../Context/DataToShowContext'
 
 
@@ -10,6 +10,8 @@ const SolicitudEmpresa = (props) => {
           nombreReclutador,emailReclutador,telefonoReclutador,id } = data;
           
   const {setDetailSelected} = useContext(DataToShowContext)
+  const [disable,setDisable] = useState(false)
+  const [statusText,setStatusText] = useState("")
 
   const handleAceptar = () => {
     
@@ -21,6 +23,21 @@ const SolicitudEmpresa = (props) => {
   const handleCerrar = () => {
     setDetailSelected(false)
   }
+
+  useEffect(()=>{
+    if(data.status==0 || data.status==1){
+      setDisable(true)
+    }
+    if(data.status==0){
+        setStatusText("Aceptada")
+    }
+    if(data.status==1){
+        setStatusText("Rechazada")
+    }
+    if(data.status==2){
+        setStatusText("Pendiente")
+    }
+  })
 
   return (
     <div style={styles.card}>
@@ -65,6 +82,7 @@ const SolicitudEmpresa = (props) => {
         <div style={styles.col_8}>
           <div style={styles.row}>
             <div style={styles.col_12}>
+              <h1> Status ({statusText})</h1>
               <h2 style={styles.title}>Domicilio</h2>
               <p style={styles.normalText}>{direccion}</p>
               <p style={styles.normalText}>{colonia}</p>
@@ -88,15 +106,16 @@ const SolicitudEmpresa = (props) => {
       <div style={styles.row}>
         <div style={{ ...styles.col, marginLeft: "auto" }}>
           <button
-            className="btnHover"
+            // className={disable ? "btnDisabled": null}
+            className={`btnAceptar ${disable ? 'btnDisabled' : "pointer"}`}
             onClick={handleAceptar}
-            style={{ ...styles.btnAccion, ...styles.btnRechazar }}>
+            >
             Rechazar
           </button>
           <button
-            className="btnHover"
+            className={`btnRechazar ${disable ? 'btnDisabled' : "pointer"}`}
             onClick={handleRechazar}
-            style={{ ...styles.btnAccion, ...styles.btnAceptar }}>
+            >
             Aceptar
           </button>
         </div>
@@ -195,42 +214,3 @@ const styles = {
 };
 
 export default SolicitudEmpresa;
-
-
-// Ejemplo de uso
-
-// const data = {
-//   empresa: {
-//     nombre: "Microsoft",
-//     razonSocial: "[Razón Social]",
-//     sector: '[Sector]',
-//     rfc: '[RFC]',
-//     email: "contacto@microsoft.com",
-//     telefono: "12154 135 13513",
-//     sitioWeb: 'www.microsoft.com'
-//   },
-//   registro: {
-//     fecha: "3 de enero de 2022"
-//   },
-//   domicilio: {
-//     direccion: "[Dirección]",
-//     colonia: "[Colonia]",
-//     ciudad: "[ciudad]",
-//     codigoPostal: "[Codigo Postal]",
-//     estado: "[Estado]"
-//   },
-//   reclutador: {
-//     nombre: "[Nombre]",
-//     email: "[Email]",
-//     telefono: "[Telefono]"
-//   },
-//   descripcion: "[descripcion]"
-// }
-
-
-// <SolicitudEmpresa
-//   data={data}
-//   onClickAceptar={(e) => alert("Aceptar")}
-//   onClickRechazar={(e) => alert("Rechazar")}
-//   onClickCerrar={(e) => alert("Cerrar")}
-// />
