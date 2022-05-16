@@ -40,7 +40,6 @@ const LoginEmpresa = () => {
           )
     }
     
-    console.log(showModal)
     
     return (
         <div style={styles.container} className="LoginContainer">

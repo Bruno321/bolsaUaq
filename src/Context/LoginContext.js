@@ -17,7 +17,6 @@ const Provider = ({children})=> {
         isAuth,
         // Iniciar sesion
         iniciarSesion:(token)=>{
-            console.log("iniciaste sesion")
             setIsAuth(true)
             window.localStorage.setItem('isAuth',true)
             window.localStorage.setItem('token',token)
@@ -25,7 +24,6 @@ const Provider = ({children})=> {
         },
         // Cerrar sesion
         cerrarSesion:()=>{
-            console.log("cerraste sesion")
             setIsAuth(false)
             window.localStorage.removeItem('token')
             window.localStorage.removeItem('isAuth')
@@ -36,7 +34,6 @@ const Provider = ({children})=> {
         // Setear que tipo de usuario sera
         setUserTypeFunc:(type)=>{
             setUserType(type)
-            console.log("El usuario es de tipo admin")
             window.localStorage.setItem('userType',type)
         }
     }

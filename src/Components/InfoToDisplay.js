@@ -24,9 +24,15 @@ const InfoToDisplay = ({title}) => {
   const [loading,setLoading] = useState(true)
   const [timedOut,setTimedOut] = useState(false)
 
-  console.log(filteredData.length)
+  // console.log("FILTRADA",filteredData)
+  // console.log("data",data)
   useEffect(()=>{
-    setData(dataFetch(optionSelected,setLoading))
+    async function fetchAPI(){
+      setData(dataFetch(optionSelected,setLoading))
+      console.log("RETURN",dataFetch(optionSelected,setLoading))
+    }
+
+    fetchAPI()
     setFilteredData([])
     // Se esta en validar empresa o validar vacantes, cuyo filtro siempre sera 2 "pendientes"
   },[optionSelected])

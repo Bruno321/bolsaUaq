@@ -1,19 +1,29 @@
 import React, {useContext,useState} from 'react';
 import {Context} from '../../Context/LoginContext';
-
+import axios from 'axios';
 import logoFif from'../../Assets/img/fifUaq_Logo.png';
 import logoCD from '../../Assets/img/Logo-CD.png';
 import vinculador from '../../Assets/img/vinculador.png';
+import Swal from 'sweetalert2'
 
 const LoginVinculacion = () => {
     const {iniciarSesion,setUserTypeFunc} = useContext(Context)
-    const [form,setForm] = useState({
+    const [data,setData] = useState({
         usuario:"",
         password:""
     })
     const handleClick = () => {
-        setUserTypeFunc(true)
-        iniciarSesion()
+        axios.post('http://localhost:3000/loginVinculador',{data},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+            .then((response)=>{
+                setUserTypeFunc(true)
+                iniciarSesion(response.data.message)
+            }).catch((e)=>{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Usuario o contraseña incorrectos',
+                    text: 'Intente de nuevo',
+                  })
+            })
     }
     return (
         <div style={styles.main}>
@@ -22,10 +32,10 @@ const LoginVinculacion = () => {
                 <p style={styles.subTitle}>NOTA: ¡Recuerde iniciar sesión con los datos que le hemos proporcionado!</p>
                 <div style={styles.containerForm}>
                     <label style={styles.text}>Usuario / Expediente</label>
-                    <input type="text" placeholder="000000" style={styles.input} value={form.usuario} onChange={(e)=>setForm({...form,usuario:e.target,value})}/>
+                    <input type="text" placeholder="000000" style={styles.input} value={data.usuario} onChange={(e)=>setData({...data,usuario:e.target.value})}/>
                     <label style={styles.text}>Contraseña</label>
-                    <input type="password" placeholder="********" style={styles.input} value={form.password} onChange={(e)=>setForm({...form,password:e.target,value})}/>
-                    <button style={styles.btnLogin} onClick={handleClick}>Iniciar Sesión</button>
+                    <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>setData({...data,password:e.target.value})}/>
+                    <button style={styles.btnLogin} className="btnHover" onClick={handleClick}>Iniciar Sesión</button>
                 </div>
                 <div style={styles.imgContainer}>
                     <img src={logoFif} style={styles.logoFif}/>
