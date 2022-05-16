@@ -13,7 +13,7 @@ const LeftBarnav = ({title,data}) => {
             <br></br>
             {data.map((e)=>{
                 return (
-                    <LeftBarNavOption title={e.name} position={e.value} />
+                    <LeftBarNavOption title={e.name} position={e.value} key={e.name} />
                 )
             })}
 

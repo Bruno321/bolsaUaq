@@ -8,6 +8,7 @@ import logoPortal from "../../Assets/img/Logo-portal.png";
 import {Link } from '@reach/router';
 import ModalInforCambiarPassword from '../../Components/ModalInfoCambiarPassword';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const LoginEmpresa = () => {
     const {iniciarSesion,setUserTypeFunc} = useContext(Context)
@@ -23,17 +24,20 @@ const LoginEmpresa = () => {
                 setUserTypeFunc(false)
                 iniciarSesion(response.data.message)
             }).catch((e)=>{
-                console.log(e)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Usuario o contraseña incorrectos',
+                    text: 'Intente de nuevo',
+                  })
             })
-        // axios({
-        //     method: 'post',
-        //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        //     url: 'https://localhost:3000/Order/Order/GiveOrder',
-        //     data: order
-        //   }).then(function (response) {
-        //     console.log(response.data);
-        //   });
-        
+    }
+
+    const handleModal = () => {
+        Swal.fire(
+            'The Internet?',
+            'That thing is still around?',
+            'question'
+          )
     }
     
     console.log(showModal)
@@ -67,7 +71,7 @@ const LoginEmpresa = () => {
                     <label style={styles.text}>Contraseña</label>
                     <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>setData({...data,password:e.target.value})}/>
                     <div style={styles.containerA}>
-                        <div  style={styles.a} onClick={()=>setShowModal(true)}>Olvidaste tu contraseña</div>
+                        <div  style={styles.a} onClick={handleModal}>Olvidaste tu contraseña</div>
                     </div>
                     <Button title={'Iniciar Sesión'} styles={{background: '#5F4FEB', color: 'white', margin: '5px 0px'}} click={handleClick}/>
                     <Link to="/register" >
