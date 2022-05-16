@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
 import {DataToShowContext} from '../Context/DataToShowContext'
-
 import InfoCard from './InfoCard'
 import DropDownMenuFilter from "./DropDownMenuFilter";
 import SeguimientoVacante from "./SeguimientoVacante";
 import dataFetch from "../Assets/js/dataFetch";
 import CardDetailManager from './CardDetailManager'
 import LoadingSpinner from './LoadingSpinner'
+import axios from "axios"
 
 const InfoToDisplay = ({title}) => {
   const {optionSelected,detailSelected} = useContext(DataToShowContext)
+  const token = window.localStorage.getItem('token')
   
   // optionSelected defines the type of elements the card will gave and the route of the fetch
   /*
@@ -27,12 +28,23 @@ const InfoToDisplay = ({title}) => {
   // console.log("FILTRADA",filteredData)
   // console.log("data",data)
   useEffect(()=>{
-    async function fetchAPI(){
-      setData(dataFetch(optionSelected,setLoading))
-      console.log("RETURN",dataFetch(optionSelected,setLoading))
+    // async function fetchAPI(){
+    // setData(dataFetch(optionSelected,setLoading))
+    // console.log("RETURN",dataFetch(optionSelected,setLoading))
+    setLoading(false)
+    if(optionSelected==0 || optionSelected==3){
+         axios.get('http://localhost:3000/empresa',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+            .then((response)=>{
+                // console.log(response.data.message)
+                // array.push(response.data.message)
+                setData(response.data.message)
+                // console.log(array)
+            }).catch((e)=>{
+                console.log("error",e)
+            })
     }
-
-    fetchAPI()
+    // }
+    // fetchAPI()
     setFilteredData([])
     // Se esta en validar empresa o validar vacantes, cuyo filtro siempre sera 2 "pendientes"
   },[optionSelected])
@@ -79,7 +91,7 @@ const InfoToDisplay = ({title}) => {
             !loading ? 
               filteredData.length!=0 ? filteredData.map((data)=>{
                 return (
-                  <InfoCard props={data} />
+                  <InfoCard props={data} key={data.nombreEmpresa}/>
                 )
               }): <div>No hay elementos de este tipo</div>
             : 
