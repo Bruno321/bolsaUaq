@@ -1,13 +1,13 @@
 import React, {useContext,useState} from 'react';
 import {Context} from '../../Context/LoginContext';
 import Button from '../../Components/Button';
-import LoginTextInput from '../../Components/LoginTextInput';
 import imgDev from "../../Assets/img/dev.png";
 import fifLogo from "../../Assets/img/fif-logo.png";
 import logoCD from "../../Assets/img/Logo-CD.png";
 import logoPortal from "../../Assets/img/Logo-portal.png";
 import {Link } from '@reach/router';
 import ModalInforCambiarPassword from '../../Components/ModalInfoCambiarPassword';
+import axios from 'axios';
 
 const LoginEmpresa = () => {
     const {iniciarSesion,setUserTypeFunc} = useContext(Context)
@@ -18,9 +18,22 @@ const LoginEmpresa = () => {
     })
     const handleClick = () => {
         //Mandar a hacer el fetch
-        console.log(data)
-        setUserTypeFunc(false)
-        iniciarSesion()
+        axios.post('http://localhost:3000/loginEmpresa',{data},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+            .then((response)=>{
+                setUserTypeFunc(false)
+                iniciarSesion(response.data.message)
+            }).catch((e)=>{
+                console.log(e)
+            })
+        // axios({
+        //     method: 'post',
+        //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        //     url: 'https://localhost:3000/Order/Order/GiveOrder',
+        //     data: order
+        //   }).then(function (response) {
+        //     console.log(response.data);
+        //   });
+        
     }
     
     console.log(showModal)
@@ -50,9 +63,9 @@ const LoginEmpresa = () => {
                 <div style={styles.form}>
                     <legend style={styles.legend}>Inicia sesión</legend>
                     <label style={styles.text}>Usuario </label>
-                    <input type="text" placeholder="000000" style={styles.input} value={data.usuario} onChange={(e)=>setData({...data,usuario:e.target,value})}/>
+                    <input type="text" placeholder="000000" style={styles.input} value={data.usuario} onChange={(e)=>setData({...data,usuario:e.target.value})}/>
                     <label style={styles.text}>Contraseña</label>
-                    <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>setData({...data,password:e.target,value})}/>
+                    <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>setData({...data,password:e.target.value})}/>
                     <div style={styles.containerA}>
                         <div  style={styles.a} onClick={()=>setShowModal(true)}>Olvidaste tu contraseña</div>
                     </div>

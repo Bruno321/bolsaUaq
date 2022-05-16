@@ -6,14 +6,14 @@ const Provider = ({children})=> {
     const [form,setForm] = useState({
         nombreEmpresa: '', 
         usuario: '', 
-        correoElectronico: '', 
+        email: '', 
         telefonoEmpresa: '', 
         logo: '', 
         rfc: '', 
         razonSocial: '', 
         sector: '', 
         descripcion: '', 
-        pagina: '', 
+        sitioWeb: '', 
         pais: 'México', 
         estado: '', 
         ciudad: '', 
@@ -22,9 +22,12 @@ const Provider = ({children})=> {
         direccion:"",
         numExterior: '', 
         numInterior: '', 
-        nombreContacto: '',
+        nombreReclutador: '', 
         apellido: "",
-        telefonoContacto: "",
+        telefonoReclutador: "",
+        giro: "", 
+        emailReclutador: "",
+
       })
   
     const value = {

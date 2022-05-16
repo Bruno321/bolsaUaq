@@ -16,11 +16,11 @@ const Provider = ({children})=> {
         userType,
         isAuth,
         // Iniciar sesion
-        iniciarSesion:()=>{
+        iniciarSesion:(token)=>{
             console.log("iniciaste sesion")
             setIsAuth(true)
             window.localStorage.setItem('isAuth',true)
-            window.localStorage.setItem('token','token')
+            window.localStorage.setItem('token',token)
             location.reload();
         },
         // Cerrar sesion
