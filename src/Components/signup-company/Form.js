@@ -3,6 +3,8 @@ import DatosEmpresa from "./DatosEmpresa";
 import Ubicacion from "./Ubicacion"
 import Reclutador from "./Reclutador";
 import {RegisterContext} from "../../Context/RegisterContext";
+import axios from "axios";
+import Swal from 'sweetalert2'
 
 //Estilos
 import './form.css';
@@ -49,8 +51,16 @@ const Form = () => {
 
     const handleClick = () => {
         if(page>1){
-            // AQUI SE HACE EL QUERY
-            console.log(form)
+            axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+            .then((response)=>{
+                Swal.fire(
+                    'Solicitud enviada correctamente',
+                    'Este atento a su correo electronico',
+                    'success'
+                  )
+            }).catch((e)=>{
+                console.log(e)
+            })
         }else{
             setPage((currPage) => currPage + 1)
         }
