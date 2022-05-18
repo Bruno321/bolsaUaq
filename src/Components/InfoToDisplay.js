@@ -21,6 +21,7 @@ const InfoToDisplay = ({title}) => {
   */
   const [data,setData] = useState([])
   const [filteredData,setFilteredData] = useState([])
+  // La opciones de filtrado del dropdownmenu 0-aceptadas,1-rechazadsa,2-pendientes
   const [filterOption,setFilterOption] = useState(0)
   const [loading,setLoading] = useState(true)
   const [timedOut,setTimedOut] = useState(false)
@@ -94,8 +95,18 @@ const InfoToDisplay = ({title}) => {
   },[filterOption])
 
   const renderFilter = () => {
-    if(optionSelected==2 || optionSelected==3 || optionSelected==4){
-      return <DropDownMenuFilter setFilterOption={setFilterOption} filterOption={filterOption}/>
+    if(optionSelected==2 || optionSelected==3){
+      return <DropDownMenuFilter options={[
+        { label: "Aceptadas", value: 0},
+        { label: "Rechazadas", value: 1},
+    ]} setFilterOption={setFilterOption} filterOption={filterOption}/>
+    }
+    if( optionSelected==4){
+      return <DropDownMenuFilter options={[
+        { label: "Aceptadas", value: 0},
+        { label: "Rechazadas", value: 1},
+        { label: "Pendientes", value: 2},
+    ]} setFilterOption={setFilterOption} filterOption={filterOption}/>
     }
   }
   return (
@@ -110,7 +121,7 @@ const InfoToDisplay = ({title}) => {
             !loading ? 
               filteredData.length!=0 ? filteredData.map((data)=>{
                 return (
-                  <InfoCard props={data} key={data.nombreEmpresa}/>
+                  <InfoCard props={data} key={data.vacanteId} />
                 )
               }): <div>No hay elementos de este tipo</div>
             : 

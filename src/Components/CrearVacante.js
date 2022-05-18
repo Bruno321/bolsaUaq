@@ -21,21 +21,59 @@ const CrearVacante = () => {
   }
 
   const handleClick = () => {
-    axios.post('http://localhost:3000/vacante',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
-     .then((response)=>{
-        
-      Swal.fire(
-        'Solicitud enviada correctamente',
-        'Este atento a su correo electronico',
-        'success'
-      )
-     }).catch((e)=>{
+    if(detailSelected) {
+
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Algo salio mal',
+        title: '¿Esta seguro?',
+        text: "Esta vacante volver a estar pendiente de validación",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si,estoy seguro'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.put('http://localhost:3000/vacante',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+         .then((response)=>{
+          Swal.fire(
+            'Solicitud enviada correctamente',
+            'Este atento a su correo electronico',
+            'success'
+          )
+          setTimeout(()=>{
+            location.reload()
+          },1500)
+         }).catch((e)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salio mal',
+          })
+         })
+        }
       })
-     })
+    }else{
+      axios.post('http://localhost:3000/vacante',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+       .then((response)=>{
+        
+        Swal.fire(
+          'Solicitud enviada correctamente',
+          'Este atento a su correo electronico',
+          'success'
+        )
+        setTimeout(()=>{
+          location.reload()
+        },1500)
+
+
+       }).catch((e)=>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Algo salio mal',
+        })
+       })
+    }
   }
 
   return (
@@ -45,9 +83,9 @@ const CrearVacante = () => {
       <div>
         <div>
           <p style={styles.parrafo}>Título de la oferta de empleo:</p>
-          <input type="text" placeholder="Ingresa el título de la oferta de empleo" style={styles.input} value={form.title} onChange={(e)=>setForm({...form,title:e.target.value})}/> 
+          <input type="text" placeholder="Ingresa el título de la oferta de empleo" style={styles.input} value={form.nombreVacante} onChange={(e)=>setForm({...form,nombreVacante:e.target.value})}/> 
           <p style={styles.parrafo}>Descripción del puesto:</p>
-          <input type="text" placeholder="Ingresa la descripción del puesto" style={styles.inputLarge} value={form.description} onChange={(e)=>setForm({...form,description:e.target.value})}/>
+          <input type="text" placeholder="Ingresa la descripción del puesto" style={styles.inputLarge} value={form.descripcion} onChange={(e)=>setForm({...form,descripcion:e.target.value})}/>
           <p style={styles.parrafo}>Requisitos:</p>
           <input type="text" placeholder="Ingresa los requisitos del puesto" style={styles.inputLarge} value={form.requisitos} onChange={(e)=>setForm({...form,requisitos:e.target.value})}/>
           <p style={styles.parrafo}>Competencias:</p>
