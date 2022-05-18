@@ -12,7 +12,7 @@ const Provider = ({children})=> {
         tipoContratacion: '', 
         tipoEmpleo: '', 
         informacion: '', 
-        estado: 'aguascalientes', 
+        estado: 'Querétaro', 
         ciudad: '', 
         nivelIngles: 'Básico', 
         rangoSueldo: '', 

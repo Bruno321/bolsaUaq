@@ -1,8 +1,12 @@
 import React, { useState,useContext,useEffect } from "react";
 import {DetailContext} from '../Context/DetailContext'
 import {DataToShowContext} from '../Context/DataToShowContext'
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const CrearVacante = () => {
+
+  const token = window.localStorage.getItem('token')
 
   let form,setForm
   const {formm,setFormm,data,setData} = useContext(DetailContext)
@@ -17,7 +21,21 @@ const CrearVacante = () => {
   }
 
   const handleClick = () => {
-    console.log(form)
+    axios.post('http://localhost:3000/vacante',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+     .then((response)=>{
+        
+      Swal.fire(
+        'Solicitud enviada correctamente',
+        'Este atento a su correo electronico',
+        'success'
+      )
+     }).catch((e)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Algo salio mal',
+      })
+     })
   }
 
   return (

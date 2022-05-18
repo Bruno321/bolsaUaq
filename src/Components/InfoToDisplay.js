@@ -31,18 +31,37 @@ const InfoToDisplay = ({title}) => {
     // async function fetchAPI(){
     // setData(dataFetch(optionSelected,setLoading))
     // console.log("RETURN",dataFetch(optionSelected,setLoading))
-    setLoading(false)
     if(optionSelected==0 || optionSelected==3){
          axios.get('http://localhost:3000/empresa',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
             .then((response)=>{
-                // console.log(response.data.message)
-                // array.push(response.data.message)
+               
                 setData(response.data.message)
-                // console.log(array)
+                setLoading(false)
             }).catch((e)=>{
                 console.log("error",e)
             })
     }
+    if(optionSelected==1|| optionSelected==2  ){
+      axios.get('http://localhost:3000/vacantes',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+         .then((response)=>{
+            
+             setData(response.data.message)
+             setLoading(false)
+         }).catch((e)=>{
+             console.log("error",e)
+         })
+ }
+
+ if(optionSelected==4 ){
+  axios.get('http://localhost:3000/vacante',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+     .then((response)=>{
+        
+         setData(response.data.message)
+         setLoading(false)
+     }).catch((e)=>{
+         console.log("error",e)
+     })
+  }
     // }
     // fetchAPI()
     setFilteredData([])
