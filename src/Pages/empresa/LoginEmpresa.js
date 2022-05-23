@@ -18,8 +18,25 @@ const LoginEmpresa = () => {
         password: ""
     })
     const handleClick = () => {
-        //Mandar a hacer el fetch
-        axios.post('http://localhost:3000/loginEmpresa',{data},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+        if (data.usuario == '') {
+            document.getElementById('usuario').focus();
+            document.getElementById('usuario').style['border-color'] = 'red';
+            Swal.fire({
+                icon: 'error',
+                title: 'Faltan llenar campo usuario',
+                text: 'Intente de nuevo',
+            });
+        }else if(data.password == ''){
+            document.getElementById('password').focus();
+            document.getElementById('password').style['border-color'] = 'red';
+            Swal.fire({
+                icon: 'error',
+                title: 'Falta llenar campo password',
+                text: 'Intente de nuevo',
+            });
+        }else{
+            //Mandar a hacer el fetch
+            axios.post('http://localhost:3000/loginEmpresa',{data},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
             .then((response)=>{
                 setUserTypeFunc(false)
                 iniciarSesion(response.data.message)
@@ -28,8 +45,9 @@ const LoginEmpresa = () => {
                     icon: 'error',
                     title: 'Usuario o contraseña incorrectos',
                     text: 'Intente de nuevo',
-                  })
-            })
+                });
+            });
+        };
     }
 
     const handleModal = () => {
@@ -66,9 +84,9 @@ const LoginEmpresa = () => {
                 <div style={styles.form}>
                     <legend style={styles.legend}>Inicia sesión</legend>
                     <label style={styles.text}>Usuario </label>
-                    <input type="text" placeholder="000000" style={styles.input} value={data.usuario} onChange={(e)=>setData({...data,usuario:e.target.value})}/>
+                    <input type="text" placeholder="000000" style={styles.input} value={data.usuario} onChange={(e)=>{setData({...data,usuario:e.target.value}); document.getElementById('usuario').style['border-color'] = 'black';}} id='usuario'/>
                     <label style={styles.text}>Contraseña</label>
-                    <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>setData({...data,password:e.target.value})}/>
+                    <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>{setData({...data,password:e.target.value}); document.getElementById('password').style['border-color'] = 'black';}} id='password'/>
                     <div style={styles.containerA}>
                         <div  style={styles.a} onClick={handleModal}>Olvidaste tu contraseña</div>
                     </div>
@@ -76,7 +94,6 @@ const LoginEmpresa = () => {
                     <Link to="/register" >
                         <Button title={'Registrarme'} styles={{background: 'white', color: '#5F4FEB', margin: '5px 0px'}}/>
                     </Link>
-                    
                 </div>
                 <div style={styles.containerLogosFacultad}>
                         <img src={fifLogo} style={styles.imgLogosFacultad}/>
@@ -192,7 +209,8 @@ const styles = {
         fontSize: "1.6rem",
     },
     input: {
-        outline: "none"
+        outline: "none",
+        borderColor: 'black'
     },
     
 }
