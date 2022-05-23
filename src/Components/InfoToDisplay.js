@@ -61,6 +61,7 @@ const InfoToDisplay = ({title}) => {
          setLoading(false)
      }).catch((e)=>{
          console.log("error",e)
+         setTimedOut(true)
      })
   }
     // }
@@ -121,7 +122,7 @@ const InfoToDisplay = ({title}) => {
             !loading ? 
               filteredData.length!=0 ? filteredData.map((data)=>{
                 return (
-                  <InfoCard props={data} key={data.vacanteId} />
+                  <InfoCard props={data} key={data.vacanteId ? data.vacanteId : data.empresaId} />
                 )
               }): <div>No hay elementos de este tipo</div>
             : 

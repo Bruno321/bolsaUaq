@@ -1,24 +1,75 @@
 import React,{useContext,useEffect,useState} from "react";
 import {DataToShowContext} from '../Context/DataToShowContext'
-
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const SolicitudEmpresa = (props) => {
   const { data } = props;
-
+  const token = window.localStorage.getItem('token')
   const { title,rfc,giro,razonSocial,email,telefono,sitioWeb,fechaRegistro, 
-          direccion,colonia,city,codigoPostal,estado, description,
-          nombreReclutador,emailReclutador,telefonoReclutador,id } = data;
+          direccion,colonia,city,codigoPostal,estado, descripcion,
+          nombreReclutador,emailReclutador,telefonoReclutador,empresaId } = data;
           
   const {setDetailSelected} = useContext(DataToShowContext)
   const [disable,setDisable] = useState(false)
   const [statusText,setStatusText] = useState("")
 
   const handleAceptar = () => {
-    
+    Swal.fire({
+      title: '¿Esta seguro?',
+      text: "Esto aceptara la solicitud de la empresa" ,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, cambiar disponibilidad'
+    }).then((result) => {
+        if (result.isConfirmed) {
+          axios.patch('http://localhost:3000/empresa',{data:{id:empresaId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+          .then((response)=>{
+              console.log(response)
+              Swal.fire(
+                'Status actualizado',
+                'La empresa a sido aceptada',
+                'success'
+              )
+                setTimeout(()=>{
+                  location.reload()
+                },2000)
+          }).catch((e)=>{
+              console.log("error",e)
+          })
+      }
+    })
   }
 
   const handleRechazar = () => {
-
+    Swal.fire({
+      title: '¿Esta seguro?',
+      text: "Esto rechazara la solicitud de la empresa" ,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, cambiar disponibilidad'
+    }).then((result) => {
+        if (result.isConfirmed) {
+          axios.patch('http://localhost:3000/empresa',{data:{id:empresaId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+          .then((response)=>{
+              console.log(response)
+              Swal.fire(
+                'Status actualizado',
+                'La empresa a sido rechazada',
+                'success'
+              )
+                setTimeout(()=>{
+                  location.reload()
+                },2000)
+          }).catch((e)=>{
+              console.log("error",e)
+          })
+      }
+    })
   }
   const handleCerrar = () => {
     setDetailSelected(false)
@@ -98,7 +149,7 @@ const SolicitudEmpresa = (props) => {
             </div>
             <div style={styles.col_12}>
               <h2 style={styles.title}>Descripción</h2>
-              <p style={styles.normalText}>{description}</p>
+              <p style={styles.normalText}>{descripcion}</p>
             </div>
           </div>
         </div>
@@ -108,15 +159,17 @@ const SolicitudEmpresa = (props) => {
           <button
             // className={disable ? "btnDisabled": null}
             className={`btnAceptar ${disable ? 'btnDisabled' : "pointer"}`}
+            disabled={disable}
             onClick={handleAceptar}
             >
-            Rechazar
+            Aceptar
           </button>
           <button
             className={`btnRechazar ${disable ? 'btnDisabled' : "pointer"}`}
+            disabled={disable}
             onClick={handleRechazar}
             >
-            Aceptar
+            Rechazar
           </button>
         </div>
       </div>

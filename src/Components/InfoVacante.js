@@ -1,9 +1,11 @@
 import React, {useState,useContext,useEffect} from "react";
 import close from '../Assets/img/close.png';
 import {DataToShowContext} from '../Context/DataToShowContext'
-
+import Swal from "sweetalert2";
+import axios from "axios";
 const InfoVacante = ({data}) => {
 
+	const token = window.localStorage.getItem('token')
 
     const {setDetailSelected} = useContext(DataToShowContext)
     const [disable,setDisable] = useState(false)
@@ -23,6 +25,64 @@ const InfoVacante = ({data}) => {
             setStatusText("Pendiente")
         }
     })
+
+    const handleAceptarV = () => {
+		Swal.fire({
+		  title: '¿Esta seguro?',
+		  text: "Esto aceptara la solicitud de la vacante" ,
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Si, cambiar disponibilidad'
+		}).then((result) => {
+			if (result.isConfirmed) {
+			  axios.patch('http://localhost:3000/vacantes',{data:{id:data.vacanteId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+			  .then((response)=>{
+				  console.log(response)
+				  Swal.fire(
+					'Status actualizado',
+					'La vacante a sido aceptada',
+					'success'
+				  )
+					setTimeout(()=>{
+					  location.reload()
+					},2000)
+			  }).catch((e)=>{
+				  console.log("error",e)
+			  })
+		  }
+		})
+	  }
+	
+	  const handleRechazarV = () => {
+		Swal.fire({
+		  title: '¿Esta seguro?',
+		  text: "Esto rechazara la solicitud de la vacante" ,
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Si, cambiar disponibilidad'
+		}).then((result) => {
+			if (result.isConfirmed) {
+			  axios.patch('http://localhost:3000/vacantes',{data:{id:data.vacanteId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+			  .then((response)=>{
+				  console.log(response)
+				  Swal.fire(
+					'Status actualizado',
+					'La vacante a sido rechazada',
+					'success'
+				  )
+					setTimeout(()=>{
+					  location.reload()
+					},2000)
+			  }).catch((e)=>{
+				  console.log("error",e)
+			  })
+		  }
+		})
+	  }
     
     return(
         <div style={styles.container}>
@@ -73,9 +133,13 @@ const InfoVacante = ({data}) => {
             <div style={styles.containerButtons}>
                 <button 
                     className={`btnAceptar ${disable ? 'btnDisabled' : "pointer"}`}
+                    disabled={disable}
+                    onClick={handleAceptarV}
                 >Aceptar</button>
                 <button 
                     className={`btnRechazar ${disable ? 'btnDisabled' : "pointer"}`}
+                    disabled={disable}
+                    onClick={handleRechazarV}
                 >Rechazar</button>
             </div>
         </div>

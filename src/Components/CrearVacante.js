@@ -185,7 +185,7 @@ const CrearVacante = () => {
             <button style={styles.button} onClick={handleClick} className="btnHover">Editar Vacante</button>
           </>
           :
-          <button style={styles.button} onClick={handleClick} className="btnHover">Registrar Vacante</button>
+          <button style={styles.button} onClick={handleClick} className="btnHover">Mandar solicitud de vacante</button>
           
           }
           
