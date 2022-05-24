@@ -18,20 +18,21 @@ const LoginEmpresa = () => {
         password: ""
     })
     const handleClick = () => {
-        if (data.usuario == '') {
-            document.getElementById('usuario').focus();
-            document.getElementById('usuario').style['border-color'] = 'red';
+        if (data.usuario == '' || data.password == '') {
+            if(data.usuario == '' && data.password != ''){
+                document.getElementById('usuario').focus();
+                document.getElementById('usuario').style['border-color'] = 'red';
+            }else if(data.password == '' && data.usuario != ''){
+                document.getElementById('password').focus();
+                document.getElementById('password').style['border-color'] = 'red';
+            }else{
+                document.getElementById('usuario').focus();
+                document.getElementById('usuario').style['border-color'] = 'red';
+                document.getElementById('password').style['border-color'] = 'red';
+            }
             Swal.fire({
                 icon: 'error',
-                title: 'Faltan llenar campo usuario',
-                text: 'Intente de nuevo',
-            });
-        }else if(data.password == ''){
-            document.getElementById('password').focus();
-            document.getElementById('password').style['border-color'] = 'red';
-            Swal.fire({
-                icon: 'error',
-                title: 'Falta llenar campo password',
+                title: 'Falta llenar campos',
                 text: 'Intente de nuevo',
             });
         }else{
