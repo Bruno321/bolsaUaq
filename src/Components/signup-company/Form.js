@@ -22,13 +22,25 @@ const Form = () => {
     // Cambia el formulario al que se desea
     const PageDisplay = () => {
         if (page === 0) {
-            return <DatosEmpresa />;
+            return <DatosEmpresa/>;
         }
         else if (page === 1) {
             return <Ubicacion />;
+            // if(validarPages(0)){
+            //     return <Ubicacion />;
+            // }else{
+            //     setPage(0);
+            //     return <DatosEmpresa validar='true'/>;
+            // }
         }
         else {
             return <Reclutador />;
+        }
+    }
+
+    const validarPages = (numPage) => {
+        if(numPage === 0){
+            return true;
         }
     }
 
@@ -51,19 +63,51 @@ const Form = () => {
 
     const handleClick = () => {
         if(page>1){
-            axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
-            .then((response)=>{
+            console.log('formulario final', form)
+            if(validarCampos()){
                 Swal.fire(
                     'Solicitud enviada correctamente',
                     'Este atento a su correo electronico',
                     'success'
-                  )
-            }).catch((e)=>{
-                console.log(e)
-            })
+                )
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Faltan campos por llenar',
+                    text: 'Favor de llenar los campos faltantes',
+                });
+                
+            }
+            // axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+            // .then((response)=>{
+            //     Swal.fire(
+            //         'Solicitud enviada correctamente',
+            //         'Este atento a su correo electronico',
+            //         'success'
+            //       )
+            // }).catch((e)=>{
+            //     console.log(e)
+            // })
         }else{
+            console.log(form)
             setPage((currPage) => currPage + 1)
         }
+    }
+
+    const validarCampos = () => {
+        let numeroCamposCompletos = 0;
+        const copyForm = {...form};
+        //Se eliminan del objeto los atributos que no son obligatorios
+        delete copyForm.logo;
+        delete copyForm.numInterior;
+        for (const property in copyForm) {
+        if(form[property] != ''){
+            numeroCamposCompletos += 1;
+        }else{
+            // document.getElementById(`${property}`).style['border-color'] = 'red';
+        }
+        }
+        return numeroCamposCompletos == Object.keys(copyForm).length;
     }
 
     return (
