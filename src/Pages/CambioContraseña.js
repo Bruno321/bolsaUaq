@@ -1,11 +1,16 @@
 import React, { useContext } from 'react';
+// Context
 import { Context } from '../Context/LoginContext';
+// Components
 import Button from '../Components/Button';
 import LoginTextInput from '../Components/LoginTextInput';
+// Assets
 import imgDev from "../Assets/img/dev.png";
 import fifLogo from "../Assets/img/fif-logo.png";
 import logoCD from "../Assets/img/Logo-CD.png";
 import logoPortal from "../Assets/img/Logo-portal.png";
+// Styles
+import './CambioContraseña.css';
 
 
 const CambioContraseña = () => {
@@ -16,36 +21,32 @@ const CambioContraseña = () => {
 		alert("Cambiar contraseña");
 	}
 	return (
-		<div style={styles.container}>
-			<div style={styles.containerLeft}>
-				<div style={styles.containerImgLeft}>
-					<img src={imgDev} style={styles.imgDev} />
+		<div className='container'>
+			<div className='containerLeft'>
+				<div className='containerImgLeft'>
+					<img src={imgDev} className='imgDev' />
 				</div>
-				<div style={styles.containerInfoCarrusel}>
+				<div className='containerInfoCarrusel'>
 					<h1>Encuentre a sus próximos <br /> empleados. Rápido.</h1>
 					<p>Sabe a quién está buscando. <br /> Lo ayudaremos a encontrarlo</p>
 				</div>
 			</div>
-			<div style={styles.containerForm}>
-				<div style={styles.containerImgLogoPortal}>
-					<img src={logoPortal} style={styles.imgLogoPortal} />
+			<div className='containerForm'>
+				<div className='containerImgLogoPortal'>
+					<img src={logoPortal} className='imgLogoPortal' />
 				</div>
-				<h1 style={styles.h1}>¡Felicidades, su cuenta<br /> ha sido verificada!</h1>
-				<form style={styles.form}>
-					<legend style={styles.legend}>Cambie su contraseña actual.</legend>
-					<br />
+				<h1 className='h1'>¡Felicidades, su cuenta<br /> ha sido verificada!</h1>
+				<form className='form'>
+					<legend className='legend'>Cambie su contraseña actual.</legend>
 					<LoginTextInput labelText="Contraseña actual" placeHolder="" inputType="password" />
-					<br />
 					<LoginTextInput labelText="Nueva contraseña" placeHolder="" inputType="password" />
-					<br />
 					<LoginTextInput labelText="Confirme contraseña" placeHolder="" inputType="password" />
-					<br />
 
 					<Button title={'Iniciar Sesión'} styles={{ background: '#5F4FEB', color: 'white', margin: '5px 0px' }} click={handleClick} />
 				</form>
-				<div style={styles.containerLogosFacultad}>
-					<img src={fifLogo} style={styles.imgLogosFacultad} />
-					<img src={logoCD} style={styles.imgLogosFacultad} />
+				<div className='containerLogosFacultad'>
+					<img src={fifLogo} className='imgLogosFacultad' />
+					<img src={logoCD} className='imgLogosFacultad' />
 				</div>
 			</div>
 		</div>
