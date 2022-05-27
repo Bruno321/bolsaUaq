@@ -1,0 +1,87 @@
+.container {
+  width: 100%;
+  height: 100vh;
+	display: flex;
+  flex-direction: row;
+}
+.containerLeft {
+  width: 55%;
+  height: 100%;
+  background: #2B246B;
+  display: flex;
+  padding: 0px 20px 40px 20px;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.containerImgLeft {
+	width: 600px;
+	height: 500px;
+}
+.imgDev {
+	width: 100%;
+	height: 100%;
+}
+.containerInfoCarrusel {
+	text-align: center;
+	color: white;
+}
+.containerForm {
+  width: 45%;
+  height: 100%;
+  background: #FFFFFF;
+  padding: 10px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  overflow: auto;
+}
+.containerImgLogoPortal {
+  width: 250px;
+  height: 100px;
+  margin: 0px 0px 20px 0px;
+}
+.imgLogoPortal {
+  width: 100%;
+  height: 100%;
+}
+.form {
+  width: 100%;
+  height: 50%;
+  margin: 20px 0px 0px 0px;
+}
+.legend {
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+}
+.h1 {
+  font-size: 30px;
+  text-align: center;
+}
+.containerA {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin: 5px 0px 20px 0px;
+}
+.container p {
+  margin: 20px 0px 0px 0px;
+}
+.a {
+  font-size: 14px;
+  color: black;
+}
+.containerLogosFacultad {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+.imgLogosFacultad {
+  height: 40px;
+  margin: 0px 10px;
+}
