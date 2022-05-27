@@ -13,6 +13,7 @@ const Form = () => {
 
     // Secciones del Formulario
     const [page, setPage] = useState(0);
+    const [validar, setValidar] = useState('no');
 
     // Titulos de las secciones del Formulario
     const FormTitles = ["Datos de la empresa", "Ubicación", "Reclutador"]
@@ -22,19 +23,13 @@ const Form = () => {
     // Cambia el formulario al que se desea
     const PageDisplay = () => {
         if (page === 0) {
-            return <DatosEmpresa/>;
+            return <DatosEmpresa validar={validar}/>;
         }
         else if (page === 1) {
-            return <Ubicacion />;
-            // if(validarPages(0)){
-            //     return <Ubicacion />;
-            // }else{
-            //     setPage(0);
-            //     return <DatosEmpresa validar='true'/>;
-            // }
+            return <Ubicacion validar={validar}/>;
         }
         else {
-            return <Reclutador />;
+            return <Reclutador validar={validar}/>;
         }
     }
 
@@ -63,20 +58,25 @@ const Form = () => {
 
     const handleClick = () => {
         if(page>1){
-            console.log('formulario final', form)
+            // console.log('formulario final', form);
             if(validarCampos()){
-                Swal.fire(
-                    'Solicitud enviada correctamente',
-                    'Este atento a su correo electronico',
-                    'success'
-                )
+                axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+                    .then((response)=>{
+                    Swal.fire(
+                        'Solicitud enviada correctamente',
+                        'Este atento a su correo electronico',
+                        'success'
+                    )
+                }).catch((e)=>{
+                    console.log(e)
+                })
             }else{
+                setValidar('si');
                 Swal.fire({
                     icon: 'error',
                     title: 'Faltan campos por llenar',
                     text: 'Favor de llenar los campos faltantes',
                 });
-                
             }
             // axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
             // .then((response)=>{
