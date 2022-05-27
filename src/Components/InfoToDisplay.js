@@ -26,12 +26,11 @@ const InfoToDisplay = ({title}) => {
   const [loading,setLoading] = useState(true)
   const [timedOut,setTimedOut] = useState(false)
 
-  // console.log("FILTRADA",filteredData)
-  // console.log("data",data)
+  // Hace los fetchs dependiendo que este seleccionado (se ejecuta cada que se cambia de opcion)
+ 
   useEffect(()=>{
-    // async function fetchAPI(){
-    // setData(dataFetch(optionSelected,setLoading))
-    // console.log("RETURN",dataFetch(optionSelected,setLoading))
+    // console.log("entre al use Effect----------------------------------------------------------")
+    // Si se selecciono validar empresa o ver empresas
     if(optionSelected==0 || optionSelected==3){
          axios.get('http://localhost:3000/empresa',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
             .then((response)=>{
@@ -42,35 +41,35 @@ const InfoToDisplay = ({title}) => {
                 console.log("error",e)
             })
     }
+    // Si se selecciono validar vacante o ver vacante
     if(optionSelected==1|| optionSelected==2  ){
       axios.get('http://localhost:3000/vacantes',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
          .then((response)=>{
-            
              setData(response.data.message)
              setLoading(false)
          }).catch((e)=>{
              console.log("error",e)
          })
- }
-
- if(optionSelected==4 ){
-  axios.get('http://localhost:3000/vacante',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
-     .then((response)=>{
-        
-         setData(response.data.message)
-         setLoading(false)
-     }).catch((e)=>{
-         console.log("error",e)
-         setTimedOut(true)
-     })
-  }
-    // }
-    // fetchAPI()
+    }
+    // Si se selecciono status del puesto
+  if(optionSelected==4 ){
+    axios.get('http://localhost:3000/vacante',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+      .then((response)=>{
+          
+          setData(response.data.message)
+          setLoading(false)
+      }).catch((e)=>{
+          console.log("error",e)
+          setTimedOut(true)
+      })
+    }
     setFilteredData([])
-    // Se esta en validar empresa o validar vacantes, cuyo filtro siempre sera 2 "pendientes"
   },[optionSelected])
 
+  // Aplica el filtro por status dependiendo que este seleccionado (se ejecuta despues de cada fetch)
   useEffect(()=>{
+
+    // Si se esta en validar empresa o validar vacantes el filtro que siempre debe tener es 2 (pendientes)
     if(optionSelected==0 || optionSelected==1){
       data.forEach(e=>{
         if(e.status==2){
@@ -78,6 +77,7 @@ const InfoToDisplay = ({title}) => {
         }
       })
     }else{
+    // Si no se usa el filtro que el usuario elijio
       data.forEach(e=>{
         if(e.status==filterOption){
           setFilteredData(filteredData => [...filteredData,e])
@@ -86,6 +86,7 @@ const InfoToDisplay = ({title}) => {
     }
   },[data])
 
+  // Aplica el filtro por aceptadas o rechazadas (se ejecuta cada que el usuario cambia el filtro)
   useEffect(()=>{
     setFilteredData([])
     data.forEach(e=>{

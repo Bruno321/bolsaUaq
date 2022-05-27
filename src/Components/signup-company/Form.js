@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 
 //Estilos
 import './form.css';
+import { Redirect } from "@reach/router";
 
 const Form = () => {
 
@@ -17,7 +18,7 @@ const Form = () => {
     // Titulos de las secciones del Formulario
     const FormTitles = ["Datos de la empresa", "Ubicación", "Reclutador"]
     const {form,setForm} = useContext(RegisterContext)
- 
+    const [redirect,setRedirect] = useState(false)
 
     // Cambia el formulario al que se desea
     const PageDisplay = () => {
@@ -58,6 +59,9 @@ const Form = () => {
                     'Este atento a su correo electronico',
                     'success'
                   )
+                  setTimeout(()=>{
+                    setRedirect(true)
+                  },2000)
             }).catch((e)=>{
                 console.log(e)
             })
@@ -141,6 +145,9 @@ const Form = () => {
                         }}>{secondBtnTxt()}</button>
                 </div>
             </div>
+            {
+                redirect ? <Redirect from='/register' to='/' /> : null
+            }
         </div>
     )
 }

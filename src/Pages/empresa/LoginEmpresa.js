@@ -24,6 +24,7 @@ const LoginEmpresa = () => {
                 setUserTypeFunc(false)
                 iniciarSesion(response.data.message)
             }).catch((e)=>{
+                console.log(e)
                 Swal.fire({
                     icon: 'error',
                     title: 'Usuario o contraseña incorrectos',

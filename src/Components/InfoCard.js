@@ -32,7 +32,6 @@ const InfoCard = ({ props,filterOption }) => {
 			if (result.isConfirmed) {
 			  axios.patch('http://localhost:3000/empresa',{data:{id:props.empresaId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
-				  console.log(response)
 				  Swal.fire(
 					'Status actualizado',
 					'La empresa a sido aceptada',
@@ -61,7 +60,6 @@ const InfoCard = ({ props,filterOption }) => {
 			if (result.isConfirmed) {
 			  axios.patch('http://localhost:3000/empresa',{data:{id:props.empresaId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
-				  console.log(response)
 				  Swal.fire(
 					'Status actualizado',
 					'La empresa a sido rechazada',
@@ -90,7 +88,6 @@ const InfoCard = ({ props,filterOption }) => {
 			if (result.isConfirmed) {
 			  axios.patch('http://localhost:3000/vacantes',{data:{id:props.vacanteId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
-				  console.log(response)
 				  Swal.fire(
 					'Status actualizado',
 					'La vacante a sido aceptada',
@@ -119,7 +116,6 @@ const InfoCard = ({ props,filterOption }) => {
 			if (result.isConfirmed) {
 			  axios.patch('http://localhost:3000/vacantes',{data:{id:props.vacanteId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
-				  console.log(response)
 				  Swal.fire(
 					'Status actualizado',
 					'La vacante a sido rechazada',
@@ -136,6 +132,7 @@ const InfoCard = ({ props,filterOption }) => {
 	  }
 
 	const elementsToRender = () => {
+		// Se selecciono Validar empresas
 		if (optionSelected == 0) {
 			return (
 				<>
@@ -148,18 +145,22 @@ const InfoCard = ({ props,filterOption }) => {
 				</>
 			)
 		}
+		// Se selecciono Validar vacantes
 		if (optionSelected == 1) {
+			console.log("QUE HAGO ACAAAAAAAAAAA",props)
 			return (
 				<>
 					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.horario} </p>
 					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.rangoSueldo}</p>
-					<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.nombreEmpresa} </p>
+					{props.empresa  ? <p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.empresa.nombreEmpresa}  </p>: null}
 					<button style={styles.vacantDetails} onClick={() => handleDetailButton()} className="btnHover">Mostrar detalles</button>
 					<button style={styles.vacantDetails} onClick={handleAceptarV} className="btnHover">Aceptar</button>
 					<button style={styles.vacantDetails} onClick={handleRechazarV} className="btnHover">Rechazar</button>
 				</>
 			)
 		}
+		// Se selecciono ver vacantes
+
 		if (optionSelected == 2) {
 			const handleColor = () => {
 				if(props.isDisponible==0){
@@ -170,13 +171,11 @@ const InfoCard = ({ props,filterOption }) => {
 					return '#C0392B'
 				}
 			}
-		if(props.status===1){
-			}
 			return (
 				<>
 					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.horario} </p>
 					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.rangoSueldo}</p>
-					<p style={styles.vacantAttribute}> <b>Nombre:</b> {props.nombreEmpresa} </p>
+					{props.empresa  ? <p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.empresa.nombreEmpresa}  </p>: null}
 					<button style={styles.vacantDetails} onClick={() => handleDetailButton()} className="btnHover">Mostrar detalles</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} className="btnHover">Generar PDF</button>
 					<button style={{...styles.vacantDetails,backgroundColor:handleColor()}} onClick={onClickDetails} className="btnHover">
@@ -185,6 +184,8 @@ const InfoCard = ({ props,filterOption }) => {
 				</>
 			)
 		}
+		// Se selecciono ver empresas
+
 		if (optionSelected == 3) {
 			return (
 				<>
@@ -195,6 +196,7 @@ const InfoCard = ({ props,filterOption }) => {
 				</>
 			)
 		}
+		// Se selecciono status del puesto
 		if (optionSelected == 4) {
 			// Aceptada: 
 			if(props.status===0){
@@ -206,7 +208,8 @@ const InfoCard = ({ props,filterOption }) => {
 							<p style={styles.vacantAttribute}> <b>Lugar:</b>  {props.ciudad}</p>
 							<p style={styles.vacantAttribute}> <b>Contacto:</b>  {props.contacto}</p>
 						</div>
-						<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.nombreEmpresa} </p>
+					{props.empresa  ? <p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.empresa.nombreEmpresa}  </p>: null}
+						
 						<div style={{ display: "flex", justifyContent: "flex-end" }}>
 							<button style={styles.vacantDetails} onClick={() => handleDetailButton()} className="btnHover">Editar</button>
 							<DropDownSetStatus filterOption={status} setFilterOption={setStatus} vacanteId={props.vacanteId} />
@@ -224,7 +227,8 @@ const InfoCard = ({ props,filterOption }) => {
 							<p style={styles.vacantAttribute}> <b>Lugar:</b>  {props.ciudad}</p>
 							<p style={styles.vacantAttribute}> <b>Contacto:</b>  {props.contacto}</p>
 						</div>
-						<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.nombreEmpresa} </p>
+					{props.empresa  ? <p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.empresa.nombreEmpresa}  </p>: null}
+						
 						<div style={{ display: "flex", justifyContent: "flex-end" }}>
 							<button style={styles.vacantDetails} onClick={() => handleDetailButton()} className="btnHover">Editar</button>
 						</div>
@@ -241,7 +245,8 @@ const InfoCard = ({ props,filterOption }) => {
 							<p style={styles.vacantAttribute}> <b>Lugar:</b>  {props.ciudad}</p>
 							<p style={styles.vacantAttribute}> <b>Contacto:</b>  {props.contacto}</p>
 						</div>
-						<p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.nombreEmpresa} </p>
+					{props.empresa  ? <p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.empresa.nombreEmpresa}  </p>: null}
+						
 						<div style={{ display: "flex", justifyContent: "flex-end" }}>
 							<button style={styles.vacantDetails} onClick={() => handleDetailButton()} className="btnHover">Mostrar detalles</button>
 						</div>

@@ -94,7 +94,7 @@ const InfoVacante = ({data}) => {
             <div style={styles.containerInfo}>
                 <h1 style={{fontSize: '24px'}}>{data.titulo}</h1>
                 <p style={styles.tituloSeccion}>Empresa:  </p>
-                <p style={styles.pInfo}>{data.nombreEmpresa}</p>
+                <p style={styles.pInfo}>{data.empresa.nombreEmpresa}</p>
                 <p style={styles.tituloSeccion}>Descripción de empleo:</p>
                 <p style={styles.pInfo}>{data.description}</p>
                 <p style={styles.tituloSeccion}>Requisitos:</p>
