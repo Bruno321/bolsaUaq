@@ -64,7 +64,7 @@ const Form = () => {
                     .then((response)=>{
                     Swal.fire(
                         'Solicitud enviada correctamente',
-                        'Este atento a su correo electronico',
+                        'En caso de que su solicitud sea aprobada, sus datos de acceso se le enviarán por correo electrónico.',
                         'success'
                     )
                 }).catch((e)=>{
@@ -143,7 +143,7 @@ const Form = () => {
                     <div className="check"></div>
                     <h3
                     style = {{color:  page === 1 || page === 2 ? "#4B3EB8" : "#989898" }}
-                    >Ubicación</h3>
+                    >Ubicación de la empresa</h3>
                 </div>
                 <div className="step">
                     <div className="circle active-3"
@@ -156,7 +156,7 @@ const Form = () => {
                     <div className="check"></div>
                     <h3
                     style = {{color: page === 2 ? "#4B3EB8" : "#989898" }}
-                    >Reclutador</h3>
+                    >Datos del Reclutador</h3>
                 </div>
             </div>
             {/*DESPLIEGUE*/}

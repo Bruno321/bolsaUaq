@@ -59,7 +59,7 @@ const CrearVacante = () => {
         
         Swal.fire(
           'Solicitud enviada correctamente',
-          'Este atento a su correo electronico',
+          'En caso de aprobarse la solicitud, esta se publicará en el sistema',
           'success'
         )
         setTimeout(()=>{
@@ -121,7 +121,7 @@ const CrearVacante = () => {
           <input type="text" placeholder="Ingresa el tipo de contratación" style={styles.input} value={form.tipoContratacion} onChange={(e)=>{setForm({...form,tipoContratacion:e.target.value}); cambiarBorde(e.target.id);}} id='tipoContratacion'/>
           <p style={styles.parrafo}>Tipo de Empleo:</p>
           <input type="text" placeholder="Ingresa el tipo de empleo" style={styles.input} value={form.tipoEmpleo} onChange={(e)=>{setForm({...form,tipoEmpleo:e.target.value}); cambiarBorde(e.target.id);}} id='tipoEmpleo'/>
-          <p style={styles.parrafo}>Información</p>
+          <p style={styles.parrafo}>Información:</p>
           <input type="text" placeholder="Ingresa la información" style={styles.inputLarge} value={form.informacion} onChange={(e)=>{setForm({...form,informacion:e.target.value}); cambiarBorde(e.target.id);}} id='informacion'/>
         </div>
 

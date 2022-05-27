@@ -89,11 +89,11 @@ const LoginEmpresa = () => {
                     <label style={styles.text}>Contraseña</label>
                     <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>{setData({...data,password:e.target.value}); document.getElementById('password').style['border-color'] = 'black';}} id='password'/>
                     <div style={styles.containerA}>
-                        <div  style={styles.a} onClick={handleModal}>Olvidaste tu contraseña</div>
+                        <div  style={styles.a} onClick={handleModal}>¿Olvidaste tu contraseña?</div>
                     </div>
                     <Button title={'Iniciar Sesión'} styles={{background: '#5F4FEB', color: 'white', margin: '5px 0px'}} click={handleClick}/>
                     <Link to="/register" >
-                        <Button title={'Registrarme'} styles={{background: 'white', color: '#5F4FEB', margin: '5px 0px'}}/>
+                        <Button title={'Registrarse'} styles={{background: 'white', color: '#5F4FEB', margin: '5px 0px'}}/>
                     </Link>
                 </div>
                 <div style={styles.containerLogosFacultad}>
