@@ -7,7 +7,7 @@ import HeaderVinculacion from '../../Components/HeaderVinculacion';
 import LeftBarNav from '../../Components/LeftBarNav';
 import InfoToDisplay from '../../Components/InfoToDisplay';
 // Styles
-import './MainPageVinculacion.css';
+// import './MainPageVinculacion.css';
 
 const MainPageVinculacion = () => {
     const {cerrarSesion} = useContext(Context)
@@ -26,14 +26,23 @@ const MainPageVinculacion = () => {
     ]
 
     return (
-        <div className='container'>
+        <div style={styles.container}>
             <HeaderVinculacion />
-            <div className='bodyContainer'>
+            <div style={styles.bodyContainer}>
                 <LeftBarNav title={"ADMIN"} data={leftBarNavTitles}/>
                 <InfoToDisplay title={titles[optionSelected]} />
             </div>
         </div>
     )
+}
+
+const styles = {
+    container:{
+        height:"100vh",
+    },
+    bodyContainer: {
+        display: "flex",
+    }
 }
 
 export default MainPageVinculacion
