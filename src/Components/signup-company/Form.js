@@ -63,9 +63,20 @@ const Form = () => {
                 axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
                     .then((response)=>{
                     Swal.fire(
-                        'Solicitud enviada correctamente',
-                        'En caso de que su solicitud sea aprobada, sus datos de acceso se le enviarán por correo electrónico.',
-                        'success'
+                        {
+                            icon: 'success',
+                            title: 'Solicitud enviada correctamente',
+                            text: 'En caso de que su solicitud sea aprobada, sus datos de acceso se le enviarán por correo electrónico.',
+                            width: '50%',
+                            padding: '5rem 10rem',
+                            background: '#fff',
+                            customClass: {
+                                htmlContainer: 'htmlContainer-class',
+                                title: 'title-class',
+                                confirmButton: 'confirmButton-class',
+                                icon: 'icon-class'
+                            }
+                          }
                     )
                 }).catch((e)=>{
                     console.log(e)
@@ -76,6 +87,15 @@ const Form = () => {
                     icon: 'error',
                     title: 'Faltan campos por llenar',
                     text: 'Favor de llenar los campos faltantes',
+                    width: '45%',
+                    padding: '5rem 10rem',
+                    background: '#fff',
+                    customClass: {
+                        htmlContainer: 'htmlContainer-class',
+                        title: 'title-class',
+                        confirmButton: 'confirmButton-class',
+                        icon: 'icon-class'
+                    }
                 });
             }
             // axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})

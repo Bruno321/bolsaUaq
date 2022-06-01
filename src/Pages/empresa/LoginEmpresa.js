@@ -8,7 +8,9 @@ import logoPortal from "../../Assets/img/Logo-portal.png";
 import {Link } from '@reach/router';
 import ModalInforCambiarPassword from '../../Components/ModalInfoCambiarPassword';
 import axios from 'axios';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+// import './LoginEmpresa.css';
+import '../../css/sweetAlertStyles.css'
 
 const LoginEmpresa = () => {
     const {iniciarSesion,setUserTypeFunc} = useContext(Context)
@@ -34,6 +36,15 @@ const LoginEmpresa = () => {
                 icon: 'error',
                 title: 'Falta llenar campos',
                 text: 'Intente de nuevo',
+                width: '45%',
+                padding: '5rem 10rem',
+                background: '#fff',
+                customClass: {
+                    htmlContainer: 'htmlContainer-class',
+                    title: 'title-class',
+                    confirmButton: 'confirmButton-class',
+                    icon: 'icon-class'
+                }
             });
         }else{
             //Mandar a hacer el fetch
@@ -46,6 +57,15 @@ const LoginEmpresa = () => {
                     icon: 'error',
                     title: 'Usuario o contraseña incorrectos',
                     text: 'Intente de nuevo',
+                    width: '50%',
+                    padding: '5rem 10rem',
+                    background: '#fff',
+                    customClass: {
+                        htmlContainer: 'htmlContainer-class',
+                        title: 'title-class',
+                        confirmButton: 'confirmButton-class',
+                        icon: 'icon-class'
+                    }
                 });
             });
         };
@@ -89,7 +109,7 @@ const LoginEmpresa = () => {
                     <label style={styles.text}>Contraseña</label>
                     <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>{setData({...data,password:e.target.value}); document.getElementById('password').style['border-color'] = 'black';}} id='password'/>
                     <div style={styles.containerA}>
-                        <div  style={styles.a} onClick={handleModal}>¿Olvidaste tu contraseña?</div>
+                        <div  style={styles.a} onClick={()=>setShowModal(true)}>¿Olvidaste tu contraseña?</div>
                     </div>
                     <Button title={'Iniciar Sesión'} styles={{background: '#5F4FEB', color: 'white', margin: '5px 0px'}} click={handleClick}/>
                     <Link to="/register" >
@@ -213,5 +233,11 @@ const styles = {
         outline: "none",
         borderColor: 'black'
     },
-    
+    sweet: {
+        width: '60rem',
+        height: '40rem'
+    },
+    containerClass: {
+        backgroundColor: 'aquamarine'
+    }
 }
