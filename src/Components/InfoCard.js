@@ -147,7 +147,6 @@ const InfoCard = ({ props,filterOption }) => {
 		}
 		// Se selecciono Validar vacantes
 		if (optionSelected == 1) {
-			console.log("QUE HAGO ACAAAAAAAAAAA",props)
 			return (
 				<>
 					<p style={styles.vacantAttribute}> <b>Horario:</b> {props.horario} </p>

@@ -22,7 +22,6 @@ const CrearVacante = () => {
 
   const handleClick = () => {
     if(detailSelected) {
-
       Swal.fire({
         title: '¿Esta seguro?',
         text: "Esta vacante volver a estar pendiente de validación",
@@ -30,72 +29,162 @@ const CrearVacante = () => {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si,estoy seguro'
+        confirmButtonText: 'Si,estoy seguro',
+        width: '45%',
+        padding: '5rem 10rem',
+        background: '#fff',
+        customClass: {
+            htmlContainer: 'htmlContainer-class',
+            title: 'title-class',
+            confirmButton: 'confirmButton-class',
+            cancelButton: 'confirmButton-class',
+            icon: 'icon-class'
+        }
       }).then((result) => {
         if (result.isConfirmed) {
           axios.put('http://localhost:3000/vacante',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
          .then((response)=>{
-          Swal.fire(
-            'Solicitud enviada correctamente',
-            'Este atento a su correo electronico',
-            'success'
-          )
-          setTimeout(()=>{
+          Swal.fire({
+            icon: 'success',
+            title: 'Solicitud enviada correctamente',
+            text: 'En caso de aprobarse la solicitud, esta se publicará en el sistema',
+            width: '50%',
+            padding: '5rem 10rem',
+            background: '#fff',
+            customClass: {
+                htmlContainer: 'htmlContainer-class',
+                title: 'title-class',
+                confirmButton: 'confirmButton-class',
+                icon: 'icon-class'
+            }
+          }
+        ).then((result) => {
+          if(result.isConfirmed){
             location.reload()
-          },1500)
+          }
+        });
+          // setTimeout(()=>{
+          //   location.reload()
+          // },1500)
          }).catch((e)=>{
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Algo salio mal',
+            width: '45%',
+            padding: '5rem 10rem',
+            background: '#fff',
+            customClass: {
+                htmlContainer: 'htmlContainer-class',
+                title: 'title-class',
+                confirmButton: 'confirmButton-class',
+                icon: 'icon-class'
+            }
           })
          })
         }
       })
     }else{
-      axios.post('http://localhost:3000/vacante',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+      if(validarCampos()){
+        axios.post('http://localhost:3000/vacante',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
        .then((response)=>{
-        
-        Swal.fire(
-          'Solicitud enviada correctamente',
-          'Este atento a su correo electronico',
-          'success'
-        )
-        setTimeout(()=>{
-          location.reload()
-        },1500)
-
-
+        Swal.fire({
+            icon: 'success',
+            title: 'Solicitud enviada correctamente',
+            text: 'En caso de aprobarse la solicitud, esta se publicará en el sistema',
+            width: '50%',
+            padding: '5rem 10rem',
+            background: '#fff',
+            customClass: {
+                htmlContainer: 'htmlContainer-class',
+                title: 'title-class',
+                confirmButton: 'confirmButton-class',
+                icon: 'icon-class'
+            }
+          }
+        ).then((result) => {
+          if(result.isConfirmed){
+            location.reload()
+          }
+        });
+        // setTimeout(()=>{
+        //   location.reload()
+        // },1500)
        }).catch((e)=>{
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Algo salio mal',
-        })
-       })
+          width: '45%',
+          padding: '5rem 10rem',
+          background: '#fff',
+          customClass: {
+              htmlContainer: 'htmlContainer-class',
+              title: 'title-class',
+              confirmButton: 'confirmButton-class',
+              icon: 'icon-class'
+          }
+        });
+       });
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Faltan campos por llenar',
+          text: 'Favor de llenar los campos faltantes',
+          width: '45%',
+          padding: '5rem 10rem',
+          background: '#fff',
+          customClass: {
+              htmlContainer: 'htmlContainer-class',
+              title: 'title-class',
+              confirmButton: 'confirmButton-class',
+              icon: 'icon-class'
+          }
+        });
+      }
     }
+  }
+
+  const validarCampos = () => {
+    let numeroCamposCompletos = 0;
+    const copyForm = {...form};
+    delete copyForm.nombreEmpresa;
+    delete copyForm.id;
+    delete copyForm.otrosRequisitos;
+    for (const property in copyForm) {
+      if(form[property] != ''){
+        numeroCamposCompletos += 1;
+      }else{
+        document.getElementById(`${property}`).style['border-color'] = 'red';
+      }
+    }
+    return numeroCamposCompletos == Object.keys(copyForm).length;
+  }
+
+  const cambiarBorde = (id) => {
+    document.getElementById(`${id}`).style['border-color'] = 'black';
   }
 
   return (
     <div style={styles.container}>
       <h2 style={styles.title}>Registro de Vacante</h2>
-
       <div>
+        <a style={styles.a}>Los campos con "*" son obligatorios</a>
         <div>
           <p style={styles.parrafo}>Título de la oferta de empleo:</p>
-          <input type="text" placeholder="Ingresa el título de la oferta de empleo" style={styles.input} value={form.nombreVacante} onChange={(e)=>setForm({...form,nombreVacante:e.target.value})}/> 
+          <input type="text" placeholder="Ingresa el título de la oferta de empleo*" style={styles.input} value={form.nombreVacante} onChange={(e)=>{setForm({...form,nombreVacante:e.target.value}); cambiarBorde(e.target.id)}} id='nombreVacante'/> 
           <p style={styles.parrafo}>Descripción del puesto:</p>
-          <input type="text" placeholder="Ingresa la descripción del puesto" style={styles.inputLarge} value={form.descripcion} onChange={(e)=>setForm({...form,descripcion:e.target.value})}/>
+          <input type="text" placeholder="Ingresa la descripción del puesto*" style={styles.inputLarge} value={form.descripcion} onChange={(e)=>{setForm({...form,descripcion:e.target.value}); cambiarBorde(e.target.id)}} id='descripcion'/>
           <p style={styles.parrafo}>Requisitos:</p>
-          <input type="text" placeholder="Ingresa los requisitos del puesto" style={styles.inputLarge} value={form.requisitos} onChange={(e)=>setForm({...form,requisitos:e.target.value})}/>
+          <input type="text" placeholder="Ingresa los requisitos del puesto*" style={styles.inputLarge} value={form.requisitos} onChange={(e)=>{setForm({...form,requisitos:e.target.value}); cambiarBorde(e.target.id);}} id='requisitos'/>
           <p style={styles.parrafo}>Competencias:</p>
-          <input type="text" placeholder="Ingresa las competencias del puesto" style={styles.inputLarge} value={form.competencias} onChange={(e)=>setForm({...form,competencias:e.target.value})}/>
+          <input type="text" placeholder="Ingresa las competencias del puesto*" style={styles.inputLarge} value={form.competencias} onChange={(e)=>{setForm({...form,competencias:e.target.value}); cambiarBorde(e.target.id);}} id='competencias'/>
           <p style={styles.parrafo}>Tipo de Contratación:</p>
-          <input type="text" placeholder="Ingresa el tipo de contratación" style={styles.input} value={form.tipoContratacion} onChange={(e)=>setForm({...form,tipoContratacion:e.target.value})}/>
+          <input type="text" placeholder="Ingresa el tipo de contratación*" style={styles.input} value={form.tipoContratacion} onChange={(e)=>{setForm({...form,tipoContratacion:e.target.value}); cambiarBorde(e.target.id);}} id='tipoContratacion'/>
           <p style={styles.parrafo}>Tipo de Empleo:</p>
-          <input type="text" placeholder="Ingresa el tipo de empleo" style={styles.input} value={form.tipoEmpleo} onChange={(e)=>setForm({...form,tipoEmpleo:e.target.value})}/>
-          <p style={styles.parrafo}>Información</p>
-          <input type="text" placeholder="Ingresa la información" style={styles.inputLarge} value={form.informacion} onChange={(e)=>setForm({...form,informacion:e.target.value})}/>
+          <input type="text" placeholder="Ingresa el tipo de empleo*" style={styles.input} value={form.tipoEmpleo} onChange={(e)=>{setForm({...form,tipoEmpleo:e.target.value}); cambiarBorde(e.target.id);}} id='tipoEmpleo'/>
+          <p style={styles.parrafo}>Información:</p>
+          <input type="text" placeholder="Ingresa la información*" style={styles.inputLarge} value={form.informacion} onChange={(e)=>{setForm({...form,informacion:e.target.value}); cambiarBorde(e.target.id);}} id='informacion'/>
         </div>
 
         <div style={{display: "flex", width: "100%", height: "auto", margin: "10px 0px"}}>
@@ -125,7 +214,7 @@ const CrearVacante = () => {
               <option value="Puebla">Puebla</option>
               <option value="Querétaro">Querétaro</option>
               <option value="Quitana Roo">Quitana Roo</option>
-              <option value="San Luis Potos">San Luis Potosí</option>
+              <option value="San Luis Potosi">San Luis Potosí</option>
               <option value="Sinaloa">Sinaloa</option>
               <option value="Sonora">Sonora</option>
               <option value="Tabasco">Tabasco</option>
@@ -152,29 +241,29 @@ const CrearVacante = () => {
               {/* <option value = "ingenieria_en_ciencia_y_analiticas_de_datos">Ingeniería en Ciencia y Analítica de Datos</option> */}
             </select>
             <p style={styles.parrafo}>Contacto:</p>
-            <input type="text" placeholder="Ingresa el numero para contactar sobre este puesto" style={styles.select}  value={form.contacto} onChange={(e)=>setForm({...form,contacto:e.target.value})}/>
+            <input type="text" placeholder="Ingresa el numero para contactar sobre este puesto*" style={styles.select}  value={form.contacto} onChange={(e)=>{setForm({...form,contacto:e.target.value}); cambiarBorde(e.target.id);}} id='contacto'/>
           </div>
 
           <div style={{width: "49%"}}>
             <p style={styles.parrafo}>Ciudad:</p>
-            <input type="text" placeholder="Ingresa la ciudad" style={styles.input} value={form.ciudad} onChange={(e)=>setForm({...form,ciudad:e.target.value})}/>
+            <input type="text" placeholder="Ingresa la ciudad*" style={styles.input} value={form.ciudad} onChange={(e)=>{setForm({...form,ciudad:e.target.value}); cambiarBorde(e.target.id);}} id='ciudad'/>
             <p style={styles.parrafo}>Rango de sueldo:</p>
-            <input type="text" placeholder="Ingresa el rango de sueldo" style={styles.input} value={form.rangoSueldo} onChange={(e)=>setForm({...form,rangoSueldo:e.target.value})}/>
+            <input type="text" placeholder="Ingresa el rango de sueldo*" style={styles.input} value={form.rangoSueldo} onChange={(e)=>{setForm({...form,rangoSueldo:e.target.value}); cambiarBorde(e.target.id);}} id='rangoSueldo'/>
             <p style={styles.parrafo}>Área:</p>
-            <input type="text" placeholder="Ingresa el área" style={styles.input} value={form.area} onChange={(e)=>setForm({...form,area:e.target.value})}/>
+            <input type="text" placeholder="Ingresa el área*" style={styles.input} value={form.area} onChange={(e)=>{setForm({...form,area:e.target.value}); cambiarBorde(e.target.id);}} id='area'/>
             <p style={styles.parrafo}>Horario:</p>
-            <input type="text" placeholder="Ingresa el horario" style={styles.input} value={form.horario} onChange={(e)=>setForm({...form,horario:e.target.value})}/>
+            <input type="text" placeholder="Ingresa el horario*" style={styles.input} value={form.horario} onChange={(e)=>{setForm({...form,horario:e.target.value}); cambiarBorde(e.target.id);}} id='horario'/>
           </div>
         </div>
 
         <div>
           <p style={styles.parrafo}>Número de personas:</p>
-          <input type="text" placeholder="Ingresa el número de personas" style={styles.input} value={form.numeroPersonas} onChange={(e)=>setForm({...form,numeroPersonas:e.target.value})}/>
+          <input type="text" placeholder="Ingresa el número de personas*" style={styles.input} value={form.numeroPersonas} onChange={(e)=>{setForm({...form,numeroPersonas:e.target.value}); cambiarBorde(e.target.id);}} id='numeroPersonas'/>
           <p style={styles.parrafo}>Prestaciones:</p>
-          <input type="text" placeholder="Ingresa las prestaciones" style={styles.input} value={form.prestaciones} onChange={(e)=>setForm({...form,prestaciones:e.target.value})}/>
+          <input type="text" placeholder="Ingresa las prestaciones*" style={styles.input} value={form.prestaciones} onChange={(e)=>{setForm({...form,prestaciones:e.target.value}); cambiarBorde(e.target.id);}} id='prestaciones'/>
           
           <p style={styles.parrafo}>Otros requisitos:</p>
-          <input type="text" placeholder="Ingresa los requisitos" style={styles.inputLarge} value={form.otrosRequisitos} onChange={(e)=>setForm({...form,otrosRequisitos:e.target.value})}/>
+          <input type="text" placeholder="Ingresa los requisitos (opcional)" style={styles.inputLarge} value={form.otrosRequisitos} onChange={(e)=>{setForm({...form,otrosRequisitos:e.target.value}); cambiarBorde(e.target.id);}} id='otrosRequisitos'/>
         </div>
 
 
@@ -262,4 +351,7 @@ const styles = {
     color: "white",
     border: "none",
   },
+  a:{
+    margin: '0px 0px 100px 0px',
+  }
 };

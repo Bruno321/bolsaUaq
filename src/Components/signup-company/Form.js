@@ -14,6 +14,7 @@ const Form = () => {
 
     // Secciones del Formulario
     const [page, setPage] = useState(0);
+    const [validar, setValidar] = useState('no');
 
     // Titulos de las secciones del Formulario
     const FormTitles = ["Datos de la empresa", "Ubicación", "Reclutador"]
@@ -23,13 +24,19 @@ const Form = () => {
     // Cambia el formulario al que se desea
     const PageDisplay = () => {
         if (page === 0) {
-            return <DatosEmpresa />;
+            return <DatosEmpresa validar={validar}/>;
         }
         else if (page === 1) {
-            return <Ubicacion />;
+            return <Ubicacion validar={validar}/>;
         }
         else {
-            return <Reclutador />;
+            return <Reclutador validar={validar}/>;
+        }
+    }
+
+    const validarPages = (numPage) => {
+        if(numPage === 0){
+            return true;
         }
     }
 
@@ -65,9 +72,76 @@ const Form = () => {
             }).catch((e)=>{
                 console.log(e)
             })
+            // console.log('formulario final', form);
+            if(validarCampos()){
+                axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+                    .then((response)=>{
+                    Swal.fire(
+                        {
+                            icon: 'success',
+                            title: 'Solicitud enviada correctamente',
+                            text: 'En caso de que su solicitud sea aprobada, sus datos de acceso se le enviarán por correo electrónico.',
+                            width: '50%',
+                            padding: '5rem 10rem',
+                            background: '#fff',
+                            customClass: {
+                                htmlContainer: 'htmlContainer-class',
+                                title: 'title-class',
+                                confirmButton: 'confirmButton-class',
+                                icon: 'icon-class'
+                            }
+                          }
+                    )
+                }).catch((e)=>{
+                    console.log(e)
+                })
+            }else{
+                setValidar('si');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Faltan campos por llenar',
+                    text: 'Favor de llenar los campos faltantes',
+                    width: '45%',
+                    padding: '5rem 10rem',
+                    background: '#fff',
+                    customClass: {
+                        htmlContainer: 'htmlContainer-class',
+                        title: 'title-class',
+                        confirmButton: 'confirmButton-class',
+                        icon: 'icon-class'
+                    }
+                });
+            }
+            // axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+            // .then((response)=>{
+            //     Swal.fire(
+            //         'Solicitud enviada correctamente',
+            //         'Este atento a su correo electronico',
+            //         'success'
+            //       )
+            // }).catch((e)=>{
+            //     console.log(e)
+            // })
         }else{
+            console.log(form)
             setPage((currPage) => currPage + 1)
         }
+    }
+
+    const validarCampos = () => {
+        let numeroCamposCompletos = 0;
+        const copyForm = {...form};
+        //Se eliminan del objeto los atributos que no son obligatorios
+        delete copyForm.logo;
+        delete copyForm.numInterior;
+        for (const property in copyForm) {
+        if(form[property] != ''){
+            numeroCamposCompletos += 1;
+        }else{
+            // document.getElementById(`${property}`).style['border-color'] = 'red';
+        }
+        }
+        return numeroCamposCompletos == Object.keys(copyForm).length;
     }
 
     return (
@@ -103,7 +177,7 @@ const Form = () => {
                     <div className="check"></div>
                     <h3
                     style = {{color:  page === 1 || page === 2 ? "#4B3EB8" : "#989898" }}
-                    >Ubicación</h3>
+                    >Ubicación de la empresa</h3>
                 </div>
                 <div className="step">
                     <div className="circle active-3"
@@ -116,7 +190,7 @@ const Form = () => {
                     <div className="check"></div>
                     <h3
                     style = {{color: page === 2 ? "#4B3EB8" : "#989898" }}
-                    >Reclutador</h3>
+                    >Datos del Reclutador</h3>
                 </div>
             </div>
             {/*DESPLIEGUE*/}

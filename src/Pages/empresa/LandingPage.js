@@ -15,7 +15,7 @@ const LandingPage = () => {
       </header>
       <main style={styles.container}>
         <h1 style={styles.titleContainer}>UNIDXS PARA INNOVAR Y TRASCENDER</h1>
-        <p style={styles.paragraphContainer}>¿Quieres emplear algún talento de la Facultad?</p>
+        <p style={styles.paragraphContainer}>¿Quieres emplear algún talento de la Facultad de Informática?</p>
         <Link to="/login" > <button style={styles.btnLogin}  className="btnHover">INICIAR SESIÓN</button></Link>
         <Link to="/register" > <button style={styles.btnRegister} className="btnHover">REGISTRARSE</button></Link>
       </main>

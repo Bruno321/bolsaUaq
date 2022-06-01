@@ -1,10 +1,33 @@
-import React,{ useState,useContext } from "react";
+import React,{ useState,useContext, useEffect } from "react";
 import {RegisterContext} from "../../Context/RegisterContext";
 
 // Estilos
-function Ubicacion() {
+function Ubicacion(props) {
 
   const {form,setForm} = useContext(RegisterContext)
+
+  useEffect(() => {
+    if(props.validar == 'si'){
+        const formReclutador = {
+            estado: form.estado, 
+            ciudad: form.ciudad,
+            codigoPostal: form.codigoPostal,
+            colonia: form.colonia,
+            direccion: form.direccion,
+            numExterior: form.numExterior
+        }
+
+        for (const property in formReclutador) {
+            if(formReclutador[property] == ''){
+                document.getElementById(`${property}`).style['border-color'] = 'red';
+            }
+        }
+    }
+  });
+
+  const cambiarBorde = (id) => {
+    document.getElementById(`${id}`).style['border-color'] = 'black';
+  }
 
   return (
     <div className="ubicacion-container" >
@@ -724,13 +747,13 @@ function Ubicacion() {
           Zimbabue
         </option>
       </select>
-      <input type="text" placeholder="Estado*" value={form.estado} onChange={(e)=>setForm({...form,estado:e.target.value})}/>
-      <input type="text" placeholder="Ciudad*" value={form.ciudad} onChange={(e)=>setForm({...form,ciudad:e.target.value})}/>
-      <input type="text" placeholder="Código Postal*" value={form.codigoPostal} onChange={(e)=>setForm({...form,codigoPostal:e.target.value})}/>
-      <input type="text" placeholder="Colonia*" className="input-large" value={form.colonia} onChange={(e)=>setForm({...form,colonia:e.target.value})}/>
-      <input type="text" placeholder="Dirección*" className="input-large" value={form.direccion} onChange={(e)=>setForm({...form,direccion:e.target.value})}/>
-      <input type="text" placeholder="No. Exterior*" value={form.numExterior} onChange={(e)=>setForm({...form,numExterior:e.target.value})}/>
-      <input type="text" placeholder="No. Interior (opcional)" value={form.numInterior} onChange={(e)=>setForm({...form,numInterior:e.target.value})}/>
+      <input type="text" placeholder="Estado*" value={form.estado} onChange={(e)=>{setForm({...form,estado:e.target.value}); cambiarBorde(e.target.id)}} id="estado"/>
+      <input type="text" placeholder="Ciudad*" value={form.ciudad} onChange={(e)=>{setForm({...form,ciudad:e.target.value}); ; cambiarBorde(e.target.id)}} id="ciudad"/>
+      <input type="text" placeholder="Código Postal*" value={form.codigoPostal} onChange={(e)=>{setForm({...form,codigoPostal:e.target.value}); cambiarBorde(e.target.id)}} id="codigoPostal"/>
+      <input type="text" placeholder="Colonia*" className="input-large" value={form.colonia} onChange={(e)=>{setForm({...form,colonia:e.target.value}); cambiarBorde(e.target.id)}} id="colonia"/>
+      <input type="text" placeholder="Dirección*" className="input-large" value={form.direccion} onChange={(e)=>{setForm({...form,direccion:e.target.value}); cambiarBorde(e.target.id)}} id="direccion"/>
+      <input type="text" placeholder="No. Exterior*" value={form.numExterior} onChange={(e)=>{setForm({...form,numExterior:e.target.value}); cambiarBorde(e.target.id)}} id="numExterior"/>
+      <input type="text" placeholder="No. Interior (opcional)" value={form.numInterior} onChange={(e)=>{setForm({...form,numInterior:e.target.value}); cambiarBorde(e.target.id)}} id="numInterior"/>
     </div>
   );
 }

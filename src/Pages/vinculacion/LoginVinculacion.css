@@ -1,0 +1,77 @@
+.main {
+  display: flex;
+}
+.leftSide {
+  width: 50%;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 0 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #2b246b;
+  color: white;
+}
+.title {
+  font-size: 4.4rem;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.subTitle {
+  width: 340px;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.formContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.text {
+  font-size: 1.6rem;
+}
+.input {
+  outline: none
+}
+.btnLogin {
+  width: 80%;
+  height: 40px;
+  margin: 20px;
+  border-radius: 5px;
+  border: none;
+  align-self: center;
+  font-size: 1.8rem;
+  color: #5f4feb;
+  margin-bottom: 40%;
+}
+.imgContainer {
+  position: absolute;
+  bottom: 7%;
+}
+.logoFif {
+  width: 110px;
+  margin: 10px;
+}
+.logoCD {
+  height: 110px;
+  margin: 10px;
+}
+.rightSide {
+  width: 50%;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.textMedium {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+.imgVinculador {
+  width: 80%;
+}

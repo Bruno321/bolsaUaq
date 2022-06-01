@@ -1,10 +1,13 @@
 import React, {useContext,useState} from 'react';
 import {Context} from '../../Context/LoginContext';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+// Assets
 import logoFif from'../../Assets/img/fifUaq_Logo.png';
 import logoCD from '../../Assets/img/Logo-CD.png';
 import vinculador from '../../Assets/img/vinculador.png';
-import Swal from 'sweetalert2'
+// Styles
+import './LoginVinculacion.css';
 
 const LoginVinculacion = () => {
     const {iniciarSesion,setUserTypeFunc} = useContext(Context)
@@ -13,7 +16,34 @@ const LoginVinculacion = () => {
         password:""
     })
     const handleClick = () => {
-        axios.post('http://localhost:3000/loginVinculador',{data},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+        if (data.usuario == '' || data.password == '') {
+            if(data.usuario == '' && data.password != ''){
+                document.getElementById('usuario').focus();
+                document.getElementById('usuario').style['border-color'] = 'red';
+            }else if(data.password == '' && data.usuario != ''){
+                document.getElementById('password').focus();
+                document.getElementById('password').style['border-color'] = 'red';
+            }else{
+                document.getElementById('usuario').focus();
+                document.getElementById('usuario').style['border-color'] = 'red';
+                document.getElementById('password').style['border-color'] = 'red';
+            }
+            Swal.fire({
+                icon: 'error',
+                title: 'Falta llenar campos',
+                text: 'Intente de nuevo',
+                width: '45%',
+                padding: '5rem 10rem',
+                background: '#fff',
+                customClass: {
+                    htmlContainer: 'htmlContainer-class',
+                    title: 'title-class',
+                    confirmButton: 'confirmButton-class',
+                    icon: 'icon-class'
+                }
+            });
+        }else{
+            axios.post('http://localhost:3000/loginVinculador',{data},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
             .then((response)=>{
                 setUserTypeFunc(true)
                 iniciarSesion(response.data.message)
@@ -22,29 +52,39 @@ const LoginVinculacion = () => {
                     icon: 'error',
                     title: 'Usuario o contraseña incorrectos',
                     text: 'Intente de nuevo',
-                  })
+                    width: '50%',
+                    padding: '5rem 10rem',
+                    background: '#fff',
+                    customClass: {
+                        htmlContainer: 'htmlContainer-class',
+                        title: 'title-class',
+                        confirmButton: 'confirmButton-class',
+                        icon: 'icon-class'
+                    }
+                })
             })
+        }
     }
     return (
-        <div style={styles.main}>
-            <section style={styles.leftSide}>
-                <h1 style={styles.title}>Iniciar sesión</h1>
-                <p style={styles.subTitle}>NOTA: ¡Recuerde iniciar sesión con los datos que le hemos proporcionado!</p>
-                <div style={styles.containerForm}>
-                    <label style={styles.text}>Usuario / Expediente</label>
-                    <input type="text" placeholder="000000" style={styles.input} value={data.usuario} onChange={(e)=>setData({...data,usuario:e.target.value})}/>
-                    <label style={styles.text}>Contraseña</label>
-                    <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>setData({...data,password:e.target.value})}/>
-                    <button style={styles.btnLogin} className="btnHover" onClick={handleClick}>Iniciar Sesión</button>
+        <div className='main'>
+            <section className='leftSide'>
+                <h1 className='title'>Iniciar sesión</h1>
+                <p className='subTitle'>NOTA: ¡Recuerde iniciar sesión con los datos que le hemos proporcionado!</p>
+                <div className='formContainer'>
+                    <label className='text'>Usuario / Expediente</label>
+                    <input type="text" placeholder="000000" className='input' value={data.usuario} onChange={(e)=>{setData({...data,usuario:e.target.value}); document.getElementById('usuario').style['border-color'] = 'black';}} id="usuario"/>
+                    <label className='text'>Contraseña</label>
+                    <input type="password" placeholder="********" className='input' value={data.password} onChange={(e)=>{setData({...data,password:e.target.value}); document.getElementById('password').style['border-color'] = 'black';}} id="password"/>
+                    <button className="btnHover btnLogin" onClick={handleClick}>Iniciar Sesión</button>
                 </div>
-                <div style={styles.imgContainer}>
-                    <img src={logoFif} style={styles.logoFif}/>
-                    <img src={logoCD} style={styles.logoCD} />
+                <div className='imgContainer'>
+                    <img src={logoFif} className='logoFif' />
+                    <img src={logoCD} className='logoCD' />
                 </div>
             </section>
-            <section style={styles.rightSide}>
-                <h2 style={styles.textMedium}>¡Bienvenido vinculador!</h2>
-                <img src={vinculador} style={styles.imgVinculador} />
+            <section className='rightSide'>
+                <h2 className='textMedium'>¡Bienvenido vinculador!</h2>
+                <img src={vinculador} className='imgVinculador' />
             </section>
         </div>
     )

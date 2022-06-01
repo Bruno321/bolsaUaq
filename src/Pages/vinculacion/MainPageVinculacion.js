@@ -1,11 +1,13 @@
 import React, {useContext} from 'react';
-
-import {Context} from '../../Context/LoginContext'
-import {DataToShowContext} from '../../Context/DataToShowContext'
-
-import HeaderVinculacion from '../../Components/HeaderVinculacion'
-import LeftBarNav from '../../Components/LeftBarNav'
+// Context
+import {Context} from '../../Context/LoginContext';
+import {DataToShowContext} from '../../Context/DataToShowContext';
+// Components
+import HeaderVinculacion from '../../Components/HeaderVinculacion';
+import LeftBarNav from '../../Components/LeftBarNav';
 import InfoToDisplay from '../../Components/InfoToDisplay';
+// Styles
+import './MainPageVinculacion.css';
 
 const MainPageVinculacion = () => {
     const {cerrarSesion} = useContext(Context)
@@ -24,23 +26,14 @@ const MainPageVinculacion = () => {
     ]
 
     return (
-        <div style={styles.container}>
+        <div className='container'>
             <HeaderVinculacion />
-            <div style={styles.bodyContainer}>
+            <div className='bodyContainer'>
                 <LeftBarNav title={"ADMIN"} data={leftBarNavTitles}/>
                 <InfoToDisplay title={titles[optionSelected]} />
             </div>
         </div>
     )
-}
-
-const styles = {
-    container:{
-        height:"100vh",
-    },
-    bodyContainer: {
-        display: "flex",
-    }
 }
 
 export default MainPageVinculacion

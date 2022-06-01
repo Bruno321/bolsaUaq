@@ -8,7 +8,9 @@ import logoPortal from "../../Assets/img/Logo-portal.png";
 import {Link } from '@reach/router';
 import ModalInforCambiarPassword from '../../Components/ModalInfoCambiarPassword';
 import axios from 'axios';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+// import './LoginEmpresa.css';
+import '../../css/sweetAlertStyles.css'
 
 const LoginEmpresa = () => {
     const {iniciarSesion,setUserTypeFunc} = useContext(Context)
@@ -18,8 +20,35 @@ const LoginEmpresa = () => {
         password: ""
     })
     const handleClick = () => {
-        //Mandar a hacer el fetch
-        axios.post('http://localhost:3000/loginEmpresa',{data},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+        if (data.usuario == '' || data.password == '') {
+            if(data.usuario == '' && data.password != ''){
+                document.getElementById('usuario').focus();
+                document.getElementById('usuario').style['border-color'] = 'red';
+            }else if(data.password == '' && data.usuario != ''){
+                document.getElementById('password').focus();
+                document.getElementById('password').style['border-color'] = 'red';
+            }else{
+                document.getElementById('usuario').focus();
+                document.getElementById('usuario').style['border-color'] = 'red';
+                document.getElementById('password').style['border-color'] = 'red';
+            }
+            Swal.fire({
+                icon: 'error',
+                title: 'Falta llenar campos',
+                text: 'Intente de nuevo',
+                width: '45%',
+                padding: '5rem 10rem',
+                background: '#fff',
+                customClass: {
+                    htmlContainer: 'htmlContainer-class',
+                    title: 'title-class',
+                    confirmButton: 'confirmButton-class',
+                    icon: 'icon-class'
+                }
+            });
+        }else{
+            //Mandar a hacer el fetch
+            axios.post('http://localhost:3000/loginEmpresa',{data},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
             .then((response)=>{
                 setUserTypeFunc(false)
                 iniciarSesion(response.data.message)
@@ -29,8 +58,18 @@ const LoginEmpresa = () => {
                     icon: 'error',
                     title: 'Usuario o contraseña incorrectos',
                     text: 'Intente de nuevo',
-                  })
-            })
+                    width: '50%',
+                    padding: '5rem 10rem',
+                    background: '#fff',
+                    customClass: {
+                        htmlContainer: 'htmlContainer-class',
+                        title: 'title-class',
+                        confirmButton: 'confirmButton-class',
+                        icon: 'icon-class'
+                    }
+                });
+            });
+        };
     }
 
     const handleModal = () => {
@@ -67,17 +106,16 @@ const LoginEmpresa = () => {
                 <div style={styles.form}>
                     <legend style={styles.legend}>Inicia sesión</legend>
                     <label style={styles.text}>Usuario </label>
-                    <input type="text" placeholder="000000" style={styles.input} value={data.usuario} onChange={(e)=>setData({...data,usuario:e.target.value})}/>
+                    <input type="text" placeholder="000000" style={styles.input} value={data.usuario} onChange={(e)=>{setData({...data,usuario:e.target.value}); document.getElementById('usuario').style['border-color'] = 'black';}} id='usuario'/>
                     <label style={styles.text}>Contraseña</label>
-                    <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>setData({...data,password:e.target.value})}/>
+                    <input type="password" placeholder="********" style={styles.input} value={data.password} onChange={(e)=>{setData({...data,password:e.target.value}); document.getElementById('password').style['border-color'] = 'black';}} id='password'/>
                     <div style={styles.containerA}>
-                        <div  style={styles.a} onClick={handleModal}>Olvidaste tu contraseña</div>
+                        <div  style={styles.a} onClick={()=>setShowModal(true)}>¿Olvidaste tu contraseña?</div>
                     </div>
                     <Button title={'Iniciar Sesión'} styles={{background: '#5F4FEB', color: 'white', margin: '5px 0px'}} click={handleClick}/>
                     <Link to="/register" >
-                        <Button title={'Registrarme'} styles={{background: 'white', color: '#5F4FEB', margin: '5px 0px'}}/>
+                        <Button title={'Registrarse'} styles={{background: 'white', color: '#5F4FEB', margin: '5px 0px'}}/>
                     </Link>
-                    
                 </div>
                 <div style={styles.containerLogosFacultad}>
                         <img src={fifLogo} style={styles.imgLogosFacultad}/>
@@ -193,7 +231,14 @@ const styles = {
         fontSize: "1.6rem",
     },
     input: {
-        outline: "none"
+        outline: "none",
+        borderColor: 'black'
     },
-    
+    sweet: {
+        width: '60rem',
+        height: '40rem'
+    },
+    containerClass: {
+        backgroundColor: 'aquamarine'
+    }
 }
