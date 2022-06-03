@@ -181,13 +181,14 @@ const Form = () => {
             </div>
             {/*DESPLIEGUE*/}
             <div className="container">
+                <div className = "register-container">
+                <div className="body">
                 <div className="header">
                     <p>Necesitamos el contacto de quién se encargue en ingresar a la plataforma</p>
                 </div>
-                <div className="body">
                     {PageDisplay()}
                 </div>
-                <div className="footer"></div>
+                {/* <div className="footer"></div> */}
                 {/* Botón "Anterior" y "Siguiente" para moverse en el MultiStep */}
                 <div className="buttons">
                     <button
@@ -203,6 +204,7 @@ const Form = () => {
                         onClick={() => {
                             handleClick()
                         }}>{secondBtnTxt()}</button>
+                </div>
                 </div>
             </div>
         </div>
