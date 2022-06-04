@@ -74,19 +74,20 @@
 }
 /* Contenedor de los campos */
 .container {
-    width: 100%;
+    width: 35vw;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
+
 }
 .container p {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
     margin: 20px;
 }
+/* container de los forms y de los botones */
+.register-container{
+width: 100%;
+}
+
 .buttons {
     width: 100%;
     display: flex;
