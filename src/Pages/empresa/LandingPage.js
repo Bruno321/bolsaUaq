@@ -62,14 +62,16 @@ const styles = {
 
   container: {
     width: "100%",
-    height: "100vh",
+    height: "89vh",
     backgroundImage: `linear-gradient(to right, rgba(160, 152, 237), rgba(160, 152, 237, .6)), url(${fifUaq})`,
     backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
     alignItems: "center",
     display: "column",
     justifyContent: "center",
     textAlign: "center",
     verticalAlign: "middle",
+    overflowX: "hidden",
   },
   titleContainer: {
     fontSize: "6.5rem",
