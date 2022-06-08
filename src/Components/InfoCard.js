@@ -273,7 +273,12 @@ const InfoCard = ({ props,filterOption }) => {
 
 	return (
 		<div style={{...styles.vacantContainer,borderLeftColor:handleBorderColor()}} >
-			<h3 style={styles.vacantTitle}> { !props.nombreVacante ? props.nombreEmpresa:props.nombreVacante } </h3>
+			<div style={styles.container}>
+				<h3 style={styles.vacantTitle}> { !props.nombreVacante ? props.nombreEmpresa:props.nombreVacante } </h3>
+				<div style={styles.fechaContainer}>
+					<h2>Fecha: {props.fechaRegistro}</h2>
+				</div>
+			</div>
 			<p style={styles.vacantAttribute}> <b>Descripción:</b> <br />{props.descripcion}</p>
 			{elementsToRender()}
 		</div>
@@ -295,7 +300,6 @@ const styles = {
 	},
 	vacantTitle: {
 		fontWeight: "normal",
-		margin: "4px 0",
 		color: "#222",
 		fontSize: "14px"
 	},
@@ -316,6 +320,14 @@ const styles = {
 		marginRight: "20px",
 		position: "relative",
 		alignItems: "flex-end"
+	},
+	container:{
+		display:'flex'
+	},
+	fechaContainer:{
+		display:'flex',
+		justifyContent:"flex-end",
+		width:'100%'
 	}
 }
 
