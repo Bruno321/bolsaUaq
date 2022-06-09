@@ -66,6 +66,8 @@ const styles = {
     backgroundImage: `linear-gradient(to right, rgba(160, 152, 237), rgba(160, 152, 237, .6)), url(${fifUaq})`,
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundAttachment: "fixed",
     alignItems: "center",
     display: "column",
     justifyContent: "center",
