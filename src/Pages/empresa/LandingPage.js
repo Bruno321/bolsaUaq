@@ -62,7 +62,7 @@ const styles = {
 
   container: {
     width: "100%",
-    height: "89vh",
+    height: "calc(100vh - 100px)",
     backgroundImage: `linear-gradient(to right, rgba(160, 152, 237), rgba(160, 152, 237, .6)), url(${fifUaq})`,
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -73,7 +73,7 @@ const styles = {
     justifyContent: "center",
     textAlign: "center",
     verticalAlign: "middle",
-    overflowX: "hidden",
+    overflow: "hidden",
   },
   titleContainer: {
     fontSize: "6.5rem",
