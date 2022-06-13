@@ -23,7 +23,7 @@ const CrearVacante = () => {
   const handleClick = () => {
     if(detailSelected) {
       Swal.fire({
-        title: '¿Esta seguro?',
+        title: '¿Está seguro?',
         text: "Esta vacante volver a estar pendiente de validación",
         icon: 'warning',
         showCancelButton: true,
@@ -57,10 +57,11 @@ const CrearVacante = () => {
                 confirmButton: 'confirmButton-class',
                 icon: 'icon-class'
             }
-          })
-          setTimeout(()=>{
-            location.reload()
-          },1500)
+          }).then((result) => {
+						if(result.isConfirmed){
+							location.reload()
+						}
+					});
          }).catch((e)=>{
           Swal.fire({
             icon: 'error',
@@ -96,10 +97,11 @@ const CrearVacante = () => {
                 confirmButton: 'confirmButton-class',
                 icon: 'icon-class'
             }
-          })
-        setTimeout(()=>{
-          location.reload()
-        },1500)
+          }).then((result) => {
+						if(result.isConfirmed){
+							location.reload()
+						}
+					});
        }).catch((e)=>{
         Swal.fire({
           icon: 'error',

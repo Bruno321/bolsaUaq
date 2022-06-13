@@ -15,32 +15,52 @@ const DropDownSetStatus = ({vacanteId,filterOption,setFilterOption}) => {
         setFilterOption(e.value)
         console.log(e)
         Swal.fire({
-            title: '¿Esta seguro?',
-            text: "Esto marcara la vacante como " + options[filterOption].label,
+            title: '¿Está seguro?',
+            text: `Esto marcará la vacante como ${filterOption == 0 ? options[1].label : options[0].label}`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, cambiar disponibilidad'
+            confirmButtonText: 'Si, cambiar disponibilidad',
+            cancelButtonText: 'Cancelar',
+            width: '50%',
+			padding: '5rem 10rem',
+			background: '#fff',
+			customClass: {
+				htmlContainer: 'htmlContainer-class',
+				title: 'title-class',
+				confirmButton: 'confirmButton-class',
+				cancelButton: 'cancelButton-class',
+				icon: 'icon-class'
+			}
           }).then((result) => {
               if (result.isConfirmed) {
                 axios.patch('http://localhost:3000/vacante',{data:{vacanteId:vacanteId,isDisponible:e.value}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
                 .then((response)=>{
                     console.log(response)
-                    Swal.fire(
-                        'Vacante editada',
-                        'Disponibilidad cambiada exitosamente.',
-                        'success'
-                      )
-                      setTimeout(()=>{
-                        location.reload()
-                      },2000)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Vacante editada',
+                        text: 'Disponibilidad cambiada exitosamente.',
+                        width: '50%',
+                        padding: '5rem 10rem',
+                        background: '#fff',
+                        customClass: {
+                            htmlContainer: 'htmlContainer-class',
+                            title: 'title-class',
+                            confirmButton: 'confirmButton-class',
+                            icon: 'icon-class'
+                        }
+                      }).then((result) => {
+                        if(result.isConfirmed){
+                            location.reload()
+                        }
+                      });
                 }).catch((e)=>{
                     console.log("error",e)
                 })
             }else{
                 if(e.value==0){
-
                     setFilterOption(1)
                 }else{
                     setFilterOption(0)

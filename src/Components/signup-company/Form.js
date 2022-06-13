@@ -78,10 +78,14 @@ const Form = () => {
                                 icon: 'icon-class'
                             }
                           }
-                    )
-                    setTimeout(()=>{
+                    ).then((result) => {
+                        if(result.isConfirmed){
+                            setRedirect(true);
+                        }
+                    });
+                    /* setTimeout(()=>{
                         setRedirect(true)
-                    },2000)
+                    },2000) */
                 }).catch((e)=>{
                     console.log(e)
                 })

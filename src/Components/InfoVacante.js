@@ -28,13 +28,14 @@ const InfoVacante = ({data}) => {
 
     const handleAceptarV = () => {
 		Swal.fire({
-            title: '¿Esta seguro?',
-			text: "Esto aceptara la solicitud de la vacante" ,
+            title: '¿Está seguro?',
+			text: "Esto aceptará la solicitud de la vacante" ,
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Si, cambiar disponibilidad',
+			confirmButtonText: 'Sí, cambiar disponibilidad',
+            cancelButtonText: 'Cancelar',
 			width: '50%',
 			padding: '5rem 10rem',
 			background: '#fff',
@@ -42,6 +43,7 @@ const InfoVacante = ({data}) => {
 				htmlContainer: 'htmlContainer-class',
 				title: 'title-class',
 				confirmButton: 'confirmButton-class',
+                cancelButton: 'cancelButton-class',
 				icon: 'icon-class'
 			}
 		}).then((result) => {
@@ -52,8 +54,8 @@ const InfoVacante = ({data}) => {
 				  Swal.fire(
 					{
                         icon: 'success',
-                        title: 'Status actualizado',
-                        text: 'La vacante a sido aceptada',
+                        title: 'Estatus actualizado',
+                        text: 'La vacante ha sido aceptada',
                         width: '50%',
                         padding: '5rem 10rem',
                         background: '#fff',
@@ -64,10 +66,11 @@ const InfoVacante = ({data}) => {
                           icon: 'icon-class'
                         }
                       }
-				  )
-					setTimeout(()=>{
-					  location.reload()
-					},2000)
+				  ).then((result) => {
+                    if(result.isConfirmed){
+                        location.reload()
+                    }
+                });
 			  }).catch((e)=>{
 				  console.log("error",e)
 			  })
@@ -77,13 +80,14 @@ const InfoVacante = ({data}) => {
 	
 	  const handleRechazarV = () => {
 		Swal.fire({
-            title: '¿Esta seguro?',
-			text: "Esto rechazara la solicitud de la vacante" ,
+            title: '¿Está seguro?',
+			text: "Esto rechazará la solicitud de la vacante" ,
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Si, cambiar disponibilidad',
+			confirmButtonText: 'Sí, cambiar disponibilidad',
+            cancelButtonText: 'Cancelar',
 			width: '50%',
 			padding: '5rem 10rem',
 			background: '#fff',
@@ -91,6 +95,7 @@ const InfoVacante = ({data}) => {
 				htmlContainer: 'htmlContainer-class',
 				title: 'title-class',
 				confirmButton: 'confirmButton-class',
+                cancelButton: 'cancelButton-class',
 				icon: 'icon-class'
 			}
           
@@ -102,8 +107,8 @@ const InfoVacante = ({data}) => {
 				  Swal.fire(
 					{
                         icon: 'success',
-                        title: 'Status actualizado',
-                        text: 'La vacante a sido rechazada',
+                        title: 'Estatus actualizado',
+                        text: 'La vacante ha sido rechazada',
                         width: '50%',
                         padding: '5rem 10rem',
                         background: '#fff',
@@ -114,10 +119,11 @@ const InfoVacante = ({data}) => {
                           icon: 'icon-class'
                         }
                       }
-				  )
-					setTimeout(()=>{
-					  location.reload()
-					},2000)
+				  ).then((result) => {
+                    if(result.isConfirmed){
+                        location.reload()
+                    }
+                });
 			  }).catch((e)=>{
 				  console.log("error",e)
 			  })
@@ -130,7 +136,7 @@ const InfoVacante = ({data}) => {
             <div style={styles.containerIconClose}>
                 <img src={close} style={{cursor: 'pointer'}} onClick={()=>setDetailSelected(false)}/>
             </div>
-            <h1>{data.title}</h1> <h2>Status ({statusText})</h2>
+            <h1>{data.title}</h1> <h2>Estatus ({statusText})</h2>
 
             <div style={styles.containerInfo}>
                 <h1 style={{fontSize: '24px'}}>{data.titulo}</h1>
@@ -172,16 +178,26 @@ const InfoVacante = ({data}) => {
                
             </div>
             <div style={styles.containerButtons}>
-                <button 
-                    className={`btnAceptar ${disable ? 'btnDisabled' : "pointer"}`}
-                    disabled={disable}
-                    onClick={handleAceptarV}
-                >Aceptar</button>
-                <button 
-                    className={`btnRechazar ${disable ? 'btnDisabled' : "pointer"}`}
-                    disabled={disable}
-                    onClick={handleRechazarV}
-                >Rechazar</button>
+                {
+                    disable ? 
+                        ''
+                    : 
+                    <button 
+                        className={`btnAceptar ${disable ? 'btnDisabled' : "pointer"}`}
+                        disabled={disable}
+                        onClick={handleAceptarV}
+                    >Aceptar vacante</button>
+                }
+                {
+                    disable ? 
+                        ''
+                    : 
+                    <button 
+                        className={`btnRechazar ${disable ? 'btnDisabled' : "pointer"}`}
+                        disabled={disable}
+                        onClick={handleRechazarV}
+                    >Rechazar vacante</button>
+                }
             </div>
         </div>
     )

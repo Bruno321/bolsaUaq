@@ -27,12 +27,13 @@ const InfoCard = ({ props,filterOption }) => {
 		Swal.fire(
 			{
 				icon: 'warning',
-				title: '¿Esta seguro?',
-				text: 'Esto aceptara la solicitud de la empresa',
+				title: '¿Está seguro?',
+				text: 'Esto aceptará la solicitud de la empresa',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Si, cambiar disponibilidad',
+				confirmButtonText: 'Sí, cambiar disponibilidad',
+				cancelButtonText: 'Cancelar',
 				width: '50%',
 				padding: '5rem 10rem',
 				background: '#fff',
@@ -40,6 +41,7 @@ const InfoCard = ({ props,filterOption }) => {
 					htmlContainer: 'htmlContainer-class',
 					title: 'title-class',
 					confirmButton: 'confirmButton-class',
+					cancelButton: 'cancelButton-class',
 					icon: 'icon-class'
 				}
 			}
@@ -50,8 +52,8 @@ const InfoCard = ({ props,filterOption }) => {
 					Swal.fire(
 						{
 							icon: 'success',
-							title: 'Status actualizado',
-							text: 'La empresa a sido aceptada',
+							title: 'Estatus actualizado',
+							text: 'La empresa ha sido aceptada',
 							width: '50%',
 							padding: '5rem 10rem',
 							background: '#fff',
@@ -62,10 +64,14 @@ const InfoCard = ({ props,filterOption }) => {
 								icon: 'icon-class'
 							}
 						}
-				  	)
-					setTimeout(()=>{
+				  	).then((result) => {
+						if(result.isConfirmed){
+							location.reload()
+						}
+					});
+					/* setTimeout(()=>{
 					  location.reload()
-					},2000)
+					},2000) */
 			  }).catch((e)=>{
 				  console.log("error",e)
 			  })
@@ -77,19 +83,21 @@ const InfoCard = ({ props,filterOption }) => {
 		Swal.fire(
 			{
 				icon: 'warning',
-				title: '¿Esta seguro?',
-				text: 'Esto rechazara la solicitud de la empresa',
+				title: '¿Está seguro?',
+				text: 'Esto rechazará la solicitud de la empresa',
 				width: '50%',
 				padding: '5rem 10rem',
 				background: '#fff',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Si, cambiar disponibilidad',
+				cancelButtonText: 'Cancelar',
+				confirmButtonText: 'Sí, cambiar disponibilidad',
 				customClass: {
 					htmlContainer: 'htmlContainer-class',
 					title: 'title-class',
 					confirmButton: 'confirmButton-class',
+					cancelButton: 'cancelButton-class',
 					icon: 'icon-class'
 				}
 			}
@@ -99,8 +107,8 @@ const InfoCard = ({ props,filterOption }) => {
 			  .then((response)=>{
 				  Swal.fire({
 						icon: 'success',
-						title: 'Status actualizado',
-						text: 'La empresa a sido rechazada',
+						title: 'Estatus actualizado',
+						text: 'La empresa ha sido rechazada',
 						width: '50%',
 						padding: '5rem 10rem',
 						background: '#fff',
@@ -110,10 +118,14 @@ const InfoCard = ({ props,filterOption }) => {
 							confirmButton: 'confirmButton-class',
 							icon: 'icon-class'
 						}
-					})
-					setTimeout(()=>{
+					}).then((result) => {
+						if(result.isConfirmed){
+							location.reload()
+						}
+					});
+					/* setTimeout(()=>{
 					  location.reload()
-					},2000)
+					},2000) */
 			  }).catch((e)=>{
 				  console.log("error",e)
 			  })
@@ -124,16 +136,17 @@ const InfoCard = ({ props,filterOption }) => {
 	  const handleAceptarV = () => {
 		Swal.fire(
 			{
-				title: '¿Esta seguro?',
-				text: "Esto aceptara la solicitud de la vacante" ,
+				title: '¿Está seguro?',
+				text: "Esto aceptará la solicitud de la vacante" ,
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Si, cambiar disponibilidad',
+				cancelButtonText: 'Cancelar',
+				confirmButtonText: 'Sí, cambiar disponibilidad',
 						icon: 'warning',
-						title: '¿Esta seguro?',
-						text: 'Esto aceptara la solicitud de la vacante',
+						title: '¿Está seguro?',
+						text: 'Esto aceptará la solicitud de la vacante',
 						width: '50%',
 						padding: '5rem 10rem',
 						background: '#fff',
@@ -141,6 +154,7 @@ const InfoCard = ({ props,filterOption }) => {
 							htmlContainer: 'htmlContainer-class',
 							title: 'title-class',
 							confirmButton: 'confirmButton-class',
+							cancelButton: 'cancelButton-class',
 							icon: 'icon-class'
 						}
 			}
@@ -150,8 +164,8 @@ const InfoCard = ({ props,filterOption }) => {
 			  .then((response)=>{
 				  Swal.fire({
 					icon: 'success',
-					title: 'Status actualizado',
-					text: 'La vacante a sido aceptada',
+					title: 'Estatus actualizado',
+					text: 'La vacante ha sido aceptada',
 					width: '50%',
 					padding: '5rem 10rem',
 					background: '#fff',
@@ -161,10 +175,14 @@ const InfoCard = ({ props,filterOption }) => {
 						confirmButton: 'confirmButton-class',
 						icon: 'icon-class'
 					}
-				  })
-					setTimeout(()=>{
+				  }).then((result) => {
+					if(result.isConfirmed){
+						location.reload()
+					}
+				  });
+					/* setTimeout(()=>{
 					  location.reload()
-					},2000)
+					},2000) */
 			  }).catch((e)=>{
 				  console.log("error",e)
 			  })
@@ -174,13 +192,14 @@ const InfoCard = ({ props,filterOption }) => {
 	
 	  const handleRechazarV = () => {
 		Swal.fire({
-			title: '¿Esta seguro?',
-			text: "Esto rechazara la solicitud de la vacante" ,
+			title: '¿Está seguro?',
+			text: "Esto rechazará la solicitud de la vacante" ,
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Si, cambiar disponibilidad',
+			confirmButtonText: 'Sí, cambiar disponibilidad',
+			cancelButtonText: 'Cancelar',
 			width: '50%',
 			padding: '5rem 10rem',
 			background: '#fff',
@@ -188,6 +207,7 @@ const InfoCard = ({ props,filterOption }) => {
 				htmlContainer: 'htmlContainer-class',
 				title: 'title-class',
 				confirmButton: 'confirmButton-class',
+				cancelButton: 'cancelButton-class',
 				icon: 'icon-class'
 			}
 		}).then((result) => {
@@ -196,8 +216,8 @@ const InfoCard = ({ props,filterOption }) => {
 			  .then((response)=>{
 				  Swal.fire({
 					icon: 'success',
-					title: 'Status actualizado',
-					text: 'La vacante a sido rechazada',
+					title: 'Estatus actualizado',
+					text: 'La vacante ha sido rechazada',
 					width: '50%',
 					padding: '5rem 10rem',
 					background: '#fff',
@@ -207,10 +227,14 @@ const InfoCard = ({ props,filterOption }) => {
 						confirmButton: 'confirmButton-class',
 						icon: 'icon-class'
 					}
-				  })
-					setTimeout(()=>{
+				  }).then((result) => {
+					if(result.isConfirmed){
+						location.reload()
+					}
+				  });
+					/* setTimeout(()=>{
 					  location.reload()
-					},2000)
+					},2000) */
 			  }).catch((e)=>{
 				  console.log("error",e)
 			  })
@@ -227,8 +251,8 @@ const InfoCard = ({ props,filterOption }) => {
 					<p style={styles.vacantAttribute}> <b>RFC:</b>  {props.rfc}</p>
 					<p style={styles.vacantAttribute}> <b>Giro de la empresa:</b> {props.giro} </p>
 					<button style={styles.vacantDetails} onClick={() => handleDetailButton()} className="btnHover">Mostrar detalles</button>
-					<button style={styles.vacantDetails} onClick={handleAceptarE} className="btnHover">Aceptar</button>
-					<button style={styles.vacantDetails} onClick={handleRechazarE} className="btnHover">Rechazar</button>
+					<button style={styles.vacantDetails} onClick={handleAceptarE} className="btnHover">Aceptar empresa</button>
+					<button style={styles.vacantDetails} onClick={handleRechazarE} className="btnHover">Rechazar empresa</button>
 				</>
 			)
 		}
@@ -240,8 +264,8 @@ const InfoCard = ({ props,filterOption }) => {
 					<p style={styles.vacantAttribute}> <b>Salario:</b>  {props.rangoSueldo}</p>
 					{props.empresa  ? <p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.empresa.nombreEmpresa}  </p>: null}
 					<button style={styles.vacantDetails} onClick={() => handleDetailButton()} className="btnHover">Mostrar detalles</button>
-					<button style={styles.vacantDetails} onClick={handleAceptarV} className="btnHover">Aceptar</button>
-					<button style={styles.vacantDetails} onClick={handleRechazarV} className="btnHover">Rechazar</button>
+					<button style={styles.vacantDetails} onClick={handleAceptarV} className="btnHover">Aceptar vacante</button>
+					<button style={styles.vacantDetails} onClick={handleRechazarV} className="btnHover">Rechazar vacante</button>
 				</>
 			)
 		}
@@ -264,9 +288,9 @@ const InfoCard = ({ props,filterOption }) => {
 					{props.empresa  ? <p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.empresa.nombreEmpresa}  </p>: null}
 					<button style={styles.vacantDetails} onClick={() => handleDetailButton()} className="btnHover">Mostrar detalles</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} className="btnHover">Generar PDF</button>
-					<button style={{...styles.vacantDetails,backgroundColor:handleColor()}} onClick={onClickDetails} className="btnHover">
+					{/* <button style={{...styles.vacantDetails,backgroundColor:handleColor()}} onClick={onClickDetails} className="btnHover">
 						{props.isDisponible==0 ?'Disponible' :'Ocupada' }
-					</button>
+					</button> */}
 				</>
 			)
 		}
@@ -361,7 +385,7 @@ const InfoCard = ({ props,filterOption }) => {
 	return (
 		<div style={{...styles.vacantContainer,borderLeftColor:handleBorderColor()}} >
 			<div style={styles.container}>
-				<h3 style={styles.vacantTitle}> { !props.nombreVacante ? props.nombreEmpresa:props.nombreVacante } </h3>
+				<h3 style={styles.vacantTitle}> <b>{ !props.nombreVacante ? props.nombreEmpresa:props.nombreVacante }</b> {optionSelected == 2 ? props.isDisponible==0 ?'(Estado de la vacante: Disponible)' :'(Estado de la vacante: Ocupada)'  : ''}</h3>
 				<div style={styles.fechaContainer}>
 					<h2>Fecha: {fecha}</h2>
 				</div>
@@ -388,7 +412,8 @@ const styles = {
 	vacantTitle: {
 		fontWeight: "normal",
 		color: "#222",
-		fontSize: "14px"
+		fontSize: "14px",
+		width: '500px'
 	},
 	vacantAttribute: {
 		padding: "5px",

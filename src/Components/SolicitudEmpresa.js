@@ -20,13 +20,14 @@ const SolicitudEmpresa = (props) => {
 
   const handleAceptar = () => {
     Swal.fire({
-      title: '¿Esta seguro?',
-			text: "Esto aceptara la solicitud de la vacante" ,
+      title: '¿Está seguro?',
+			text: "Esto aceptará la solicitud de la empresa" ,
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Si, cambiar disponibilidad',
+			confirmButtonText: 'Sí, cambiar disponibilidad',
+      cancelButtonText: 'Cancelar',
 			width: '50%',
 			padding: '5rem 10rem',
 			background: '#fff',
@@ -34,6 +35,7 @@ const SolicitudEmpresa = (props) => {
 				htmlContainer: 'htmlContainer-class',
 				title: 'title-class',
 				confirmButton: 'confirmButton-class',
+        cancelButton: 'cancelButton-class',
 				icon: 'icon-class'
 			}
     }).then((result) => {
@@ -44,8 +46,8 @@ const SolicitudEmpresa = (props) => {
               Swal.fire(
               {
                 icon: 'success',
-                title: 'Status actualizado',
-                text: 'La empresa a sido aceptada',
+                title: 'Estatus actualizado',
+                text: 'La empresa ha sido aceptada',
                 width: '50%',
                 padding: '5rem 10rem',
                 background: '#fff',
@@ -56,10 +58,11 @@ const SolicitudEmpresa = (props) => {
                   icon: 'icon-class'
 						    }
               }
-              )
-                setTimeout(()=>{
+              ).then((result) => {
+                if(result.isConfirmed){
                   location.reload()
-                },2000)
+                }
+              });
           }).catch((e)=>{
               console.log("error",e)
           })
@@ -69,13 +72,14 @@ const SolicitudEmpresa = (props) => {
 
   const handleRechazar = () => {
     Swal.fire({
-      title: '¿Esta seguro?',
-			text: "Esto rechazara la solicitud de la vacante" ,
+      title: '¿Está seguro?',
+			text: "Esto rechazará la solicitud de la empresa" ,
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Si, cambiar disponibilidad',
+			confirmButtonText: 'Sí, cambiar disponibilidad',
+      cancelButtonText: 'Cancelar',
 			width: '50%',
 			padding: '5rem 10rem',
 			background: '#fff',
@@ -83,6 +87,7 @@ const SolicitudEmpresa = (props) => {
 				htmlContainer: 'htmlContainer-class',
 				title: 'title-class',
 				confirmButton: 'confirmButton-class',
+        cancelButton: 'cancelButton-class',
 				icon: 'icon-class'
 			}
     }).then((result) => {
@@ -93,8 +98,8 @@ const SolicitudEmpresa = (props) => {
               Swal.fire(
                 {
                   icon: 'success',
-                  title: 'Status actualizado',
-                  text: 'La empresa a sido rechazada',
+                  title: 'Estatus actualizado',
+                  text: 'La empresa ha sido rechazada',
                   width: '50%',
                   padding: '5rem 10rem',
                   background: '#fff',
@@ -105,10 +110,11 @@ const SolicitudEmpresa = (props) => {
                     icon: 'icon-class'
                   }
                 }
-              )
-                setTimeout(()=>{
+              ).then((result) => {
+                if(result.isConfirmed){
                   location.reload()
-                },2000)
+                }
+              });
           }).catch((e)=>{
               console.log("error",e)
           })
@@ -146,23 +152,23 @@ const SolicitudEmpresa = (props) => {
         </div>
         <b style={styles.normalText}>Nombre de la empresa:</b>
         <p style={styles.normalText}>{nombreEmpresa}</p>
-        <b style={styles.normalText}>Razon social:</b>
+        <b style={styles.normalText}>Razón social:</b>
         <p style={styles.normalText}>{razonSocial}</p>
         <b style={styles.normalText}>Giro:</b>
         <p style={styles.normalText}>{giro}</p>
-        <b style={styles.normalText}>Rfc:</b>
+        <b style={styles.normalText}>RFC:</b>
         <p style={styles.normalText}>{rfc}</p>
         <b style={styles.normalText}>Email:</b>
         <p style={styles.normalText}>{email}</p>
-        <b style={styles.normalText}>Telefono:</b>
+        <b style={styles.normalText}>Teléfono:</b>
         <p style={styles.normalText}>{telefonoEmpresa}</p>
-        <b style={styles.normalText}>Pagina web:</b>
+        <b style={styles.normalText}>Página web:</b>
         <p style={styles.normalText}>{sitioWeb}</p>
         <b style={styles.normalText}>Fecha de registro:</b>
         <p style={styles.normalText}>{fecha}</p>
       </div>
       <div style={styles.innerDiv}>
-        <h1> Status ({statusText})</h1>
+        <h1> Estatus ({statusText})</h1>
         <h2 style={styles.title}>Domicilio</h2>
         <b style={styles.normalText}>Dirección:</b>
         <p style={styles.normalText}>{direccion}</p>
@@ -170,7 +176,7 @@ const SolicitudEmpresa = (props) => {
         <p style={styles.normalText}>{colonia}</p>
         <b style={styles.normalText}>Ciudad:</b>
         <p style={styles.normalText}>{ciudad}</p>
-        <b style={styles.normalText}>Codigo postal:</b>
+        <b style={styles.normalText}>Código postal:</b>
         <p style={styles.normalText}>{codigoPostal}</p>
         <b style={styles.normalText}>Estado:</b>
         <p style={styles.normalText}>{estado}</p>
@@ -183,23 +189,23 @@ const SolicitudEmpresa = (props) => {
         <p style={styles.normalText}>{nombreReclutador}</p>
         <b style={styles.normalText}>Email del reclutador:</b>
         <p style={styles.normalText}>{emailReclutador}</p>
-        <b style={styles.normalText}>Telefono del reclutador:</b>
+        <b style={styles.normalText}>Teléfono del reclutador:</b>
         <p style={styles.normalText}>{telefonoReclutador}</p>
         <div style={styles.buttonsContainer}>
-          <button
-            className={`btnAceptar ${disable ? 'btnDisabled' : "pointer"}`}
-            disabled={disable}
-            onClick={handleAceptar}
-          >
-            Aceptar
-          </button>
-          <button
-            className={`btnRechazar ${disable ? 'btnDisabled' : "pointer"}`}
-            disabled={disable}
-            onClick={handleRechazar}
-          >
-            Rechazar
-          </button>
+          
+          {
+              disable ? 
+                '' 
+              : 
+              <button className={`btnAceptar ${disable ? 'btnDisabled' : "pointer"}`} disabled={disable} onClick={handleAceptar}>Aceptar empresa</button>
+          }
+
+          {
+            disable ? 
+              ''
+            :
+              <button className={`btnRechazar ${disable ? 'btnDisabled' : "pointer"}`} disabled={disable} onClick={handleRechazar}>Rechazar empresa</button>
+          }
         </div>
       </div>
     </div>
@@ -245,7 +251,8 @@ const styles = {
     marginTop:'5px'
   },
   buttonsContainer:{
-    marginTop: 'auto'
+    marginTop: 'auto',
+    display: 'flex',
   },
   btnCerrar: {
     background: "none",
