@@ -4,9 +4,13 @@ import { DataToShowContext } from '../Context/DataToShowContext'
 import DropDownSetStatus from "./DropDownSetStatus";
 import Swal from "sweetalert2";
 import axios from "axios";
+import moment from 'moment';
+import 'moment/locale/es'
 
 const InfoCard = ({ props,filterOption }) => {
 	const token = window.localStorage.getItem('token')
+
+	let fecha = moment(props.fechaRegistro).format('dddd, MMMM D, YYYY')
 
 	const { setData } = useContext(DetailContext)
 	const { optionSelected, setDetailSelected } = useContext(DataToShowContext)
@@ -20,23 +24,45 @@ const InfoCard = ({ props,filterOption }) => {
 	}
 
 	const handleAceptarE = () => {
-		Swal.fire({
-		  title: '¿Esta seguro?',
-		  text: "Esto aceptara la solicitud de la empresa" ,
-		  icon: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  confirmButtonText: 'Si, cambiar disponibilidad'
-		}).then((result) => {
+		Swal.fire(
+			{
+				icon: 'warning',
+				title: '¿Esta seguro?',
+				text: 'Esto aceptara la solicitud de la empresa',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Si, cambiar disponibilidad',
+				width: '50%',
+				padding: '5rem 10rem',
+				background: '#fff',
+				customClass: {
+					htmlContainer: 'htmlContainer-class',
+					title: 'title-class',
+					confirmButton: 'confirmButton-class',
+					icon: 'icon-class'
+				}
+			}
+		).then((result) => {
 			if (result.isConfirmed) {
 			  axios.patch('http://localhost:3000/empresa',{data:{id:props.empresaId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
-				  Swal.fire(
-					'Status actualizado',
-					'La empresa a sido aceptada',
-					'success'
-				  )
+					Swal.fire(
+						{
+							icon: 'success',
+							title: 'Status actualizado',
+							text: 'La empresa a sido aceptada',
+							width: '50%',
+							padding: '5rem 10rem',
+							background: '#fff',
+							customClass: {
+								htmlContainer: 'htmlContainer-class',
+								title: 'title-class',
+								confirmButton: 'confirmButton-class',
+								icon: 'icon-class'
+							}
+						}
+				  	)
 					setTimeout(()=>{
 					  location.reload()
 					},2000)
@@ -48,23 +74,43 @@ const InfoCard = ({ props,filterOption }) => {
 	  }
 	
 	  const handleRechazarE = () => {
-		Swal.fire({
-		  title: '¿Esta seguro?',
-		  text: "Esto rechazara la solicitud de la empresa" ,
-		  icon: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  confirmButtonText: 'Si, cambiar disponibilidad'
-		}).then((result) => {
+		Swal.fire(
+			{
+				icon: 'warning',
+				title: '¿Esta seguro?',
+				text: 'Esto rechazara la solicitud de la empresa',
+				width: '50%',
+				padding: '5rem 10rem',
+				background: '#fff',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Si, cambiar disponibilidad',
+				customClass: {
+					htmlContainer: 'htmlContainer-class',
+					title: 'title-class',
+					confirmButton: 'confirmButton-class',
+					icon: 'icon-class'
+				}
+			}
+		).then((result) => {
 			if (result.isConfirmed) {
 			  axios.patch('http://localhost:3000/empresa',{data:{id:props.empresaId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
-				  Swal.fire(
-					'Status actualizado',
-					'La empresa a sido rechazada',
-					'success'
-				  )
+				  Swal.fire({
+						icon: 'success',
+						title: 'Status actualizado',
+						text: 'La empresa a sido rechazada',
+						width: '50%',
+						padding: '5rem 10rem',
+						background: '#fff',
+						customClass: {
+							htmlContainer: 'htmlContainer-class',
+							title: 'title-class',
+							confirmButton: 'confirmButton-class',
+							icon: 'icon-class'
+						}
+					})
 					setTimeout(()=>{
 					  location.reload()
 					},2000)
@@ -76,23 +122,46 @@ const InfoCard = ({ props,filterOption }) => {
 	  }
 
 	  const handleAceptarV = () => {
-		Swal.fire({
-		  title: '¿Esta seguro?',
-		  text: "Esto aceptara la solicitud de la vacante" ,
-		  icon: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  confirmButtonText: 'Si, cambiar disponibilidad'
-		}).then((result) => {
+		Swal.fire(
+			{
+				title: '¿Esta seguro?',
+				text: "Esto aceptara la solicitud de la vacante" ,
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Si, cambiar disponibilidad',
+						icon: 'warning',
+						title: '¿Esta seguro?',
+						text: 'Esto aceptara la solicitud de la vacante',
+						width: '50%',
+						padding: '5rem 10rem',
+						background: '#fff',
+						customClass: {
+							htmlContainer: 'htmlContainer-class',
+							title: 'title-class',
+							confirmButton: 'confirmButton-class',
+							icon: 'icon-class'
+						}
+			}
+		).then((result) => {
 			if (result.isConfirmed) {
 			  axios.patch('http://localhost:3000/vacantes',{data:{id:props.vacanteId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
-				  Swal.fire(
-					'Status actualizado',
-					'La vacante a sido aceptada',
-					'success'
-				  )
+				  Swal.fire({
+					icon: 'success',
+					title: 'Status actualizado',
+					text: 'La vacante a sido aceptada',
+					width: '50%',
+					padding: '5rem 10rem',
+					background: '#fff',
+					customClass: {
+						htmlContainer: 'htmlContainer-class',
+						title: 'title-class',
+						confirmButton: 'confirmButton-class',
+						icon: 'icon-class'
+					}
+				  })
 					setTimeout(()=>{
 					  location.reload()
 					},2000)
@@ -105,22 +174,40 @@ const InfoCard = ({ props,filterOption }) => {
 	
 	  const handleRechazarV = () => {
 		Swal.fire({
-		  title: '¿Esta seguro?',
-		  text: "Esto rechazara la solicitud de la vacante" ,
-		  icon: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  confirmButtonText: 'Si, cambiar disponibilidad'
+			title: '¿Esta seguro?',
+			text: "Esto rechazara la solicitud de la vacante" ,
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Si, cambiar disponibilidad',
+			width: '50%',
+			padding: '5rem 10rem',
+			background: '#fff',
+			customClass: {
+				htmlContainer: 'htmlContainer-class',
+				title: 'title-class',
+				confirmButton: 'confirmButton-class',
+				icon: 'icon-class'
+			}
 		}).then((result) => {
 			if (result.isConfirmed) {
 			  axios.patch('http://localhost:3000/vacantes',{data:{id:props.vacanteId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
-				  Swal.fire(
-					'Status actualizado',
-					'La vacante a sido rechazada',
-					'success'
-				  )
+				  Swal.fire({
+					icon: 'success',
+					title: 'Status actualizado',
+					text: 'La vacante a sido rechazada',
+					width: '50%',
+					padding: '5rem 10rem',
+					background: '#fff',
+					customClass: {
+						htmlContainer: 'htmlContainer-class',
+						title: 'title-class',
+						confirmButton: 'confirmButton-class',
+						icon: 'icon-class'
+					}
+				  })
 					setTimeout(()=>{
 					  location.reload()
 					},2000)
@@ -276,7 +363,7 @@ const InfoCard = ({ props,filterOption }) => {
 			<div style={styles.container}>
 				<h3 style={styles.vacantTitle}> { !props.nombreVacante ? props.nombreEmpresa:props.nombreVacante } </h3>
 				<div style={styles.fechaContainer}>
-					<h2>Fecha: {props.fechaRegistro}</h2>
+					<h2>Fecha: {fecha}</h2>
 				</div>
 			</div>
 			<p style={styles.vacantAttribute}> <b>Descripción:</b> <br />{props.descripcion}</p>

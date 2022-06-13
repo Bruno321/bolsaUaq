@@ -111,6 +111,7 @@ const InfoToDisplay = ({title}) => {
     ]} setFilterOption={setFilterOption} filterOption={filterOption}/>
     }
   }
+  console.log(filteredData)
   return (
     <div style={styles.container}>
       {detailSelected ? 

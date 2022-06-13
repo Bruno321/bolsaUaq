@@ -59,19 +59,6 @@ const Form = () => {
 
     const handleClick = () => {
         if(page>1){
-            axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
-            .then((response)=>{
-                Swal.fire(
-                    'Solicitud enviada correctamente',
-                    'Este atento a su correo electronico',
-                    'success'
-                  )
-                  setTimeout(()=>{
-                    setRedirect(true)
-                  },2000)
-            }).catch((e)=>{
-                console.log(e)
-            })
             // console.log('formulario final', form);
             if(validarCampos()){
                 axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
@@ -92,6 +79,9 @@ const Form = () => {
                             }
                           }
                     )
+                    setTimeout(()=>{
+                        setRedirect(true)
+                    },2000)
                 }).catch((e)=>{
                     console.log(e)
                 })
@@ -112,16 +102,6 @@ const Form = () => {
                     }
                 });
             }
-            // axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
-            // .then((response)=>{
-            //     Swal.fire(
-            //         'Solicitud enviada correctamente',
-            //         'Este atento a su correo electronico',
-            //         'success'
-            //       )
-            // }).catch((e)=>{
-            //     console.log(e)
-            // })
         }else{
             console.log(form)
             setPage((currPage) => currPage + 1)

@@ -57,15 +57,10 @@ const CrearVacante = () => {
                 confirmButton: 'confirmButton-class',
                 icon: 'icon-class'
             }
-          }
-        ).then((result) => {
-          if(result.isConfirmed){
+          })
+          setTimeout(()=>{
             location.reload()
-          }
-        });
-          // setTimeout(()=>{
-          //   location.reload()
-          // },1500)
+          },1500)
          }).catch((e)=>{
           Swal.fire({
             icon: 'error',
@@ -101,15 +96,10 @@ const CrearVacante = () => {
                 confirmButton: 'confirmButton-class',
                 icon: 'icon-class'
             }
-          }
-        ).then((result) => {
-          if(result.isConfirmed){
-            location.reload()
-          }
-        });
-        // setTimeout(()=>{
-        //   location.reload()
-        // },1500)
+          })
+        setTimeout(()=>{
+          location.reload()
+        },1500)
        }).catch((e)=>{
         Swal.fire({
           icon: 'error',

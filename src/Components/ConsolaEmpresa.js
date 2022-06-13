@@ -1,14 +1,16 @@
-import React,{useContext} from 'react'
+import React,{useContext, useEffect,useState} from 'react'
 import LeftBarnav from './LeftBarNav'
 import CrearVacante from './CrearVacante'
 import InfoToDisplay from './InfoToDisplay'
 import {DataToShowContext} from '../Context/DataToShowContext'
+import axios from 'axios'
 
 const ConsolaEmpresa = () => {
     const leftBarNavTitles = [
         {name:"Crear Vacante",value:0},
         {name:"Status del Puesto",value:4}
     ]
+    const [title,setTitle] = useState('')
     const {optionSelected,detailSelected} = useContext(DataToShowContext)
 
     const componentToRender = () => {
@@ -22,9 +24,18 @@ const ConsolaEmpresa = () => {
             return <CrearVacante/>
         }
     }
+    const token = window.localStorage.getItem('token')
+    useEffect(()=>{
+        axios.get('http://localhost:3000/empresaInfo',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+        .then((response)=>{
+            setTitle(response.data.message.nombreEmpresa)
+        }).catch((e)=>{
+            console.log("error",e)
+        })
+    },[])
     return (
         <div style={styles.contentContainer}>
-            <LeftBarnav title={"BALSOFT"} data={leftBarNavTitles} />
+            <LeftBarnav title={title} data={leftBarNavTitles} />
             {componentToRender()}
         </div>
     )

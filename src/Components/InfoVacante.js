@@ -28,22 +28,42 @@ const InfoVacante = ({data}) => {
 
     const handleAceptarV = () => {
 		Swal.fire({
-		  title: '¿Esta seguro?',
-		  text: "Esto aceptara la solicitud de la vacante" ,
-		  icon: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  confirmButtonText: 'Si, cambiar disponibilidad'
+            title: '¿Esta seguro?',
+			text: "Esto aceptara la solicitud de la vacante" ,
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Si, cambiar disponibilidad',
+			width: '50%',
+			padding: '5rem 10rem',
+			background: '#fff',
+			customClass: {
+				htmlContainer: 'htmlContainer-class',
+				title: 'title-class',
+				confirmButton: 'confirmButton-class',
+				icon: 'icon-class'
+			}
 		}).then((result) => {
 			if (result.isConfirmed) {
 			  axios.patch('http://localhost:3000/vacantes',{data:{id:data.vacanteId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
 				  console.log(response)
 				  Swal.fire(
-					'Status actualizado',
-					'La vacante a sido aceptada',
-					'success'
+					{
+                        icon: 'success',
+                        title: 'Status actualizado',
+                        text: 'La vacante a sido aceptada',
+                        width: '50%',
+                        padding: '5rem 10rem',
+                        background: '#fff',
+                        customClass: {
+                          htmlContainer: 'htmlContainer-class',
+                          title: 'title-class',
+                          confirmButton: 'confirmButton-class',
+                          icon: 'icon-class'
+                        }
+                      }
 				  )
 					setTimeout(()=>{
 					  location.reload()
@@ -57,22 +77,43 @@ const InfoVacante = ({data}) => {
 	
 	  const handleRechazarV = () => {
 		Swal.fire({
-		  title: '¿Esta seguro?',
-		  text: "Esto rechazara la solicitud de la vacante" ,
-		  icon: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  confirmButtonText: 'Si, cambiar disponibilidad'
+            title: '¿Esta seguro?',
+			text: "Esto rechazara la solicitud de la vacante" ,
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Si, cambiar disponibilidad',
+			width: '50%',
+			padding: '5rem 10rem',
+			background: '#fff',
+			customClass: {
+				htmlContainer: 'htmlContainer-class',
+				title: 'title-class',
+				confirmButton: 'confirmButton-class',
+				icon: 'icon-class'
+			}
+          
 		}).then((result) => {
 			if (result.isConfirmed) {
 			  axios.patch('http://localhost:3000/vacantes',{data:{id:data.vacanteId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
 				  console.log(response)
 				  Swal.fire(
-					'Status actualizado',
-					'La vacante a sido rechazada',
-					'success'
+					{
+                        icon: 'success',
+                        title: 'Status actualizado',
+                        text: 'La vacante a sido rechazada',
+                        width: '50%',
+                        padding: '5rem 10rem',
+                        background: '#fff',
+                        customClass: {
+                          htmlContainer: 'htmlContainer-class',
+                          title: 'title-class',
+                          confirmButton: 'confirmButton-class',
+                          icon: 'icon-class'
+                        }
+                      }
 				  )
 					setTimeout(()=>{
 					  location.reload()

@@ -16,7 +16,7 @@ const Provider = ({children})=> {
         ciudad: '', 
         nivelIngles: 'Básico', 
         rangoSueldo: '', 
-        carrera: 'licenciatura_en_informatica', 
+        carrera: 'Licenciatura en Informática', 
         area: '', 
         horario: "",
         contacto:"",

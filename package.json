@@ -28,6 +28,7 @@
     "axios": "^0.26.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "moment": "^2.29.3",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-select": "^5.3.1",

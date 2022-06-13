@@ -2,36 +2,60 @@ import React,{useContext,useEffect,useState} from "react";
 import {DataToShowContext} from '../Context/DataToShowContext'
 import axios from "axios";
 import Swal from "sweetalert2";
+import moment from 'moment';
+import 'moment/locale/es'
 
 const SolicitudEmpresa = (props) => {
   const { data } = props;
   const token = window.localStorage.getItem('token')
-  const { title,rfc,giro,razonSocial,email,telefono,sitioWeb,fechaRegistro, 
-          direccion,colonia,city,codigoPostal,estado, descripcion,
+  const { nombreEmpresa,rfc,giro,razonSocial,email,telefonoEmpresa,sitioWeb,fechaRegistro, 
+          direccion,colonia,ciudad,codigoPostal,estado, descripcion,
           nombreReclutador,emailReclutador,telefonoReclutador,empresaId } = data;
           
   const {setDetailSelected} = useContext(DataToShowContext)
   const [disable,setDisable] = useState(false)
   const [statusText,setStatusText] = useState("")
+  
+	let fecha = moment(fechaRegistro).format('dddd, MMMM D, YYYY')
 
   const handleAceptar = () => {
     Swal.fire({
       title: '¿Esta seguro?',
-      text: "Esto aceptara la solicitud de la empresa" ,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, cambiar disponibilidad'
+			text: "Esto aceptara la solicitud de la vacante" ,
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Si, cambiar disponibilidad',
+			width: '50%',
+			padding: '5rem 10rem',
+			background: '#fff',
+			customClass: {
+				htmlContainer: 'htmlContainer-class',
+				title: 'title-class',
+				confirmButton: 'confirmButton-class',
+				icon: 'icon-class'
+			}
     }).then((result) => {
         if (result.isConfirmed) {
           axios.patch('http://localhost:3000/empresa',{data:{id:empresaId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
           .then((response)=>{
               console.log(response)
               Swal.fire(
-                'Status actualizado',
-                'La empresa a sido aceptada',
-                'success'
+              {
+                icon: 'success',
+                title: 'Status actualizado',
+                text: 'La empresa a sido aceptada',
+                width: '50%',
+                padding: '5rem 10rem',
+                background: '#fff',
+                customClass: {
+                  htmlContainer: 'htmlContainer-class',
+                  title: 'title-class',
+                  confirmButton: 'confirmButton-class',
+                  icon: 'icon-class'
+						    }
+              }
               )
                 setTimeout(()=>{
                   location.reload()
@@ -46,21 +70,41 @@ const SolicitudEmpresa = (props) => {
   const handleRechazar = () => {
     Swal.fire({
       title: '¿Esta seguro?',
-      text: "Esto rechazara la solicitud de la empresa" ,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, cambiar disponibilidad'
+			text: "Esto rechazara la solicitud de la vacante" ,
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Si, cambiar disponibilidad',
+			width: '50%',
+			padding: '5rem 10rem',
+			background: '#fff',
+			customClass: {
+				htmlContainer: 'htmlContainer-class',
+				title: 'title-class',
+				confirmButton: 'confirmButton-class',
+				icon: 'icon-class'
+			}
     }).then((result) => {
         if (result.isConfirmed) {
           axios.patch('http://localhost:3000/empresa',{data:{id:empresaId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
           .then((response)=>{
               console.log(response)
               Swal.fire(
-                'Status actualizado',
-                'La empresa a sido rechazada',
-                'success'
+                {
+                  icon: 'success',
+                  title: 'Status actualizado',
+                  text: 'La empresa a sido rechazada',
+                  width: '50%',
+                  padding: '5rem 10rem',
+                  background: '#fff',
+                  customClass: {
+                    htmlContainer: 'htmlContainer-class',
+                    title: 'title-class',
+                    confirmButton: 'confirmButton-class',
+                    icon: 'icon-class'
+                  }
+                }
               )
                 setTimeout(()=>{
                   location.reload()
@@ -91,179 +135,126 @@ const SolicitudEmpresa = (props) => {
   })
 
   return (
-    <div style={styles.card}>
-      <div style={styles.row}>
-        <div style={{ ...styles.col, marginLeft: "auto" }}>
-          <button style={styles.btnCerrar} onClick={handleCerrar}>X</button>
+    <div style={styles.container}>
+      <div style={styles.innerDiv}>
+        <div style={styles.imgContainer}>
+          <img
+            style={styles.img}
+            src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            alt=""
+          />
         </div>
+        <b style={styles.normalText}>Nombre de la empresa:</b>
+        <p style={styles.normalText}>{nombreEmpresa}</p>
+        <b style={styles.normalText}>Razon social:</b>
+        <p style={styles.normalText}>{razonSocial}</p>
+        <b style={styles.normalText}>Giro:</b>
+        <p style={styles.normalText}>{giro}</p>
+        <b style={styles.normalText}>Rfc:</b>
+        <p style={styles.normalText}>{rfc}</p>
+        <b style={styles.normalText}>Email:</b>
+        <p style={styles.normalText}>{email}</p>
+        <b style={styles.normalText}>Telefono:</b>
+        <p style={styles.normalText}>{telefonoEmpresa}</p>
+        <b style={styles.normalText}>Pagina web:</b>
+        <p style={styles.normalText}>{sitioWeb}</p>
+        <b style={styles.normalText}>Fecha de registro:</b>
+        <p style={styles.normalText}>{fecha}</p>
       </div>
-      <div style={styles.row}>
-        <div style={styles.col_4}>
-          <div style={styles.row}>
-            <div style={{ ...styles.col, margin: "auto", marginBottom: '8px' }}>
-              <div style={styles.imgEmpresaContainer}>
-                <img
-                  style={styles.imgEmpresa}
-                  src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                  alt=""
-                />
-              </div>
-            </div>
-          </div>
-
-          <div style={{ ...styles.col_12, margin: "auto", textAlign: 'center', marginTop: '8px' }}>
-            <p style={styles.normalText}>{title}</p>
-            <p style={styles.normalText}>{razonSocial}</p>
-            <p style={styles.normalText}>{giro}</p>
-            <p style={styles.normalText}>{rfc}</p>
-          </div>
-          <div style={{ ...styles.col_12, margin: "auto", textAlign: 'center', marginTop: '8px' }}>
-            <p style={styles.normalText}>{email}</p>
-            <p style={styles.normalText}>{telefono}</p>
-
-
-            <p style={styles.normalText}>{sitioWeb}</p>
-          </div>
-          <div style={{ ...styles.col_12, margin: "auto", textAlign: 'center', marginTop: '8px' }}>
-            <p style={styles.normalText}>Fecha de registro:</p>
-            <p style={styles.normalText}>{fechaRegistro}</p>
-          </div>
-
-        </div>
-        <div style={styles.col_8}>
-          <div style={styles.row}>
-            <div style={styles.col_12}>
-              <h1> Status ({statusText})</h1>
-              <h2 style={styles.title}>Domicilio</h2>
-              <p style={styles.normalText}>{direccion}</p>
-              <p style={styles.normalText}>{colonia}</p>
-              <p style={styles.normalText}>{city}</p>
-              <p style={styles.normalText}>{codigoPostal}</p>
-              <p style={styles.normalText}>{estado}</p>
-            </div>
-            <div style={styles.col_12}>
-              <h2 style={styles.title}>Reclutador</h2>
-              <p style={styles.normalText}>{nombreReclutador}</p>
-              <p style={styles.normalText}>{emailReclutador}</p>
-              <p style={styles.normalText}>{telefonoReclutador}</p>
-            </div>
-            <div style={styles.col_12}>
-              <h2 style={styles.title}>Descripción</h2>
-              <p style={styles.normalText}>{descripcion}</p>
-            </div>
-          </div>
-        </div>
+      <div style={styles.innerDiv}>
+        <h1> Status ({statusText})</h1>
+        <h2 style={styles.title}>Domicilio</h2>
+        <b style={styles.normalText}>Dirección:</b>
+        <p style={styles.normalText}>{direccion}</p>
+        <b style={styles.normalText}>Colonia:</b>
+        <p style={styles.normalText}>{colonia}</p>
+        <b style={styles.normalText}>Ciudad:</b>
+        <p style={styles.normalText}>{ciudad}</p>
+        <b style={styles.normalText}>Codigo postal:</b>
+        <p style={styles.normalText}>{codigoPostal}</p>
+        <b style={styles.normalText}>Estado:</b>
+        <p style={styles.normalText}>{estado}</p>
+        <h2 style={styles.title}>Descripción:</h2>
+        <p style={styles.normalText}>{descripcion}</p>
       </div>
-      <div style={styles.row}>
-        <div style={{ ...styles.col, marginLeft: "auto" }}>
+      <div style={styles.innerDiv}>
+        <button style={styles.btnCerrar} onClick={handleCerrar}><h1 style={{color:"black"}}>X</h1></button>
+        <h2 style={styles.title}>Nombre del reclutador:</h2>
+        <p style={styles.normalText}>{nombreReclutador}</p>
+        <b style={styles.normalText}>Email del reclutador:</b>
+        <p style={styles.normalText}>{emailReclutador}</p>
+        <b style={styles.normalText}>Telefono del reclutador:</b>
+        <p style={styles.normalText}>{telefonoReclutador}</p>
+        <div style={styles.buttonsContainer}>
           <button
-            // className={disable ? "btnDisabled": null}
             className={`btnAceptar ${disable ? 'btnDisabled' : "pointer"}`}
             disabled={disable}
             onClick={handleAceptar}
-            >
+          >
             Aceptar
           </button>
           <button
             className={`btnRechazar ${disable ? 'btnDisabled' : "pointer"}`}
             disabled={disable}
             onClick={handleRechazar}
-            >
+          >
             Rechazar
           </button>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
 const styles = {
-  card: {
+  container:{
+    // backgroundColor:'red',
+    display:'flex',
+    width:'100%',
+    height:'100%',
+  },
+  innerDiv:{
+    // backgroundColor:'blue',
+    width:'33.3%',
+    height:'100%',
+    display:'flex',
+    flexDirection:'column',
+    alignItems: "center",
+    // justifyContent: "center",
+  },
+  imgContainer:{
+    width: '300px',
+    // height: '300px',
+    borderRadius: "100%",
+    overflow: "hidden",
+    display: "flex",
+    justifyContent: "center",
+  },
+  img:{
     width: "100%",
     height: "auto",
-    padding: '16px',
-    boxSizing: 'border-box',
-    backgroundColor: "#fff",
   },
-  row: {
-    display: "flex",
-    flexWrap: "wrap",
-    marginTop: "4px",
-    marginRight: "2px",
-    marginLeft: "2px",
+  title: {
+    fontSize: '25px',
+    marginBottom: '4px',
+    marginTop:'10px'
   },
-  col: {
-    // width: '100%',
-    maxWidth: '100%',
-    // flex: '1 0 0%'
+  normalText: {
+    fontSize: '16px',
+    marginBottom: '2px',
+    marginTop:'5px'
   },
-  col_12: {
-    width: '100%',
-    flex: '0 0 auto'
-    // flex: '1 0 0%'
-  },
-  col_3: {
-    width: '25%',
-    flex: '0 0 auto'
-  },
-  col_4: {
-    width: '33.33333333%',
-    flex: '0 0 auto'
-  },
-  col_6: {
-    width: '50%',
-    flex: '0 0 auto'
-  },
-  col_8: {
-    width: '66.66666666%',
-    flex: '0 0 auto'
-  },
-  col_9: {
-    width: '75%',
-    flex: '0 0 auto'
+  buttonsContainer:{
+    marginTop: 'auto'
   },
   btnCerrar: {
     background: "none",
     border: "none",
     cursor: 'pointer',
     color: "#999",
+    alignSelf: "flex-end"
   },
-  btnAccion: {
-    border: 'none',
-    padding: '4px 12px',
-    color: '#fff',
-    borderRadius: '4px',
-    width: '132px',
-    height: '38px',
-    margin: '4px 8px',
-    cursor: 'pointer'
-  },
-  title: {
-    fontSize: '24px',
-    marginBottom: '4px'
-  },
-  normalText: {
-    fontSize: '14px',
-    marginBottom: '2px'
-  },
-  btnAceptar: {
-    backgroundColor: '#27ae60',
-  },
-  btnRechazar: {
-    backgroundColor: '#c0392b'
-  },
-  imgEmpresaContainer: {
-    width: "75px",
-    height: "75px",
-    borderRadius: "100%",
-    overflow: "hidden",
-    display: "flex",
-    justifyContent: "center",
-  },
-  imgEmpresa: {
-    width: "100%",
-    height: "auto",
-  },
+
 };
 
 export default SolicitudEmpresa;
