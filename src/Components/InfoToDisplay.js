@@ -7,6 +7,7 @@ import dataFetch from "../Assets/js/dataFetch";
 import CardDetailManager from './CardDetailManager'
 import LoadingSpinner from './LoadingSpinner'
 import axios from "axios"
+import EditarPerfil from './EditarPerfil'
 
 const InfoToDisplay = ({title}) => {
   const {optionSelected,detailSelected} = useContext(DataToShowContext)
@@ -18,6 +19,8 @@ const InfoToDisplay = ({title}) => {
     1-validar vacantes
     2-ver vacantes
     3-status del puesto
+    4-mis vacantes
+    5-editar mi perfil
   */
   const [data,setData] = useState([])
   const [filteredData,setFilteredData] = useState([])
@@ -111,31 +114,30 @@ const InfoToDisplay = ({title}) => {
     ]} setFilterOption={setFilterOption} filterOption={filterOption}/>
     }
   }
-  console.log(filteredData)
+  
   return (
     <div style={styles.container}>
-      {detailSelected ? 
-        <CardDetailManager/>
-      : 
-        <>
-          <h2 style={styles.title}>{title}:</h2>
-          {renderFilter()}
-          {!timedOut ? 
-            !loading ? 
-              filteredData.length!=0 ? filteredData.map((data)=>{
-                return (
-                  <InfoCard props={data} key={data.vacanteId ? data.vacanteId : data.empresaId} />
-                )
-              }): <div>No hay elementos de este tipo</div>
-            : 
-              <div style={styles.spinner}>
-                <LoadingSpinner />
-              </div>
-           : 
-            <div>Algo salio mal</div>}
-        </>
-      }
-      
+          {detailSelected ? 
+            <CardDetailManager/>
+          : 
+            <>
+              <h2 style={styles.title}>{title}:</h2>
+              {renderFilter()}
+              {!timedOut ? 
+                !loading ? 
+                  filteredData.length!=0 ? filteredData.map((data)=>{
+                    return (
+                      <InfoCard props={data} key={data.vacanteId ? data.vacanteId : data.empresaId} />
+                    )
+                  }): <div>No hay elementos de este tipo</div>
+                : 
+                  <div style={styles.spinner}>
+                    <LoadingSpinner />
+                  </div>
+              : 
+                <div>Algo salio mal</div>}
+            </>
+          }
     </div>
   );
 };

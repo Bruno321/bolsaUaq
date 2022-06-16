@@ -11,7 +11,7 @@ const Header = () =>{
 
     const {cerrarSesion} = useContext(Context)
     const {optionSelected,setOptionSelected} = useContext(DataToShowContext)
-    
+
     return(
         <>
         <header style = {styles.headerContainer}>
@@ -25,6 +25,7 @@ const Header = () =>{
             {/* <img src = {profileUser} alt = "Foto de Usuario" style = {styles.imgProfileUser}/> */}
             <ul style = {{...styles.ulOrder,marginRight:"20px"}}  className="CerrarSesion"> 
                 <li style={styles.title} onClick={cerrarSesion}>Cerrar sesión</li>
+                <li style={{...styles.title,marginLeft:"20px"}} onClick={()=>setOptionSelected(5)}>Editar</li>
             </ul>
         </header>
         </>

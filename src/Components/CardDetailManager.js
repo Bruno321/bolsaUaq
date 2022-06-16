@@ -3,9 +3,8 @@ import SolicitudEmpresa from './SolicitudEmpresa'
 import InfoVacante from './InfoVacante'
 import {DetailContext} from '../Context/DetailContext'
 import {DataToShowContext} from '../Context/DataToShowContext'
-import CrearVacante from './CrearVacante'
 
-// Depending on the number of optionSelected is the detail component that is going to be rendered
+// Depending on the value of optionSelected is the detail component that is going to be rendered
 const CardDetailManager = () => {
 
   const {data} = useContext(DetailContext)
@@ -18,7 +17,6 @@ const CardDetailManager = () => {
         if(optionSelected==1 || optionSelected==2){
             return <InfoVacante data={data}/>
         }   
-        
     }
     return (
         <>

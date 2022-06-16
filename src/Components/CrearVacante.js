@@ -24,7 +24,7 @@ const CrearVacante = () => {
     if(detailSelected) {
       Swal.fire({
         title: '¿Está seguro?',
-        text: "Esta vacante volver a estar pendiente de validación",
+        text: "Esta vacante volvera a estar pendiente de validación",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
