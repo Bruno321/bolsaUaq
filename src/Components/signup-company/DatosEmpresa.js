@@ -10,6 +10,7 @@ function DatosEmpresa(props) {
                 usuario: form.usuario,
                 email: form.email,
                 telefonoEmpresa: form.telefonoEmpresa,
+                logo: form.logo,
                 rfc: form.rfc,
                 razonSocial: form.razonSocial,
                 sector: form.sector,
@@ -38,7 +39,7 @@ function DatosEmpresa(props) {
             <input type="text" placeholder="Usuario*" value={form.usuario} onChange={(e)=>{setForm({...form,usuario:e.target.value}); cambiarBorde(e.target.id)}} id="usuario"/>
             <input type="text" placeholder="Correo electrónico*" value={form.email} onChange={(e)=>{setForm({...form,email:e.target.value}); cambiarBorde(e.target.id)}} id="email"/>
             <input type="text" placeholder="Teléfono*" value={form.telefonoEmpresa} onChange={(e)=>{setForm({...form,telefonoEmpresa:e.target.value}); cambiarBorde(e.target.id)}} id="telefonoEmpresa"/>
-            <button>Subir logo*</button>
+            <input type="file" className="custom-fi" onChange={(e)=>{setForm({...form,logo:e.target.value}); cambiarBorde(e.target.id)}} id="logo"/>
             <input type = "text" placeholder="RFC de la empresa*" value={form.rfc} onChange={(e)=>{setForm({...form,rfc:e.target.value}); cambiarBorde(e.target.id)}} id="rfc"/>
             <input type = "text" placeholder="Razón social*" value={form.razonSocial} onChange={(e)=>{setForm({...form,razonSocial:e.target.value}); cambiarBorde(e.target.id)}} id="razonSocial"/>
             <input type = "text" placeholder="Sector*" value={form.sector} onChange={(e)=>{setForm({...form,sector:e.target.value});cambiarBorde(e.target.id)}} id="sector"/>

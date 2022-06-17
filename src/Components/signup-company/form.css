@@ -150,3 +150,29 @@ a{
         display: none;
     }
 }
+/* Estilos para el input del logo */
+.custom-fi{
+    display: block;
+    border: inherit;
+    height: inherit;
+    overflow: hidden;
+}
+
+.custom-fi::-webkit-file-upload-button {
+    visibility: hidden;
+    width: 0px;
+    height: 40px;
+}
+.custom-fi::before {
+    content: 'Escoger logo*';
+    font-size: 1.6rem;
+    height: 40px;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1.6rem;
+    background-color: #5F4FEB;
+    color: #fff;
+    cursor: pointer;
+}
