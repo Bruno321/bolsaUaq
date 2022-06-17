@@ -34,7 +34,6 @@ function DatosEmpresa(props) {
 
     return (
         <div className="datos-empresa-container">
-            <a>Los campos con "*" son obligatorios</a>
             <input type="text" placeholder="Nombre de la empresa*" value={form.nombreEmpresa} onChange={(e)=>{setForm({...form,nombreEmpresa:e.target.value}); cambiarBorde(e.target.id)}} id="nombreEmpresa"/>
             <input type="text" placeholder="Usuario*" value={form.usuario} onChange={(e)=>{setForm({...form,usuario:e.target.value}); cambiarBorde(e.target.id)}} id="usuario"/>
             <input type="text" placeholder="Correo electrónico*" value={form.email} onChange={(e)=>{setForm({...form,email:e.target.value}); cambiarBorde(e.target.id)}} id="email"/>

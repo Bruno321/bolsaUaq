@@ -1,15 +1,16 @@
 /* Pantalla general */
 .screen-register{
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
 }
 /*PROGRESS BAR*/
 .progress-bar{
     width: 600px;
     height: 4px;
-    background-color: white;
-    margin-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    margin-left: 130px;
 }
 .progress-bar div{
     width: 33.3%;
@@ -40,8 +41,9 @@
     background-color: #F5F5F5;
 }
 .multistep .step span{
-    margin-top: 15px;
+    margin-top: 16px;
     line-height: 25px;
+    font-size: medium;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -52,8 +54,7 @@
 /* Sección del Formulario */
 .form-container {
     width: 100%;
-    height: auto;
-    /* margin-top: 60px; */
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,26 +63,27 @@
 .body{
     padding: 30px;
 }
-.form-container h1 {
+.texto-header{
     font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    top: 10px;
+}
+.texto-header h1 {
     font-size: 4.8rem;
     margin-bottom: 10px;
 }
-.form-container p {
-    font-family: 'Montserrat', sans-serif;
+.texto-header p {
     font-size: 1.6rem;
-    margin-bottom: 30px;
 }
 /* Contenedor de los campos */
 .container {
-    width: 35vw;
-    height: 100%;
-
+    background-color: yellow;
+    height: 0;
 }
 .container p {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
-    margin: 20px;
+    margin: 0px;
 }
 /* container de los forms y de los botones */
 .register-container{
@@ -118,7 +120,7 @@ input, .select-country {
 /* Sección de la imagen */
 .img-half-screen {
     width: 100%;
-    height: 1260px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -137,12 +139,12 @@ input, .select-country {
 }
 
 a{
-    size: 150px;
-    opacity: 75%;
+    font-size: 15px;
+    opacity: 75% !important;
 }
 
 .select-country{
-    width: 97.5%;
+    width: 96.5%;
 }
 
 @media only screen and (max-width: 768px) {

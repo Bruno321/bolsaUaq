@@ -183,6 +183,7 @@ const Form = () => {
                 <div className="body">
                 <div className="header">
                     <p>Necesitamos el contacto de quién se encargue en ingresar a la plataforma</p>
+                    <a>Los campos con "*" son obligatorios</a>
                 </div>
                     {PageDisplay()}
                 </div>
