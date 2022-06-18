@@ -33,3 +33,11 @@
     height: 50px;
     /* display: flex; */
 }
+
+.pSweetAlert{
+    margin-top: 20px;
+}
+
+.inputSweetAlert{
+    width: 100%;
+}

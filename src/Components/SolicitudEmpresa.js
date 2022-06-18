@@ -20,53 +20,94 @@ const SolicitudEmpresa = (props) => {
 
   const handleAceptar = () => {
     Swal.fire({
-      title: '¿Está seguro?',
-			text: "Esto aceptará la solicitud de la empresa" ,
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Aceptar empresa',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Sí, cambiar disponibilidad',
       cancelButtonText: 'Cancelar',
-			width: '50%',
-			padding: '5rem 10rem',
-			background: '#fff',
-			customClass: {
-				htmlContainer: 'htmlContainer-class',
-				title: 'title-class',
-				confirmButton: 'confirmButton-class',
-        cancelButton: 'cancelButton-class',
-				icon: 'icon-class'
-			}
+      width: '50%',
+				padding: '5rem 10rem',
+				background: '#fff',
+				customClass: {
+					htmlContainer: 'htmlContainer-class',
+					title: 'title-class',
+					confirmButton: 'confirmButton-class',
+					cancelButton: 'cancelButton-class',
+					icon: 'icon-class'
+				},
+      html: 
+        '<h4>Para continuar con la aprobación de la empresa, primero debe de asignar el usuario y la contraseña</h4>' +
+        '<p class="pSweetAlert">Usuario:</p>' + 
+        '<input id="usuario">' +
+        '<p class="pSweetAlert">Constraseña:</p>' + 
+        '<input id="password">',
+      focusConfirm: false,
+      preConfirm: () => {
+        return new Promise((resolve) => {
+          resolve([
+            document.getElementById('usuario').value,
+            document.getElementById('password').value
+          ])
+        })
+      }
     }).then((result) => {
-        if (result.isConfirmed) {
-          axios.patch('http://localhost:3000/empresa',{data:{id:empresaId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
-          .then((response)=>{
-              console.log(response)
-              Swal.fire(
-              {
-                icon: 'success',
-                title: 'Estatus actualizado',
-                text: 'La empresa ha sido aceptada',
-                width: '50%',
-                padding: '5rem 10rem',
-                background: '#fff',
-                customClass: {
-                  htmlContainer: 'htmlContainer-class',
-                  title: 'title-class',
-                  confirmButton: 'confirmButton-class',
-                  icon: 'icon-class'
-						    }
-              }
-              ).then((result) => {
-                if(result.isConfirmed){
-                  location.reload()
-                }
-              });
-          }).catch((e)=>{
-              console.log("error",e)
+      console.log(result.value);
+      const usuario = result.value[0];
+      const password = result.value[1];
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: '¿Está seguro?',
+          text: "Esto aceptará la solicitud de la empresa" ,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, cambiar disponibilidad',
+          cancelButtonText: 'Cancelar',
+          width: '50%',
+          padding: '5rem 10rem',
+          background: '#fff',
+          customClass: {
+            htmlContainer: 'htmlContainer-class',
+            title: 'title-class',
+            confirmButton: 'confirmButton-class',
+            cancelButton: 'cancelButton-class',
+            icon: 'icon-class'
+          }
+          }).then((result) => {
+              if (result.isConfirmed) {
+                console.log({data:{id:empresaId,status:0}});
+                axios.patch('http://localhost:3000/empresa',{data:{id:empresaId,status:0, password: password, usuario: usuario}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+                .then((response)=>{
+                    console.log(response)
+                    Swal.fire(
+                    {
+                      icon: 'success',
+                      title: 'Estatus actualizado',
+                      text: 'La empresa ha sido aceptada',
+                      width: '50%',
+                      padding: '5rem 10rem',
+                      background: '#fff',
+                      customClass: {
+                        htmlContainer: 'htmlContainer-class',
+                        title: 'title-class',
+                        confirmButton: 'confirmButton-class',
+                        icon: 'icon-class'
+                      }
+                    }
+                    ).then((result) => {
+                      if(result.isConfirmed){
+                        location.reload()
+                      }
+                    });
+                }).catch((e)=>{
+                    console.log("error",e)
+                })
+            }
           })
       }
+    }).catch(error => {
+      console.error(error)
     })
   }
 
