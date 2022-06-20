@@ -2,7 +2,11 @@ import React,{ useState,useContext, useEffect } from "react";
 import {RegisterContext} from "../../Context/RegisterContext";
 
 function DatosEmpresa(props) {
-    
+    const {form,setForm} = useContext(RegisterContext)
+
+    const cambiarBorde = (id) => {
+        document.getElementById(`${id}`).style['border-color'] = 'black';
+    }
     useEffect(() => {
         if(props.validar == 'si'){
             const formEmpresa = {
@@ -26,11 +30,7 @@ function DatosEmpresa(props) {
         }
     });
     
-    const {form,setForm} = useContext(RegisterContext)
-
-    const cambiarBorde = (id) => {
-        document.getElementById(`${id}`).style['border-color'] = 'black';
-    }
+   
 
     return (
         <div className="datos-empresa-container">
@@ -38,7 +38,7 @@ function DatosEmpresa(props) {
             <input type="text" placeholder="Usuario*" value={form.usuario} onChange={(e)=>{setForm({...form,usuario:e.target.value}); cambiarBorde(e.target.id)}} id="usuario"/>
             <input type="text" placeholder="Correo electrónico*" value={form.email} onChange={(e)=>{setForm({...form,email:e.target.value}); cambiarBorde(e.target.id)}} id="email"/>
             <input type="text" placeholder="Teléfono*" value={form.telefonoEmpresa} onChange={(e)=>{setForm({...form,telefonoEmpresa:e.target.value}); cambiarBorde(e.target.id)}} id="telefonoEmpresa"/>
-            <input type="file" className="custom-fi" onChange={(e)=>{setForm({...form,logo:e.target.value}); cambiarBorde(e.target.id)}} id="logo"/>
+            <input type="file" className="custom-fi" onChange={(e)=>{setForm({...form,logo:e.target.files[0]}); cambiarBorde(e.target.id)}} id="logo"/>
             <input type = "text" placeholder="RFC de la empresa*" value={form.rfc} onChange={(e)=>{setForm({...form,rfc:e.target.value}); cambiarBorde(e.target.id)}} id="rfc"/>
             <input type = "text" placeholder="Razón social*" value={form.razonSocial} onChange={(e)=>{setForm({...form,razonSocial:e.target.value}); cambiarBorde(e.target.id)}} id="razonSocial"/>
             <input type = "text" placeholder="Sector*" value={form.sector} onChange={(e)=>{setForm({...form,sector:e.target.value});cambiarBorde(e.target.id)}} id="sector"/>

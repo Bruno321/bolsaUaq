@@ -61,7 +61,42 @@ const Form = () => {
         if(page>1){
             // console.log('formulario final', form);
             if(validarCampos()){
-                axios.post('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+                let bodyFormData = new FormData();
+                bodyFormData.append('nombreEmpresa', form.nombreEmpresa);
+                bodyFormData.append('usuario', form.usuario);
+                bodyFormData.append('email', form.email);
+                bodyFormData.append('telefonoEmpresa', form.telefonoEmpresa);
+                bodyFormData.append('logo', form.logo);//
+                bodyFormData.append('rfc', form.rfc);
+                bodyFormData.append('razonSocial', form.razonSocial);
+                bodyFormData.append('sector', form.sector);
+                bodyFormData.append('descripcion', form.descripcion);
+                bodyFormData.append('sitioWeb', form.sitioWeb);
+                bodyFormData.append('pais', form.pais);
+                bodyFormData.append('estado', form.estado);
+                bodyFormData.append('ciudad', form.ciudad);
+                bodyFormData.append('codigoPostal', form.codigoPostal);
+                bodyFormData.append('colonia', form.colonia);
+                bodyFormData.append('direccion', form.direccion);
+                bodyFormData.append('numExterior', form.numExterior);
+                bodyFormData.append('numInterior', form.numInterior);
+                bodyFormData.append('nombreReclutador', form.nombreReclutador);
+                bodyFormData.append('apellido', form.apellido);
+                bodyFormData.append('telefonoReclutador', form.telefonoReclutador);
+                bodyFormData.append('giro', form.giro);
+                bodyFormData.append('emailReclutador', form.emailReclutador);
+                // axios.post('http://localhost:3000/empresa',{data:form},{headers:{"Access-Control-Allow-Origin":null,"Content-Type": "multipart/form-data"}, mode: 'cors',})
+                // console.log(bodyFormData.values())
+                // for (const value of bodyFormData.values()) {
+                //     console.log(value);
+                // }
+                axios({
+                    method: "POST",
+                    url: "http://localhost:3000/empresa",
+                    data: bodyFormData,
+                    headers: { "Content-Type": "multipart/form-data","Access-Control-Allow-Origin":null },
+                    mode: 'cors',
+                  })
                     .then((response)=>{
                     Swal.fire(
                         {
@@ -107,7 +142,6 @@ const Form = () => {
                 });
             }
         }else{
-            console.log(form)
             setPage((currPage) => currPage + 1)
         }
     }

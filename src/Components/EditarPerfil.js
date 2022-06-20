@@ -9,7 +9,7 @@ const EditarPerfil = (props) => {
   const { data } = props;
   const { nombreEmpresa,rfc,giro,razonSocial,email,telefonoEmpresa,sitioWeb, 
     direccion,colonia,ciudad,codigoPostal,estado, descripcion,
-    nombreReclutador,emailReclutador,telefonoReclutador } = data;
+    nombreReclutador,emailReclutador,telefonoReclutador,logo } = data;
   const [form,setForm] = useState({
     nombreEmpresa:nombreEmpresa,
     rfc: rfc,
@@ -107,7 +107,7 @@ const EditarPerfil = (props) => {
         <div style={styles.imgContainer}>
           <img
             style={styles.img}
-            src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            src={`http://localhost:3000/${logo}`}
             alt=""
           />
         </div>
