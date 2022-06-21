@@ -76,9 +76,8 @@
     font-size: 1.6rem;
 }
 /* Contenedor de los campos */
-.container {
-    background-color: yellow;
-    height: 0;
+.container{
+    height: 0 !important;
 }
 .container p {
     font-family: 'Montserrat', sans-serif;
