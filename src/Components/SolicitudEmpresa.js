@@ -10,7 +10,7 @@ const SolicitudEmpresa = (props) => {
   const token = window.localStorage.getItem('token')
   const { nombreEmpresa,rfc,giro,razonSocial,email,telefonoEmpresa,sitioWeb,fechaRegistro, 
           direccion,colonia,ciudad,codigoPostal,estado, descripcion,
-          nombreReclutador,emailReclutador,telefonoReclutador,empresaId } = data;
+          nombreReclutador,emailReclutador,telefonoReclutador,empresaId,logo } = data;
           
   const {setDetailSelected} = useContext(DataToShowContext)
   const [disable,setDisable] = useState(false)
@@ -51,7 +51,6 @@ const SolicitudEmpresa = (props) => {
         })
       }
     }).then((result) => {
-      console.log(result.value);
       const usuario = result.value[0];
       const password = result.value[1];
       if (result.isConfirmed) {
@@ -76,8 +75,9 @@ const SolicitudEmpresa = (props) => {
           }
           }).then((result) => {
               if (result.isConfirmed) {
-                console.log({data:{id:empresaId,status:0}});
-                axios.patch('http://localhost:3000/empresa',{data:{id:empresaId,status:0, password: password, usuario: usuario}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+                // console.log({data:{id:empresaId,status:0}});
+                // Acepta la solicitud de empresa
+                axios.patch('http://localhost:3000/empresas',{data:{id:empresaId,status:0, password: password, usuario: usuario}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
                 .then((response)=>{
                     console.log(response)
                     Swal.fire(
@@ -187,7 +187,7 @@ const SolicitudEmpresa = (props) => {
         <div style={styles.imgContainer}>
           <img
             style={styles.img}
-            src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            src={`http://localhost:3000/api/${logo}`}
             alt=""
           />
         </div>

@@ -42,7 +42,8 @@ const CrearVacante = () => {
         }
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.put('http://localhost:3000/vacante',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+          // Editar vacante
+          axios.put('http://localhost:3000/api/empresa/vacantes',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
          .then((response)=>{
           Swal.fire({
             icon: 'success',
@@ -82,7 +83,8 @@ const CrearVacante = () => {
       })
     }else{
       if(validarCampos()){
-        axios.post('http://localhost:3000/vacante',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+        // Crear solicitud de vacante
+        axios.post('http://localhost:3000/api/empresa/vacantes',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
        .then((response)=>{
         Swal.fire({
             icon: 'success',

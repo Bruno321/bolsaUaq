@@ -5,7 +5,6 @@ const Provider = ({children})=> {
 
     const [form,setForm] = useState({
         nombreEmpresa: '', 
-        usuario: '', 
         email: '', 
         telefonoEmpresa: '', 
         logo: '', 

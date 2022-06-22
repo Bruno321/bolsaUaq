@@ -43,7 +43,7 @@ const LoginVinculacion = () => {
                 }
             });
         }else{
-            axios.post('http://localhost:3000/loginVinculador',{data},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+            axios.post('http://localhost:3000/api/auth/vinculador',{data},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
             .then((response)=>{
                 setUserTypeFunc(true)
                 iniciarSesion(response.data.message)

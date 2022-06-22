@@ -35,7 +35,7 @@ const DropDownSetStatus = ({vacanteId,filterOption,setFilterOption}) => {
 			}
           }).then((result) => {
               if (result.isConfirmed) {
-                axios.patch('http://localhost:3000/vacante',{data:{vacanteId:vacanteId,isDisponible:e.value}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+                axios.patch('http://localhost:3000/api/empresa/vacantes',{data:{vacanteId:vacanteId,isDisponible:e.value}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
                 .then((response)=>{
                     console.log(response)
                     Swal.fire({

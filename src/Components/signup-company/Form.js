@@ -63,7 +63,6 @@ const Form = () => {
             if(validarCampos()){
                 let bodyFormData = new FormData();
                 bodyFormData.append('nombreEmpresa', form.nombreEmpresa);
-                bodyFormData.append('usuario', form.usuario);
                 bodyFormData.append('email', form.email);
                 bodyFormData.append('telefonoEmpresa', form.telefonoEmpresa);
                 bodyFormData.append('logo', form.logo);//
@@ -85,14 +84,9 @@ const Form = () => {
                 bodyFormData.append('telefonoReclutador', form.telefonoReclutador);
                 bodyFormData.append('giro', form.giro);
                 bodyFormData.append('emailReclutador', form.emailReclutador);
-                // axios.post('http://localhost:3000/empresa',{data:form},{headers:{"Access-Control-Allow-Origin":null,"Content-Type": "multipart/form-data"}, mode: 'cors',})
-                // console.log(bodyFormData.values())
-                // for (const value of bodyFormData.values()) {
-                //     console.log(value);
-                // }
                 axios({
                     method: "POST",
-                    url: "http://localhost:3000/empresa",
+                    url: "http://localhost:3000/api/empresa/registrar",
                     data: bodyFormData,
                     headers: { "Content-Type": "multipart/form-data","Access-Control-Allow-Origin":null },
                     mode: 'cors',

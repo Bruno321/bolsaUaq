@@ -33,20 +33,19 @@ const InfoToDisplay = ({title}) => {
  
   useEffect(()=>{
     // console.log("entre al use Effect----------------------------------------------------------")
-    // Si se selecciono validar empresa o ver empresas
+    // Si se selecciono validar empresa o ver empresas, obtiene todas las empresas
     if(optionSelected==0 || optionSelected==3){
-         axios.get('http://localhost:3000/empresa',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+         axios.get('http://localhost:3000/api/empresas',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
             .then((response)=>{
-               
                 setData(response.data.message)
                 setLoading(false)
             }).catch((e)=>{
                 console.log("error",e)
             })
     }
-    // Si se selecciono validar vacante o ver vacante
+    // Si se selecciono validar vacante o ver vacante, obtiene todas las vacantes
     if(optionSelected==1|| optionSelected==2  ){
-      axios.get('http://localhost:3000/vacantes',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+      axios.get('http://localhost:3000/api/vacantes',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
          .then((response)=>{
              setData(response.data.message)
              setLoading(false)
@@ -54,10 +53,11 @@ const InfoToDisplay = ({title}) => {
              console.log("error",e)
          })
     }
-    // Si se selecciono status del puesto
+    // Si se selecciono status del puesto, obtiene las vacantes de la empresa logeada
   if(optionSelected==4 ){
-    axios.get('http://localhost:3000/vacante',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+    axios.get('http://localhost:3000/api/empresa/vacantes',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
       .then((response)=>{
+        console.log(response)
           
           setData(response.data.message)
           setLoading(false)

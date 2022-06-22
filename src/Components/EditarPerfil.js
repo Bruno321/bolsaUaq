@@ -107,7 +107,7 @@ const EditarPerfil = (props) => {
         <div style={styles.imgContainer}>
           <img
             style={styles.img}
-            src={`http://localhost:3000/${logo}`}
+            src={`http://localhost:3000/api/${logo}`}
             alt=""
           />
         </div>

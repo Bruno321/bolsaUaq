@@ -29,7 +29,7 @@ const ConsolaEmpresa = () => {
     }
     const token = window.localStorage.getItem('token')
     useEffect(()=>{
-        axios.get('http://localhost:3000/empresaInfo',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+        axios.get('http://localhost:3000/api/empresa',{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
         .then((response)=>{
             setData(response.data.message)
             console.log(response.data.message)

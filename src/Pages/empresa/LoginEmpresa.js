@@ -48,7 +48,7 @@ const LoginEmpresa = () => {
             });
         }else{
             //Mandar a hacer el fetch
-            axios.post('http://localhost:3000/loginEmpresa',{data},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
+            axios.post('http://localhost:3000/api/auth/empresa',{data},{headers:{"Access-Control-Allow-Origin":null}, mode: 'cors',})
             .then((response)=>{
                 setUserTypeFunc(false)
                 iniciarSesion(response.data.message)

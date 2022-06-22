@@ -82,7 +82,8 @@ const InfoCard = ({ props,filterOption }) => {
 					if (result.isConfirmed) {
 					  console.log(data.empresaId)
 					  console.log({data:{id:data.empresaId,status:0}});
-					  axios.patch('http://localhost:3000/empresa',{data:{id:data.empresaId,status:0, password: password, usuario: usuario}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+					//   Edita el status de una empresa a acpetado
+					  axios.patch('http://localhost:3000/api/empresas',{data:{id:data.empresaId,status:0, password: password, usuario: usuario}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 					  .then((response)=>{
 						  console.log(response)
 						  Swal.fire(
@@ -140,7 +141,8 @@ const InfoCard = ({ props,filterOption }) => {
 			}
 		).then((result) => {
 			if (result.isConfirmed) {
-			  axios.patch('http://localhost:3000/empresa',{data:{id:props.empresaId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+					//   Edita el status de una empresa a rechazado
+			  axios.patch('http://localhost:3000/api/empresas',{data:{id:props.empresaId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
 				  Swal.fire({
 						icon: 'success',
@@ -197,7 +199,8 @@ const InfoCard = ({ props,filterOption }) => {
 			}
 		).then((result) => {
 			if (result.isConfirmed) {
-			  axios.patch('http://localhost:3000/vacantes',{data:{id:props.vacanteId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+				// edita status de una vacante como aceptada
+			  axios.patch('http://localhost:3000/api/vacantes',{data:{id:props.vacanteId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
 				  Swal.fire({
 					icon: 'success',
@@ -249,7 +252,8 @@ const InfoCard = ({ props,filterOption }) => {
 			}
 		}).then((result) => {
 			if (result.isConfirmed) {
-			  axios.patch('http://localhost:3000/vacantes',{data:{id:props.vacanteId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+				// edita status de una vacante como rechazada
+			  axios.patch('http://localhost:3000/api/vacantes',{data:{id:props.vacanteId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
 				  Swal.fire({
 					icon: 'success',
