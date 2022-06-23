@@ -40,7 +40,7 @@ function DatosEmpresa(props) {
             <input type = "text" placeholder="RFC de la empresa*" value={form.rfc} onChange={(e)=>{setForm({...form,rfc:e.target.value}); cambiarBorde(e.target.id)}} id="rfc"/>
             <input type = "text" placeholder="Razón social*" value={form.razonSocial} onChange={(e)=>{setForm({...form,razonSocial:e.target.value}); cambiarBorde(e.target.id)}} id="razonSocial"/>
             <input type = "text" placeholder="Sector*" value={form.sector} onChange={(e)=>{setForm({...form,sector:e.target.value});cambiarBorde(e.target.id)}} id="sector"/>
-            <input type = "text" placeholder="Descripción breve*" value={form.descripcion} onChange={(e)=>{setForm({...form,descripcion:e.target.value}); cambiarBorde(e.target.id)}} id="descripcion"/>
+            <textarea placeholder="Descripción breve*" className = "description-company-input" value={form.descripcion} onChange={(e)=>{setForm({...form,descripcion:e.target.value}); cambiarBorde(e.target.id)}} id="descripcion"> </textarea>
             <input type = "text" placeholder="Página web*" value={form.sitioWeb} onChange={(e)=>{setForm({...form,sitioWeb:e.target.value}); cambiarBorde(e.target.id)}} id="sitioWeb"/>
             <input type = "text" placeholder="Giro*" value={form.giro} onChange={(e)=>{setForm({...form,giro:e.target.value}); cambiarBorde(e.target.id)}} id="giro"/>
         </div>

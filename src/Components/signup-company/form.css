@@ -10,12 +10,14 @@
     height: 4px;
     margin-top: 10px;
     margin-bottom: 25px;
-    margin-left: 130px;
+    margin-left: 0px;
+    transition: all 0.7s;
 }
 .progress-bar div{
     width: 33.3%;
     height: 100%;
     background-color: #5F4FEB;
+    transition: all 0.7s;
 }
 /*STEPS del form */
 .multistep{
@@ -119,7 +121,7 @@ input, .select-country {
 /* Sección de la imagen */
 .img-half-screen {
     width: 100%;
-    height: 100vh;
+    height: 175vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -144,6 +146,13 @@ a{
 
 .select-country{
     width: 96.5%;
+}
+
+/* Input de Descripción */
+.description-company-input{
+    width: 96.5%;
+    height: 100px;
+    border-radius: 5px;
 }
 
 @media only screen and (max-width: 768px) {
