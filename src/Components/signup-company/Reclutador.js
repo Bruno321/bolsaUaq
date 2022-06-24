@@ -30,9 +30,9 @@ function Reclutador (props){
     return(
         <div className = "reclutador-container">
             <input type = "text" placeholder="Nombre(s)*" value={form.nombreReclutador} onChange={(e)=>{setForm({...form,nombreReclutador:e.target.value}); cambiarBorde(e.target.id)}} id="nombreReclutador"/>
-            <input type = "text" placeholder="Apellidos*" value={form.apellido} onChange={(e)=>{setForm({...form,apellido:e.target.value}); cambiarBorde(e.target.id)}} id="apellido"/>
-            <input type = "text" placeholder="Teléfono*" value={form.telefonoReclutador} onChange={(e)=>{setForm({...form,telefonoReclutador:e.target.value}); cambiarBorde(e.target.id)}} id="telefonoReclutador"/>
-            <input type = "text" placeholder="Correo electrónico del reclutador**" value={form.emailReclutador} onChange={(e)=>{setForm({...form,emailReclutador:e.target.value});cambiarBorde(e.target.id)}} id="emailReclutador"/>
+            <input type = "text" placeholder="Apellidos*" value={form.apellido} onChange={(e)=>{setForm({...form,apellido:e.target.value}); cambiarBorde(e.target.id)}} id="apellido" required/>
+            <input type = "text" placeholder="Teléfono*" value={form.telefonoReclutador} onChange={(e)=>{setForm({...form,telefonoReclutador:e.target.value}); cambiarBorde(e.target.id)}} id="telefonoReclutador" />
+            <input type = "email" placeholder="Correo electrónico del reclutador**" value={form.emailReclutador} onChange={(e)=>{setForm({...form,emailReclutador:e.target.value});cambiarBorde(e.target.id)}} id="emailReclutador" required/>
         </div>
     )
 }

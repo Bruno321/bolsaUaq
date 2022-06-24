@@ -34,7 +34,7 @@ function DatosEmpresa(props) {
     return (
         <div className="datos-empresa-container">
             <input type="text" placeholder="Nombre de la empresa*" value={form.nombreEmpresa} onChange={(e)=>{setForm({...form,nombreEmpresa:e.target.value}); cambiarBorde(e.target.id)}} id="nombreEmpresa"/>
-            <input type="text" placeholder="Correo electrónico*" value={form.email} onChange={(e)=>{setForm({...form,email:e.target.value}); cambiarBorde(e.target.id)}} id="email"/>
+            <input type="email" placeholder="Correo electrónico*" value={form.email} onChange={(e)=>{setForm({...form,email:e.target.value}); cambiarBorde(e.target.id)}} id="email" required/>
             <input type="text" placeholder="Teléfono*" value={form.telefonoEmpresa} onChange={(e)=>{setForm({...form,telefonoEmpresa:e.target.value}); cambiarBorde(e.target.id)}} id="telefonoEmpresa"/>
             <input type="file" className="custom-fi" onChange={(e)=>{setForm({...form,logo:e.target.files[0]}); cambiarBorde(e.target.id)}} id="logo"/>
             <input type = "text" placeholder="RFC de la empresa*" value={form.rfc} onChange={(e)=>{setForm({...form,rfc:e.target.value}); cambiarBorde(e.target.id)}} id="rfc"/>
