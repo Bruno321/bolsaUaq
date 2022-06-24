@@ -163,22 +163,22 @@ const CrearVacante = () => {
     <div style={styles.container}>
       <h2 style={styles.title}>Registro de Vacante</h2>
       <div>
-        <a style={styles.a}>Los campos con "*" son obligatorios</a>
-        <div>
+        <a>Los campos con "*" son obligatorios</a>
+        <div style={{marginTop: '15px'}}>
           <p style={styles.parrafo}>Título de la oferta de empleo:</p>
           <input type="text" placeholder="Ingresa el título de la oferta de empleo*" style={styles.input} value={form.nombreVacante} onChange={(e)=>{setForm({...form,nombreVacante:e.target.value}); cambiarBorde(e.target.id)}} id='nombreVacante'/> 
           <p style={styles.parrafo}>Descripción del puesto:</p>
-          <input type="text" placeholder="Ingresa la descripción del puesto*" style={styles.inputLarge} value={form.descripcion} onChange={(e)=>{setForm({...form,descripcion:e.target.value}); cambiarBorde(e.target.id)}} id='descripcion'/>
+          <textarea type="text" placeholder="Ingresa la descripción del puesto*" style={styles.inputLarge} value={form.descripcion} onChange={(e)=>{setForm({...form,descripcion:e.target.value}); cambiarBorde(e.target.id)}} id='descripcion'/>
           <p style={styles.parrafo}>Requisitos:</p>
-          <input type="text" placeholder="Ingresa los requisitos del puesto*" style={styles.inputLarge} value={form.requisitos} onChange={(e)=>{setForm({...form,requisitos:e.target.value}); cambiarBorde(e.target.id);}} id='requisitos'/>
+          <textarea type="text" placeholder="Ingresa los requisitos del puesto*" style={styles.inputLarge} value={form.requisitos} onChange={(e)=>{setForm({...form,requisitos:e.target.value}); cambiarBorde(e.target.id);}} id='requisitos'/>
           <p style={styles.parrafo}>Competencias:</p>
-          <input type="text" placeholder="Ingresa las competencias del puesto*" style={styles.inputLarge} value={form.competencias} onChange={(e)=>{setForm({...form,competencias:e.target.value}); cambiarBorde(e.target.id);}} id='competencias'/>
+          <textarea type="text" placeholder="Ingresa las competencias del puesto*" style={styles.inputLarge} value={form.competencias} onChange={(e)=>{setForm({...form,competencias:e.target.value}); cambiarBorde(e.target.id);}} id='competencias'/>
           <p style={styles.parrafo}>Tipo de Contratación:</p>
           <input type="text" placeholder="Ingresa el tipo de contratación*" style={styles.input} value={form.tipoContratacion} onChange={(e)=>{setForm({...form,tipoContratacion:e.target.value}); cambiarBorde(e.target.id);}} id='tipoContratacion'/>
           <p style={styles.parrafo}>Tipo de Empleo:</p>
           <input type="text" placeholder="Ingresa el tipo de empleo*" style={styles.input} value={form.tipoEmpleo} onChange={(e)=>{setForm({...form,tipoEmpleo:e.target.value}); cambiarBorde(e.target.id);}} id='tipoEmpleo'/>
           <p style={styles.parrafo}>Información:</p>
-          <input type="text" placeholder="Ingresa la información*" style={styles.inputLarge} value={form.informacion} onChange={(e)=>{setForm({...form,informacion:e.target.value}); cambiarBorde(e.target.id);}} id='informacion'/>
+          <textarea type="text" placeholder="Ingresa la información*" style={styles.inputLarge} value={form.informacion} onChange={(e)=>{setForm({...form,informacion:e.target.value}); cambiarBorde(e.target.id);}} id='informacion'/>
         </div>
 
         <div style={{display: "flex", width: "100%", height: "auto", margin: "10px 0px"}}>
@@ -254,10 +254,10 @@ const CrearVacante = () => {
           <p style={styles.parrafo}>Número de personas:</p>
           <input type="text" placeholder="Ingresa el número de personas*" style={styles.input} value={form.numeroPersonas} onChange={(e)=>{setForm({...form,numeroPersonas:e.target.value}); cambiarBorde(e.target.id);}} id='numeroPersonas'/>
           <p style={styles.parrafo}>Prestaciones:</p>
-          <input type="text" placeholder="Ingresa las prestaciones*" style={styles.input} value={form.prestaciones} onChange={(e)=>{setForm({...form,prestaciones:e.target.value}); cambiarBorde(e.target.id);}} id='prestaciones'/>
+          <textarea type="text" placeholder="Ingresa las prestaciones*" style={styles.inputLarge} value={form.prestaciones} onChange={(e)=>{setForm({...form,prestaciones:e.target.value}); cambiarBorde(e.target.id);}} id='prestaciones'/>
           
           <p style={styles.parrafo}>Otros requisitos:</p>
-          <input type="text" placeholder="Ingresa los requisitos (opcional)" style={styles.inputLarge} value={form.otrosRequisitos} onChange={(e)=>{setForm({...form,otrosRequisitos:e.target.value}); cambiarBorde(e.target.id);}} id='otrosRequisitos'/>
+          <textarea type="text" placeholder="Ingresa los requisitos (opcional)" style={styles.inputLarge} value={form.otrosRequisitos} onChange={(e)=>{setForm({...form,otrosRequisitos:e.target.value}); cambiarBorde(e.target.id);}} id='otrosRequisitos'/>
         </div>
 
 
@@ -317,7 +317,7 @@ const styles = {
   inputLarge: {
     width: "98%",
     height: "60px",
-    paddingLeft: "10px",
+    padding: "10px",
     border: "1px solid #505050",
     borderRadius: "5px",
     margin: "10px 0px",
@@ -345,7 +345,4 @@ const styles = {
     color: "white",
     border: "none",
   },
-  a:{
-    margin: '0px 0px 100px 0px',
-  }
 };
