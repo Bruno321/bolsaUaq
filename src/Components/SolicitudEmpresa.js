@@ -209,7 +209,7 @@ const SolicitudEmpresa = (props) => {
         <p style={styles.normalText}>{fecha}</p>
       </div>
       <div style={styles.innerDiv}>
-        <h1> Estatus ({statusText})</h1>
+        <h1 style={styles.titleStatus}> Estatus ({statusText})</h1>
         <h2 style={styles.title}>Domicilio</h2>
         <b style={styles.normalText}>Dirección:</b>
         <p style={styles.normalText}>{direccion}</p>
@@ -226,7 +226,7 @@ const SolicitudEmpresa = (props) => {
       </div>
       <div style={styles.innerDiv}>
         <button style={styles.btnCerrar} onClick={handleCerrar}><h1 style={{color:"black"}}>X</h1></button>
-        <h2 style={styles.title}>Nombre del reclutador:</h2>
+        <h2 style={{ fontSize: '25px', marginBottom: '4px', marginTop:'36px' }}>Nombre del reclutador:</h2>
         <p style={styles.normalText}>{nombreReclutador}</p>
         <b style={styles.normalText}>Email del reclutador:</b>
         <p style={styles.normalText}>{emailReclutador}</p>
@@ -270,8 +270,10 @@ const styles = {
     // justifyContent: "center",
   },
   imgContainer:{
-    width: '300px',
-    // height: '300px',
+    width: '200px',
+    height: '200px',
+    marginBottom: '30px',
+    border: '1px solid black',
     borderRadius: "100%",
     overflow: "hidden",
     display: "flex",
@@ -280,6 +282,10 @@ const styles = {
   img:{
     width: "100%",
     height: "auto",
+  },
+  titleStatus: {
+    fontSize: '32px',
+    marginBottom: '20px',
   },
   title: {
     fontSize: '25px',
