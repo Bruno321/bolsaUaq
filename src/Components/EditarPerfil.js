@@ -58,7 +58,7 @@ const EditarPerfil = (props) => {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.put('http://localhost:3000/empresa',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+        axios.put('http://localhost:3000/api/empresa',{form},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
        .then((response)=>{
         Swal.fire({
           icon: 'success',
@@ -173,12 +173,20 @@ const styles = {
     marginTop:"20px",
   },
   imgContainer:{
-    width: '300px',
+    // width: '300px',
+    // borderRadius: "100%",
+    // overflow: "hidden",
+    // display: "flex",
+    // justifyContent: "center",
+    // marginTop:"20px",
+    width: '200px',
+    height: '200px',
+    marginBottom: '30px',
+    border: '1px solid black',
     borderRadius: "100%",
     overflow: "hidden",
     display: "flex",
     justifyContent: "center",
-    // marginTop:"20px",
   },
   img:{
     width: "100%",

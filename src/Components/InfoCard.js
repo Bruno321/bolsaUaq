@@ -329,9 +329,9 @@ const InfoCard = ({ props,filterOption }) => {
 					{props.empresa  ? <p style={styles.vacantAttribute}> <b>Nombre de la empresa:</b> {props.empresa.nombreEmpresa}  </p>: null}
 					<button style={styles.vacantDetails} onClick={() => handleDetailButton()} className="btnHover">Mostrar detalles</button>
 					<button style={styles.vacantDetails} onClick={onClickDetails} className="btnHover">Generar PDF</button>
-					{/* <button style={{...styles.vacantDetails,backgroundColor:handleColor()}} onClick={onClickDetails} className="btnHover">
+					<button style={{...styles.vacantDetails,backgroundColor:handleColor()}} disabled={true} >
 						{props.isDisponible==0 ?'Disponible' :'Ocupada' }
-					</button> */}
+					</button>
 				</>
 			)
 		}

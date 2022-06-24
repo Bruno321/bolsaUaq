@@ -48,7 +48,7 @@ const InfoVacante = ({data}) => {
 			}
 		}).then((result) => {
 			if (result.isConfirmed) {
-			  axios.patch('http://localhost:3000/vacantes',{data:{id:data.vacanteId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+			  axios.patch('http://localhost:3000/api/vacantes',{data:{id:data.vacanteId,status:0}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
 				  console.log(response)
 				  Swal.fire(
@@ -101,7 +101,7 @@ const InfoVacante = ({data}) => {
           
 		}).then((result) => {
 			if (result.isConfirmed) {
-			  axios.patch('http://localhost:3000/vacantes',{data:{id:data.vacanteId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
+			  axios.patch('http://localhost:3000/api/vacantes',{data:{id:data.vacanteId,status:1}},{headers:{"Access-Control-Allow-Origin":null,'Authorization': `Bearer ${token}`}, mode: 'cors'})
 			  .then((response)=>{
 				  console.log(response)
 				  Swal.fire(
